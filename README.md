@@ -1,8 +1,7 @@
 # DT-ST
 # Towards Better Stability and Adaptability: Improve Online Self-Training for Model Adaptation in Semantic Segmentation(CVPR-2023)
 
-This is a [pytorch](http://pytorch.org/) implementation of [DT-ST]([https://arxiv.org/abs/2007.09222](https://openaccess.thecvf.com/content/CVPR2023/html/Zhao_Towards_Better_Stability_and_Adaptability_Improve_Online_Self-Training_for_Model_CVPR_2023_paper.html)).
-
+This is a [pytorch](http://pytorch.org/) implementation of [DT-ST]([https://openaccess.thecvf.com/content/CVPR2023/html/Zhao_Towards_Better_Stability_and_Adaptability_Improve_Online_Self-Training_for_Model_CVPR_2023_paper.html]).
 
 ### Prerequisites
 - Python 3.6
