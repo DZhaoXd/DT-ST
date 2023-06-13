@@ -30,9 +30,8 @@ conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=9.2 -c pytorch
 ```
 
 ### Getting started
+Data:
 - Download [The Cityscapes Dataset]( https://www.cityscapes-dataset.com/ )
-- Download [The GTA pretrain models]( https://www.cityscapes-dataset.com/ )
-- Download [The SYNTHIA pretrain models]( https://www.cityscapes-dataset.com/ )
 
 The data folder should be structured as follows:
 ```
@@ -42,15 +41,29 @@ The data folder should be structured as follows:
 |   |   ├── leftImg8bit/		
 ...
 ```
+Pretrain models:
+- Download pretrained model on GTA5: [GTA5] (https://drive.google.com/file/d/1dwWoEKTnPBHr9-_-uVyqPH_HfBcLcfns/view?usp=drive_link) 
+- Download pretrained model on SYNTHIA: [GTA5] (https://drive.google.com/file/d/1UUTfaKBmXmp4mMAAzysOCZf3Of7mN088/view?usp=drive_link) 
+
+Then, put these *.pth into the pretrain folder.
 
 ### Train
+G2C model adaptation
+```
+python train_TCR_DTU.py -cfg configs/deeplabv2_r101_dtst.yaml OUTPUT_DIR results/dtst/ resume pretrain/G2C_model_iter020000.pth
+```
+S2C model adaptation
+
+```
+python train_TCR_DTU.py -cfg configs/deeplabv2_r101_dtst_synthia.yaml OUTPUT_DIR results/synthia_dtst/ resume ./pretrain/S2C_model_iter020000.pth
+```
 
 
 ### Evaluate
 ```
 python test.py -cfg configs/deeplabv2_r101_param_color.yaml resume results/dtst_g2c/model_iter020000.pth
 ```
-Our pretrained model is available via [polybox](https://polybox.ethz.ch/index.php/s/jzckTds5efxbn3n).
+Our pretrained model is available via .
 
 
 ### Acknowledge
