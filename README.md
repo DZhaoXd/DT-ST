@@ -61,7 +61,7 @@ python train_TCR_DTU.py -cfg configs/deeplabv2_r101_dtst_synthia.yaml OUTPUT_DIR
 
 ### Evaluate
 ```
-python test.py -cfg configs/deeplabv2_r101_param_color.yaml resume results/dtst_g2c/model_iter020000.pth
+python test.py -cfg configs/deeplabv2_r101_dtst.yaml resume results/dtst_g2c/model_iter020000.pth
 ```
 Our pretrained model is available via .
 
