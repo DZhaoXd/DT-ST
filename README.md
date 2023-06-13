@@ -16,8 +16,8 @@ This is a [pytorch](http://pytorch.org/) implementation of [DT-ST](https://opena
 ### Step-by-step installation
 
 ```bash
-conda create --name fada -y python=3.6
-conda activate fada
+conda create --name dtst -y python=3.6
+conda activate dtst
 
 # this installs the right pip and dependencies for the fresh python
 conda install -y ipython pip
