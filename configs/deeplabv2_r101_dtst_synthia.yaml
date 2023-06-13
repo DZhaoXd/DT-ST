@@ -1,0 +1,36 @@
+MODEL:
+  NAME: "deeplab_resnet101"
+  WEIGHTS: "pretrain/resnet101-5d3b4d8f.pth"
+  FREEZE_BN: True
+  NUM_CLASSES: 16
+DATASETS:
+  SOURCE_TRAIN: "gta5_train"
+  TARGET_TRAIN: "cityscapes_train"
+  TEST: "cityscapes_val"
+  TT: "cityscapes_TT_train"
+  II: "cityscapes_II_train"
+INPUT:
+  TARGET_INPUT_SIZE_TRAIN: (960, 480)
+  INPUT_SCALES_TRAIN: (0.75, 1.75)
+  # rescale and crop 
+  INPUT_SIZE_TEST: (1280, 640)
+  HORIZONTAL_FLIP_PROB_TRAIN: 0.5
+  BRIGHTNESS: 0.5
+  CONTRAST: 0.5
+  SATURATION: 0.5
+  HUE: 0.2
+DTU:
+  DYNAMIC: True
+  Query_STEP: 3
+  Query_START: 9
+  META_MAX_UPDATE: 30
+  EMA_WEIGHT: 0.99
+  PROXY_METRIC: 'SND'
+TCR:
+  TOPK_CANDIDATE: 0.5
+  UPDATE_FREQUENCY: 3000
+SOLVER:
+  BASE_LR: 2.5e-4
+  MAX_ITER: 62500
+  STOP_ITER: 20000
+  BATCH_SIZE: 4

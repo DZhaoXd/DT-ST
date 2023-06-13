@@ -1,0 +1,20 @@
+MODEL:
+  NAME: "deeplab_resnet101"
+  WEIGHTS: 'pretrain/resnet101-5d3b4d8f.pth'
+  FREEZE_BN: True
+  UNCERTAINTY: 0.5
+  POS: [ 0,1,2,3,4,5 ]
+  NUM_CLASSES: 16
+DATASETS:
+  SOURCE_TRAIN: "synthia_train"
+  TEST: "cityscapes_val"
+INPUT:
+  INPUT_SIZE_TEST: (1280, 640)
+  INPUT_SCALES_TRAIN: (0.75, 1.25)
+  SOURCE_INPUT_SIZE_TRAIN: (960, 512)
+SOLVER:
+  BASE_LR: 5e-4
+  MAX_ITER: 31250
+  STOP_ITER: 20000
+  BATCH_SIZE: 8
+
