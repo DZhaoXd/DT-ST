@@ -54,7 +54,7 @@ Our pretrained model is available via [polybox](https://polybox.ethz.ch/index.ph
 
 
 ### Acknowledge
-Some codes are adapted from [FADA](https://github.com/JDAI-CV/FADA#classes-matter-a-fine-grained-adversarial-approach-to-cross-domain-semantic-segmentation-eccv-2020) and [DSU](https://github.com/lixiaotong97/DSU). We thank them for their excellent projects.
+Some codes are adapted from [FADA](https://github.com/JDAI-CV/FADA#classes-matter-a-fine-grained-adversarial-approach-to-cross-domain-semantic-segmentation-eccv-2020), [SAC] (https://github.com/visinf/da-sac) and [DSU](https://github.com/lixiaotong97/DSU). We thank them for their excellent projects.
 
 
 ### Citation
