@@ -63,7 +63,7 @@ python train_TCR_DTU.py -cfg configs/deeplabv2_r101_dtst_synthia.yaml OUTPUT_DIR
 ```
 python test.py -cfg configs/deeplabv2_r101_dtst.yaml resume results/dtst_g2c/model_iter020000.pth
 ```
-Our trained model and the training logs are available via [DTST](https://drive.google.com/drive/folders/1MINE4So10eXdXA2mDJtxMagspExDtvB8?usp=drive_link).
+Our trained model and the training logs are available via [DTST-training-logs-and weights](https://drive.google.com/drive/folders/1ML3_6MyDOnlUR7_S2rj1J4Z82v16WZGa?usp=drive_link).
 
 
 ### Acknowledge
