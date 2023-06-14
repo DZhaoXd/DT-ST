@@ -401,18 +401,6 @@ def train(cfg, local_rank, distributed):
              
             #### history model 
             with torch.no_grad():   
-                show_images_flag=False
-                if show_images_flag:
-                    crop_img = full2weak(tgt_img_full, tgt_trans_param)
-                    denormalized_image = denormalizeimage(crop_img, cfg.INPUT.PIXEL_MEAN, cfg.INPUT.PIXEL_STD)
-                    denormalized_image = np.asarray(denormalized_image.cpu().numpy()[2], dtype=np.uint8)
-                    denormalized_image = Image.fromarray(denormalized_image.transpose((1,2,0)))
-                    denormalized_image.save('tea.png')
-                
-                    denormalized_image = denormalizeimage(tgt_input, cfg.INPUT.PIXEL_MEAN, cfg.INPUT.PIXEL_STD)
-                    denormalized_image = np.asarray(denormalized_image.cpu().numpy()[2], dtype=np.uint8)
-                    denormalized_image = Image.fromarray(denormalized_image.transpose((1,2,0)))
-                    denormalized_image.save('stu.png')
                     
                 size = tgt_img_full.shape[-2:]
                 tgt_pred_his_full = classifier_his(feature_extractor_his(tgt_img_full)[1], tgt_img_full.shape[-2:])
@@ -435,10 +423,6 @@ def train(cfg, local_rank, distributed):
                 psd_label = psd_label * (mix_label==255) + mix_label * ((mix_label!=255))
                 uc_map_eln = torch.ones_like(psd_label).float()
                 
-                if show_images_flag:
-                    psd_show = np.asarray(psd_label.cpu().numpy()[2], dtype=np.uint8)
-                    psd_show = get_color_pallete(psd_show, "city")
-                    psd_show.save('psd_final.png')
             
             st_loss = criterion(tgt_pred, psd_label.long())
             pesudo_p_loss = (st_loss * (-(1-uc_map_eln)).exp() ).mean()
