@@ -1,0 +1,1204 @@
+2023-06-13 20:19:57,469 DTST INFO: Using 1 GPUs
+2023-06-13 20:19:57,469 DTST INFO: Namespace(config_file='configs/deeplabv2_r101_dtst_synthia.yaml', distributed=False, local_rank=0, opts=['OUTPUT_DIR', 'results/synthia_dtst/', 'resume', './pretrain/S2C_model_iter020000.pth'], skip_test=False)
+2023-06-13 20:19:57,470 DTST INFO: Loaded configuration file configs/deeplabv2_r101_dtst_synthia.yaml
+2023-06-13 20:19:57,470 DTST INFO: 
+MODEL:
+  NAME: "deeplab_resnet101"
+  WEIGHTS: "pretrain/resnet101-5d3b4d8f.pth"
+  FREEZE_BN: True
+  NUM_CLASSES: 16
+DATASETS:
+  SOURCE_TRAIN: "gta5_train"
+  TARGET_TRAIN: "cityscapes_train"
+  TEST: "cityscapes_val"
+  TT: "cityscapes_TT_train"
+  II: "cityscapes_II_train"
+INPUT:
+  TARGET_INPUT_SIZE_TRAIN: (960, 480)
+  INPUT_SCALES_TRAIN: (0.75, 1.75)
+  # rescale and crop 
+  INPUT_SIZE_TEST: (1280, 640)
+  HORIZONTAL_FLIP_PROB_TRAIN: 0.5
+  BRIGHTNESS: 0.5
+  CONTRAST: 0.5
+  SATURATION: 0.5
+  HUE: 0.2
+DTU:
+  DYNAMIC: True
+  Query_STEP: 3
+  Query_START: 9
+  META_MAX_UPDATE: 30
+  EMA_WEIGHT: 0.99
+  PROXY_METRIC: 'SND'
+TCR:
+  TOPK_CANDIDATE: 0.5
+  UPDATE_FREQUENCY: 3000
+SOLVER:
+  BASE_LR: 2.5e-4
+  MAX_ITER: 62500
+  STOP_ITER: 20000
+  BATCH_SIZE: 4
+
+2023-06-13 20:19:57,470 DTST INFO: Running with config:
+DATASETS:
+  II: cityscapes_II_train
+  SOURCE_TRAIN: gta5_train
+  TARGET_TRAIN: cityscapes_train
+  TEST: cityscapes_val
+  TT: cityscapes_TT_train
+  VALIDATION: 
+DTU:
+  DYNAMIC: True
+  EMA_WEIGHT: 0.99
+  META_MAX_UPDATE: 30
+  PROXY_METRIC: SND
+  Query_START: 9
+  Query_STEP: 3
+INPUT:
+  BRIGHTNESS: 0.5
+  CONTRAST: 0.5
+  HORIZONTAL_FLIP_PROB_TRAIN: 0.5
+  HUE: 0.2
+  IGNORE_LABEL: 255
+  INPUT_SCALES_TRAIN: (0.75, 1.75)
+  INPUT_SIZE_TEST: (1280, 640)
+  PIXEL_MEAN: [0.485, 0.456, 0.406]
+  PIXEL_STD: [0.229, 0.224, 0.225]
+  SATURATION: 0.5
+  SOURCE_INPUT_SIZE_TRAIN: (1280, 720)
+  TARGET_INPUT_SIZE_TRAIN: (960, 480)
+  TO_BGR255: False
+MODEL:
+  DEVICE: cuda
+  FREEZE_BN: True
+  NAME: deeplab_resnet101
+  NUM_CLASSES: 16
+  POS: []
+  UNCERTAINTY: 0.0
+  WEIGHTS: pretrain/resnet101-5d3b4d8f.pth
+OUTPUT_DIR: results/synthia_dtst/
+SOLVER:
+  BASE_LR: 0.00025
+  BASE_LR_D: 0.008
+  BATCH_SIZE: 4
+  BATCH_SIZE_VAL: 1
+  CHECKPOINT_PERIOD: 1000
+  GAMMA: 0.1
+  LR_METHOD: poly
+  LR_POWER: 0.9
+  MAX_ITER: 62500
+  MOMENTUM: 0.9
+  STOP_ITER: 20000
+  WEIGHT_DECAY: 0.0005
+  WEIGHT_DECAY_BIAS: 0
+TCR:
+  SAMPLE_LIST: [1, 2, 3]
+  TOPK_CANDIDATE: 0.5
+  UPDATE_FREQUENCY: 3000
+TEST:
+  BATCH_SIZE: 1
+resume: ./pretrain/S2C_model_iter020000.pth
+2023-06-13 20:19:57,470 DTST.trainer INFO: Start training
+2023-06-13 20:20:01,293 DTST.trainer INFO: Loading checkpoint from ./pretrain/S2C_model_iter020000.pth
+2023-06-13 20:20:01,624 DTST.trainer INFO: Start training
+2023-06-13 20:21:10,285 DTST.trainer INFO: eta: 19:03:10  iter: 20  loss_p_loss: 0.8401 (1.1127)  loss_n_loss: 0.2475 (0.3012)  time: 1.8689 (3.4330)  data: 0.0003 (0.7889)  lr: 0.000250  max mem: 19053
+2023-06-13 20:21:57,459 DTST.trainer INFO: eta: 16:03:20  iter: 40  loss_p_loss: 0.6250 (0.8596)  loss_n_loss: 0.0826 (0.1919)  time: 1.8801 (2.8958)  data: 0.0003 (0.3946)  lr: 0.000250  max mem: 19053
+2023-06-13 20:23:03,589 DTST.trainer INFO: eta: 16:47:52  iter: 60  loss_p_loss: 0.5026 (0.7499)  loss_n_loss: 0.0313 (0.1396)  time: 1.8831 (3.0327)  data: 0.0002 (0.2632)  lr: 0.000250  max mem: 19053
+2023-06-13 20:23:57,163 DTST.trainer INFO: eta: 16:17:28  iter: 80  loss_p_loss: 0.5523 (0.7041)  loss_n_loss: 0.0217 (0.1102)  time: 1.8847 (2.9442)  data: 0.0002 (0.1975)  lr: 0.000250  max mem: 19053
+2023-06-13 20:25:14,656 DTST.trainer INFO: eta: 17:18:12  iter: 100  loss_p_loss: 0.4369 (0.6546)  loss_n_loss: 0.0199 (0.0923)  time: 1.8881 (3.1303)  data: 0.0003 (0.1580)  lr: 0.000250  max mem: 19053
+2023-06-13 20:26:44,807 DTST.trainer INFO: eta: 18:33:13  iter: 120  loss_p_loss: 0.3892 (0.6122)  loss_n_loss: 0.0162 (0.0797)  time: 1.8876 (3.3598)  data: 0.0002 (0.1318)  lr: 0.000250  max mem: 19053
+2023-06-13 20:27:55,911 DTST.trainer INFO: eta: 18:41:20  iter: 140  loss_p_loss: 0.3511 (0.5730)  loss_n_loss: 0.0115 (0.0700)  time: 1.8860 (3.3878)  data: 0.0002 (0.1130)  lr: 0.000249  max mem: 19053
+2023-06-13 20:28:49,354 DTST.trainer INFO: eta: 18:10:38  iter: 160  loss_p_loss: 0.3303 (0.5466)  loss_n_loss: 0.0074 (0.0623)  time: 1.8852 (3.2983)  data: 0.0002 (0.0989)  lr: 0.000249  max mem: 19053
+2023-06-13 20:30:06,486 DTST.trainer INFO: eta: 18:30:01  iter: 180  loss_p_loss: 0.3289 (0.5278)  loss_n_loss: 0.0080 (0.0562)  time: 1.8843 (3.3603)  data: 0.0002 (0.0879)  lr: 0.000249  max mem: 19053
+2023-06-13 20:30:53,883 DTST.trainer INFO: eta: 17:56:13  iter: 200  loss_p_loss: 0.3153 (0.5097)  loss_n_loss: 0.0068 (0.0513)  time: 1.8862 (3.2613)  data: 0.0003 (0.0792)  lr: 0.000249  max mem: 19053
+2023-06-13 20:32:11,574 DTST.trainer INFO: eta: 18:13:48  iter: 220  loss_p_loss: 0.3697 (0.4952)  loss_n_loss: 0.0064 (0.0473)  time: 1.8867 (3.3179)  data: 0.0003 (0.0720)  lr: 0.000249  max mem: 19053
+2023-06-13 20:33:11,832 DTST.trainer INFO: eta: 18:04:20  iter: 240  loss_p_loss: 0.2775 (0.4788)  loss_n_loss: 0.0078 (0.0440)  time: 1.8882 (3.2925)  data: 0.0003 (0.0660)  lr: 0.000249  max mem: 19053
+2023-06-13 20:34:08,927 DTST.trainer INFO: eta: 17:52:09  iter: 260  loss_p_loss: 0.3009 (0.4659)  loss_n_loss: 0.0069 (0.0412)  time: 1.8902 (3.2588)  data: 0.0003 (0.0610)  lr: 0.000249  max mem: 19053
+2023-06-13 20:35:26,602 DTST.trainer INFO: eta: 18:05:44  iter: 280  loss_p_loss: 0.3055 (0.4531)  loss_n_loss: 0.0056 (0.0386)  time: 1.8874 (3.3035)  data: 0.0003 (0.0567)  lr: 0.000249  max mem: 19053
+2023-06-13 20:36:44,287 DTST.trainer INFO: eta: 18:17:21  iter: 300  loss_p_loss: 0.2794 (0.4416)  loss_n_loss: 0.0046 (0.0364)  time: 1.8865 (3.3422)  data: 0.0002 (0.0529)  lr: 0.000249  max mem: 19053
+2023-06-13 20:37:40,871 DTST.trainer INFO: eta: 18:05:43  iter: 320  loss_p_loss: 0.2626 (0.4335)  loss_n_loss: 0.0037 (0.0343)  time: 1.8859 (3.3101)  data: 0.0002 (0.0496)  lr: 0.000249  max mem: 19053
+2023-06-13 20:38:51,537 DTST.trainer INFO: eta: 18:08:55  iter: 340  loss_p_loss: 0.3554 (0.4301)  loss_n_loss: 0.0054 (0.0327)  time: 1.8875 (3.3233)  data: 0.0002 (0.0467)  lr: 0.000249  max mem: 19053
+2023-06-13 20:39:45,102 DTST.trainer INFO: eta: 17:56:05  iter: 360  loss_p_loss: 0.2967 (0.4272)  loss_n_loss: 0.0074 (0.0313)  time: 1.8875 (3.2874)  data: 0.0002 (0.0441)  lr: 0.000249  max mem: 19053
+2023-06-13 20:40:32,276 DTST.trainer INFO: eta: 17:39:00  iter: 380  loss_p_loss: 0.2529 (0.4190)  loss_n_loss: 0.0071 (0.0301)  time: 1.8878 (3.2386)  data: 0.0002 (0.0418)  lr: 0.000249  max mem: 19053
+2023-06-13 20:42:28,165 DTST.trainer INFO: eta: 18:19:40  iter: 400  loss_p_loss: 0.2134 (0.4096)  loss_n_loss: 0.0051 (0.0288)  time: 1.8864 (3.3663)  data: 0.0002 (0.0397)  lr: 0.000249  max mem: 19053
+2023-06-13 20:43:45,853 DTST.trainer INFO: eta: 18:26:36  iter: 420  loss_p_loss: 0.2396 (0.4028)  loss_n_loss: 0.0044 (0.0277)  time: 1.8874 (3.3910)  data: 0.0003 (0.0379)  lr: 0.000248  max mem: 19053
+2023-06-13 20:44:42,862 DTST.trainer INFO: eta: 18:17:27  iter: 440  loss_p_loss: 0.2358 (0.3961)  loss_n_loss: 0.0046 (0.0266)  time: 1.8881 (3.3664)  data: 0.0003 (0.0362)  lr: 0.000248  max mem: 19053
+2023-06-13 20:46:13,235 DTST.trainer INFO: eta: 18:32:39  iter: 460  loss_p_loss: 0.2119 (0.3883)  loss_n_loss: 0.0039 (0.0257)  time: 1.8864 (3.4165)  data: 0.0003 (0.0346)  lr: 0.000248  max mem: 19053
+2023-06-13 20:47:26,173 DTST.trainer INFO: eta: 18:34:38  iter: 480  loss_p_loss: 0.2297 (0.3822)  loss_n_loss: 0.0040 (0.0248)  time: 1.8859 (3.4261)  data: 0.0003 (0.0332)  lr: 0.000248  max mem: 19053
+2023-06-13 20:48:27,571 DTST.trainer INFO: eta: 18:28:51  iter: 500  loss_p_loss: 0.1884 (0.3752)  loss_n_loss: 0.0035 (0.0239)  time: 1.8869 (3.4119)  data: 0.0002 (0.0319)  lr: 0.000248  max mem: 19053
+2023-06-13 20:49:43,174 DTST.trainer INFO: eta: 18:32:19  iter: 520  loss_p_loss: 0.2098 (0.3691)  loss_n_loss: 0.0030 (0.0231)  time: 1.8868 (3.4261)  data: 0.0002 (0.0306)  lr: 0.000248  max mem: 19053
+2023-06-13 20:51:32,523 DTST.trainer INFO: eta: 18:55:42  iter: 540  loss_p_loss: 0.1832 (0.3630)  loss_n_loss: 0.0030 (0.0224)  time: 1.8877 (3.5017)  data: 0.0002 (0.0295)  lr: 0.000248  max mem: 19053
+2023-06-13 20:52:19,844 DTST.trainer INFO: eta: 18:41:23  iter: 560  loss_p_loss: 0.2052 (0.3592)  loss_n_loss: 0.0034 (0.0217)  time: 1.8865 (3.4611)  data: 0.0003 (0.0285)  lr: 0.000248  max mem: 19053
+2023-06-13 20:53:13,643 DTST.trainer INFO: eta: 18:31:38  iter: 580  loss_p_loss: 0.1998 (0.3535)  loss_n_loss: 0.0027 (0.0210)  time: 1.8865 (3.4345)  data: 0.0003 (0.0275)  lr: 0.000248  max mem: 19053
+2023-06-13 20:54:21,828 DTST.trainer INFO: eta: 18:30:13  iter: 600  loss_p_loss: 0.1796 (0.3484)  loss_n_loss: 0.0024 (0.0204)  time: 1.8894 (3.4337)  data: 0.0002 (0.0266)  lr: 0.000248  max mem: 19053
+2023-06-13 20:55:12,328 DTST.trainer INFO: eta: 18:19:36  iter: 620  loss_p_loss: 0.1901 (0.3438)  loss_n_loss: 0.0024 (0.0199)  time: 1.8857 (3.4044)  data: 0.0002 (0.0258)  lr: 0.000248  max mem: 19053
+2023-06-13 20:56:23,612 DTST.trainer INFO: eta: 18:20:05  iter: 640  loss_p_loss: 0.2078 (0.3395)  loss_n_loss: 0.0021 (0.0193)  time: 1.8875 (3.4094)  data: 0.0002 (0.0250)  lr: 0.000248  max mem: 19053
+2023-06-13 20:57:50,964 DTST.trainer INFO: eta: 18:28:18  iter: 660  loss_p_loss: 0.2026 (0.3358)  loss_n_loss: 0.0021 (0.0188)  time: 1.8886 (3.4384)  data: 0.0003 (0.0242)  lr: 0.000248  max mem: 19053
+2023-06-13 20:58:57,482 DTST.trainer INFO: eta: 18:26:05  iter: 680  loss_p_loss: 0.1843 (0.3317)  loss_n_loss: 0.0021 (0.0183)  time: 1.8882 (3.4351)  data: 0.0002 (0.0235)  lr: 0.000248  max mem: 19053
+2023-06-13 21:00:15,143 DTST.trainer INFO: eta: 18:29:04  iter: 700  loss_p_loss: 0.1624 (0.3283)  loss_n_loss: 0.0019 (0.0178)  time: 1.8877 (3.4479)  data: 0.0003 (0.0228)  lr: 0.000247  max mem: 19053
+2023-06-13 21:01:36,038 DTST.trainer INFO: eta: 18:33:14  iter: 720  loss_p_loss: 0.2452 (0.3263)  loss_n_loss: 0.0021 (0.0174)  time: 1.8861 (3.4645)  data: 0.0002 (0.0222)  lr: 0.000247  max mem: 19053
+2023-06-13 21:02:29,800 DTST.trainer INFO: eta: 18:25:21  iter: 740  loss_p_loss: 0.1952 (0.3232)  loss_n_loss: 0.0024 (0.0170)  time: 1.8882 (3.4435)  data: 0.0003 (0.0216)  lr: 0.000247  max mem: 19053
+2023-06-13 21:03:26,753 DTST.trainer INFO: eta: 18:19:10  iter: 760  loss_p_loss: 0.1900 (0.3202)  loss_n_loss: 0.0023 (0.0166)  time: 1.8877 (3.4278)  data: 0.0002 (0.0211)  lr: 0.000247  max mem: 19053
+2023-06-13 21:04:28,471 DTST.trainer INFO: eta: 18:15:13  iter: 780  loss_p_loss: 0.1994 (0.3177)  loss_n_loss: 0.0027 (0.0163)  time: 1.8879 (3.4190)  data: 0.0002 (0.0205)  lr: 0.000247  max mem: 19053
+2023-06-13 21:05:22,094 DTST.trainer INFO: eta: 18:08:11  iter: 800  loss_p_loss: 0.1771 (0.3143)  loss_n_loss: 0.0022 (0.0159)  time: 1.8877 (3.4006)  data: 0.0002 (0.0200)  lr: 0.000247  max mem: 19053
+2023-06-13 21:07:28,726 DTST.trainer INFO: eta: 18:29:54  iter: 820  loss_p_loss: 0.1767 (0.3116)  loss_n_loss: 0.0022 (0.0156)  time: 1.8878 (3.4721)  data: 0.0002 (0.0195)  lr: 0.000247  max mem: 19053
+2023-06-13 21:08:46,182 DTST.trainer INFO: eta: 18:31:47  iter: 840  loss_p_loss: 0.1759 (0.3088)  loss_n_loss: 0.0021 (0.0153)  time: 1.8882 (3.4816)  data: 0.0002 (0.0191)  lr: 0.000247  max mem: 19053
+2023-06-13 21:09:55,682 DTST.trainer INFO: eta: 18:30:35  iter: 860  loss_p_loss: 0.1628 (0.3057)  loss_n_loss: 0.0020 (0.0150)  time: 1.8871 (3.4815)  data: 0.0002 (0.0187)  lr: 0.000247  max mem: 19053
+2023-06-13 21:11:11,480 DTST.trainer INFO: eta: 18:31:39  iter: 880  loss_p_loss: 0.1849 (0.3033)  loss_n_loss: 0.0017 (0.0147)  time: 1.8877 (3.4885)  data: 0.0002 (0.0182)  lr: 0.000247  max mem: 19053
+2023-06-13 21:12:13,233 DTST.trainer INFO: eta: 18:27:39  iter: 900  loss_p_loss: 0.1709 (0.3007)  loss_n_loss: 0.0016 (0.0144)  time: 1.8869 (3.4796)  data: 0.0002 (0.0178)  lr: 0.000247  max mem: 19053
+2023-06-13 21:13:16,541 DTST.trainer INFO: eta: 18:24:19  iter: 920  loss_p_loss: 0.1775 (0.2985)  loss_n_loss: 0.0016 (0.0141)  time: 1.8872 (3.4727)  data: 0.0002 (0.0175)  lr: 0.000247  max mem: 19053
+2023-06-13 21:14:18,233 DTST.trainer INFO: eta: 18:20:32  iter: 940  loss_p_loss: 0.1752 (0.2968)  loss_n_loss: 0.0017 (0.0138)  time: 1.8869 (3.4645)  data: 0.0002 (0.0171)  lr: 0.000247  max mem: 19053
+2023-06-13 21:15:11,974 DTST.trainer INFO: eta: 18:14:15  iter: 960  loss_p_loss: 0.1736 (0.2944)  loss_n_loss: 0.0016 (0.0136)  time: 1.8874 (3.4483)  data: 0.0002 (0.0167)  lr: 0.000247  max mem: 19053
+2023-06-13 21:17:01,463 DTST.trainer INFO: eta: 18:26:12  iter: 980  loss_p_loss: 0.1591 (0.2918)  loss_n_loss: 0.0015 (0.0133)  time: 1.8880 (3.4896)  data: 0.0002 (0.0164)  lr: 0.000246  max mem: 19053
+2023-06-13 21:18:25,517 DTST.trainer INFO: eta: 18:29:33  iter: 1000  loss_p_loss: 0.1976 (0.2902)  loss_n_loss: 0.0016 (0.0131)  time: 1.8870 (3.5039)  data: 0.0002 (0.0161)  lr: 0.000246  max mem: 19053
+2023-06-13 21:18:25,832 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-13 21:19:47,243 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4147/0.5237/0.7801.
+2023-06-13 21:19:47,243 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.6402/0.6463.
+2023-06-13 21:19:47,244 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.2613/0.8893.
+2023-06-13 21:19:47,244 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.7915/0.9545.
+2023-06-13 21:19:47,244 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.1103/0.1161.
+2023-06-13 21:19:47,244 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0007/0.0007.
+2023-06-13 21:19:47,244 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.3077/0.4226.
+2023-06-13 21:19:47,244 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.1256/0.1315.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.2178/0.2286.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8341/0.8908.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7839/0.8937.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.6008/0.7791.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.2118/0.3811.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8296/0.9373.
+2023-06-13 21:19:47,245 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.3616/0.4338.
+2023-06-13 21:19:47,246 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2180/0.3086.
+2023-06-13 21:19:47,246 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.3408/0.3649.
+2023-06-13 21:21:36,775 DTST.trainer INFO: eta: 19:05:58  iter: 1020  loss_p_loss: 0.1855 (0.2884)  loss_n_loss: 0.0014 (0.0129)  time: 1.8865 (3.6227)  data: 0.0002 (0.0959)  lr: 0.000246  max mem: 19053
+2023-06-13 21:22:24,219 DTST.trainer INFO: eta: 18:57:10  iter: 1040  loss_p_loss: 0.1596 (0.2862)  loss_n_loss: 0.0016 (0.0127)  time: 1.8878 (3.5986)  data: 0.0002 (0.0941)  lr: 0.000246  max mem: 19053
+2023-06-13 21:23:16,406 DTST.trainer INFO: eta: 18:50:04  iter: 1060  loss_p_loss: 0.1639 (0.2841)  loss_n_loss: 0.0014 (0.0125)  time: 1.8859 (3.5800)  data: 0.0002 (0.0923)  lr: 0.000246  max mem: 19053
+2023-06-13 21:24:19,809 DTST.trainer INFO: eta: 18:46:29  iter: 1080  loss_p_loss: 0.1678 (0.2821)  loss_n_loss: 0.0014 (0.0123)  time: 1.8877 (3.5724)  data: 0.0003 (0.0906)  lr: 0.000246  max mem: 19053
+2023-06-13 21:25:07,191 DTST.trainer INFO: eta: 18:38:24  iter: 1100  loss_p_loss: 0.1405 (0.2798)  loss_n_loss: 0.0013 (0.0121)  time: 1.8881 (3.5505)  data: 0.0003 (0.0890)  lr: 0.000246  max mem: 19053
+2023-06-13 21:26:13,719 DTST.trainer INFO: eta: 18:35:58  iter: 1120  loss_p_loss: 0.1439 (0.2781)  loss_n_loss: 0.0012 (0.0119)  time: 1.8876 (3.5465)  data: 0.0002 (0.0874)  lr: 0.000246  max mem: 19053
+2023-06-13 21:27:21,886 DTST.trainer INFO: eta: 18:34:01  iter: 1140  loss_p_loss: 0.1697 (0.2766)  loss_n_loss: 0.0012 (0.0117)  time: 1.8885 (3.5441)  data: 0.0003 (0.0858)  lr: 0.000246  max mem: 19053
+2023-06-13 21:28:28,492 DTST.trainer INFO: eta: 18:31:41  iter: 1160  loss_p_loss: 0.1854 (0.2752)  loss_n_loss: 0.0014 (0.0115)  time: 1.8880 (3.5404)  data: 0.0002 (0.0844)  lr: 0.000246  max mem: 19053
+2023-06-13 21:30:17,895 DTST.trainer INFO: eta: 18:40:45  iter: 1180  loss_p_loss: 0.1490 (0.2732)  loss_n_loss: 0.0011 (0.0113)  time: 1.8871 (3.5731)  data: 0.0003 (0.0829)  lr: 0.000246  max mem: 19053
+2023-06-13 21:31:25,798 DTST.trainer INFO: eta: 18:38:38  iter: 1200  loss_p_loss: 0.1687 (0.2716)  loss_n_loss: 0.0011 (0.0112)  time: 1.8878 (3.5701)  data: 0.0003 (0.0816)  lr: 0.000246  max mem: 19053
+2023-06-13 21:32:13,085 DTST.trainer INFO: eta: 18:31:16  iter: 1220  loss_p_loss: 0.1438 (0.2698)  loss_n_loss: 0.0011 (0.0110)  time: 1.8871 (3.5504)  data: 0.0002 (0.0802)  lr: 0.000246  max mem: 19053
+2023-06-13 21:34:08,758 DTST.trainer INFO: eta: 18:41:20  iter: 1240  loss_p_loss: 0.1409 (0.2679)  loss_n_loss: 0.0010 (0.0108)  time: 1.8883 (3.5864)  data: 0.0003 (0.0789)  lr: 0.000246  max mem: 19053
+2023-06-13 21:35:32,352 DTST.trainer INFO: eta: 18:43:05  iter: 1260  loss_p_loss: 0.1817 (0.2667)  loss_n_loss: 0.0011 (0.0107)  time: 1.8874 (3.5958)  data: 0.0002 (0.0777)  lr: 0.000245  max mem: 19053
+2023-06-13 21:37:21,923 DTST.trainer INFO: eta: 18:51:04  iter: 1280  loss_p_loss: 0.1697 (0.2654)  loss_n_loss: 0.0011 (0.0105)  time: 1.8884 (3.6252)  data: 0.0003 (0.0765)  lr: 0.000245  max mem: 19053
+2023-06-13 21:38:09,205 DTST.trainer INFO: eta: 18:43:49  iter: 1300  loss_p_loss: 0.1514 (0.2639)  loss_n_loss: 0.0011 (0.0104)  time: 1.8860 (3.6058)  data: 0.0002 (0.0753)  lr: 0.000245  max mem: 19053
+2023-06-13 21:39:26,686 DTST.trainer INFO: eta: 18:43:52  iter: 1320  loss_p_loss: 0.1693 (0.2625)  loss_n_loss: 0.0012 (0.0103)  time: 1.8888 (3.6099)  data: 0.0002 (0.0742)  lr: 0.000245  max mem: 19053
+2023-06-13 21:40:28,365 DTST.trainer INFO: eta: 18:40:14  iter: 1340  loss_p_loss: 0.1338 (0.2608)  loss_n_loss: 0.0010 (0.0101)  time: 1.8879 (3.6020)  data: 0.0002 (0.0731)  lr: 0.000245  max mem: 19053
+2023-06-13 21:41:58,641 DTST.trainer INFO: eta: 18:43:12  iter: 1360  loss_p_loss: 0.1532 (0.2593)  loss_n_loss: 0.0010 (0.0100)  time: 1.8882 (3.6155)  data: 0.0003 (0.0720)  lr: 0.000245  max mem: 19053
+2023-06-13 21:43:54,364 DTST.trainer INFO: eta: 18:51:45  iter: 1380  loss_p_loss: 0.1721 (0.2580)  loss_n_loss: 0.0009 (0.0099)  time: 1.8871 (3.6469)  data: 0.0002 (0.0710)  lr: 0.000245  max mem: 19053
+2023-06-13 21:44:54,477 DTST.trainer INFO: eta: 18:47:42  iter: 1400  loss_p_loss: 0.2186 (0.2574)  loss_n_loss: 0.0012 (0.0097)  time: 1.8865 (3.6377)  data: 0.0002 (0.0700)  lr: 0.000245  max mem: 19053
+2023-06-13 21:46:39,169 DTST.trainer INFO: eta: 18:53:27  iter: 1420  loss_p_loss: 0.1472 (0.2560)  loss_n_loss: 0.0013 (0.0096)  time: 1.8878 (3.6602)  data: 0.0003 (0.0690)  lr: 0.000245  max mem: 19053
+2023-06-13 21:47:56,655 DTST.trainer INFO: eta: 18:53:09  iter: 1440  loss_p_loss: 0.1447 (0.2547)  loss_n_loss: 0.0011 (0.0095)  time: 1.8876 (3.6632)  data: 0.0002 (0.0680)  lr: 0.000245  max mem: 19053
+2023-06-13 21:48:51,958 DTST.trainer INFO: eta: 18:48:07  iter: 1460  loss_p_loss: 0.1697 (0.2535)  loss_n_loss: 0.0010 (0.0094)  time: 1.8861 (3.6509)  data: 0.0002 (0.0671)  lr: 0.000245  max mem: 19053
+2023-06-13 21:50:09,588 DTST.trainer INFO: eta: 18:47:52  iter: 1480  loss_p_loss: 0.1613 (0.2523)  loss_n_loss: 0.0010 (0.0093)  time: 1.8855 (3.6540)  data: 0.0002 (0.0662)  lr: 0.000245  max mem: 19053
+2023-06-13 21:51:53,997 DTST.trainer INFO: eta: 18:53:05  iter: 1500  loss_p_loss: 0.1825 (0.2512)  loss_n_loss: 0.0010 (0.0092)  time: 1.8873 (3.6749)  data: 0.0002 (0.0653)  lr: 0.000245  max mem: 19053
+2023-06-13 21:53:09,891 DTST.trainer INFO: eta: 18:52:21  iter: 1520  loss_p_loss: 0.1730 (0.2503)  loss_n_loss: 0.0010 (0.0091)  time: 1.8858 (3.6765)  data: 0.0002 (0.0645)  lr: 0.000245  max mem: 19053
+2023-06-13 21:54:40,131 DTST.trainer INFO: eta: 18:54:28  iter: 1540  loss_p_loss: 0.1724 (0.2495)  loss_n_loss: 0.0012 (0.0090)  time: 1.8869 (3.6873)  data: 0.0002 (0.0636)  lr: 0.000244  max mem: 19053
+2023-06-13 21:55:33,878 DTST.trainer INFO: eta: 18:49:18  iter: 1560  loss_p_loss: 0.1683 (0.2487)  loss_n_loss: 0.0011 (0.0089)  time: 1.8874 (3.6745)  data: 0.0002 (0.0628)  lr: 0.000244  max mem: 19053
+2023-06-13 21:57:23,315 DTST.trainer INFO: eta: 18:55:03  iter: 1580  loss_p_loss: 0.1404 (0.2478)  loss_n_loss: 0.0011 (0.0088)  time: 1.8889 (3.6973)  data: 0.0003 (0.0620)  lr: 0.000244  max mem: 19053
+2023-06-13 21:58:29,804 DTST.trainer INFO: eta: 18:52:24  iter: 1600  loss_p_loss: 0.1763 (0.2468)  loss_n_loss: 0.0010 (0.0087)  time: 1.8859 (3.6926)  data: 0.0002 (0.0613)  lr: 0.000244  max mem: 19053
+2023-06-13 21:59:23,591 DTST.trainer INFO: eta: 18:47:22  iter: 1620  loss_p_loss: 0.1820 (0.2462)  loss_n_loss: 0.0010 (0.0086)  time: 1.8884 (3.6802)  data: 0.0002 (0.0605)  lr: 0.000244  max mem: 19053
+2023-06-13 22:00:25,280 DTST.trainer INFO: eta: 18:43:55  iter: 1640  loss_p_loss: 0.1373 (0.2451)  loss_n_loss: 0.0010 (0.0085)  time: 1.8876 (3.6730)  data: 0.0002 (0.0598)  lr: 0.000244  max mem: 19053
+2023-06-13 22:01:38,146 DTST.trainer INFO: eta: 18:42:35  iter: 1660  loss_p_loss: 0.1649 (0.2442)  loss_n_loss: 0.0011 (0.0084)  time: 1.8875 (3.6726)  data: 0.0003 (0.0591)  lr: 0.000244  max mem: 19053
+2023-06-13 22:02:52,735 DTST.trainer INFO: eta: 18:41:34  iter: 1680  loss_p_loss: 0.1354 (0.2432)  loss_n_loss: 0.0008 (0.0083)  time: 1.8871 (3.6733)  data: 0.0003 (0.0584)  lr: 0.000244  max mem: 19053
+2023-06-13 22:03:40,123 DTST.trainer INFO: eta: 18:35:40  iter: 1700  loss_p_loss: 0.1797 (0.2426)  loss_n_loss: 0.0011 (0.0082)  time: 1.8861 (3.6579)  data: 0.0003 (0.0577)  lr: 0.000244  max mem: 19053
+2023-06-13 22:05:05,763 DTST.trainer INFO: eta: 18:36:39  iter: 1720  loss_p_loss: 0.1449 (0.2417)  loss_n_loss: 0.0010 (0.0081)  time: 1.8880 (3.6652)  data: 0.0002 (0.0570)  lr: 0.000244  max mem: 19053
+2023-06-13 22:06:50,358 DTST.trainer INFO: eta: 18:40:54  iter: 1740  loss_p_loss: 0.1444 (0.2408)  loss_n_loss: 0.0011 (0.0081)  time: 1.8893 (3.6832)  data: 0.0002 (0.0564)  lr: 0.000244  max mem: 19053
+2023-06-13 22:07:56,818 DTST.trainer INFO: eta: 18:38:26  iter: 1760  loss_p_loss: 0.1479 (0.2399)  loss_n_loss: 0.0010 (0.0080)  time: 1.8885 (3.6791)  data: 0.0003 (0.0557)  lr: 0.000244  max mem: 19053
+2023-06-13 22:09:33,726 DTST.trainer INFO: eta: 18:41:11  iter: 1780  loss_p_loss: 0.1683 (0.2393)  loss_n_loss: 0.0008 (0.0079)  time: 1.8872 (3.6922)  data: 0.0003 (0.0551)  lr: 0.000244  max mem: 19053
+2023-06-13 22:10:21,157 DTST.trainer INFO: eta: 18:35:30  iter: 1800  loss_p_loss: 0.1588 (0.2386)  loss_n_loss: 0.0011 (0.0078)  time: 1.8871 (3.6775)  data: 0.0003 (0.0545)  lr: 0.000244  max mem: 19053
+2023-06-13 22:11:14,945 DTST.trainer INFO: eta: 18:30:59  iter: 1820  loss_p_loss: 0.1363 (0.2378)  loss_n_loss: 0.0011 (0.0078)  time: 1.8883 (3.6667)  data: 0.0002 (0.0539)  lr: 0.000243  max mem: 19053
+2023-06-13 22:12:15,071 DTST.trainer INFO: eta: 18:27:36  iter: 1840  loss_p_loss: 0.1812 (0.2373)  loss_n_loss: 0.0011 (0.0077)  time: 1.8873 (3.6595)  data: 0.0002 (0.0533)  lr: 0.000243  max mem: 19053
+2023-06-13 22:13:26,299 DTST.trainer INFO: eta: 18:26:03  iter: 1860  loss_p_loss: 0.1845 (0.2368)  loss_n_loss: 0.0010 (0.0076)  time: 1.8868 (3.6584)  data: 0.0003 (0.0527)  lr: 0.000243  max mem: 19053
+2023-06-13 22:14:22,964 DTST.trainer INFO: eta: 18:22:11  iter: 1880  loss_p_loss: 0.1599 (0.2360)  loss_n_loss: 0.0012 (0.0076)  time: 1.8874 (3.6496)  data: 0.0002 (0.0522)  lr: 0.000243  max mem: 19053
+2023-06-13 22:15:10,366 DTST.trainer INFO: eta: 18:16:54  iter: 1900  loss_p_loss: 0.1607 (0.2353)  loss_n_loss: 0.0010 (0.0075)  time: 1.8867 (3.6362)  data: 0.0002 (0.0516)  lr: 0.000243  max mem: 19053
+2023-06-13 22:16:55,005 DTST.trainer INFO: eta: 18:20:42  iter: 1920  loss_p_loss: 0.1415 (0.2344)  loss_n_loss: 0.0009 (0.0074)  time: 1.8886 (3.6528)  data: 0.0003 (0.0511)  lr: 0.000243  max mem: 19053
+2023-06-13 22:18:10,953 DTST.trainer INFO: eta: 18:19:56  iter: 1940  loss_p_loss: 0.1453 (0.2336)  loss_n_loss: 0.0011 (0.0074)  time: 1.8868 (3.6543)  data: 0.0002 (0.0506)  lr: 0.000243  max mem: 19053
+2023-06-13 22:19:28,522 DTST.trainer INFO: eta: 18:19:24  iter: 1960  loss_p_loss: 0.1661 (0.2330)  loss_n_loss: 0.0010 (0.0073)  time: 1.8871 (3.6566)  data: 0.0003 (0.0501)  lr: 0.000243  max mem: 19053
+2023-06-13 22:20:15,980 DTST.trainer INFO: eta: 18:14:17  iter: 1980  loss_p_loss: 0.1517 (0.2324)  loss_n_loss: 0.0011 (0.0072)  time: 1.8877 (3.6436)  data: 0.0002 (0.0496)  lr: 0.000243  max mem: 19053
+2023-06-13 22:21:17,811 DTST.trainer INFO: eta: 18:11:25  iter: 2000  loss_p_loss: 0.1562 (0.2317)  loss_n_loss: 0.0010 (0.0072)  time: 1.8886 (3.6381)  data: 0.0002 (0.0491)  lr: 0.000243  max mem: 19053
+2023-06-13 22:21:18,130 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-13 22:22:39,098 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4372/0.5407/0.7952.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.6670/0.6717.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.2786/0.9213.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8107/0.9583.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.1169/0.1234.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0012/0.0012.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.3103/0.4099.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.1715/0.1810.
+2023-06-13 22:22:39,099 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.2616/0.2762.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8440/0.8971.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.8029/0.8854.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.6199/0.7652.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.2450/0.4197.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8404/0.9548.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.3595/0.4082.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2385/0.3088.
+2023-06-13 22:22:39,100 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.4272/0.4684.
+2023-06-13 22:23:32,997 DTST.trainer INFO: eta: 18:19:28  iter: 2020  loss_p_loss: 0.1480 (0.2310)  loss_n_loss: 0.0010 (0.0071)  time: 1.8877 (3.6690)  data: 0.0003 (0.0888)  lr: 0.000243  max mem: 19053
+2023-06-13 22:25:39,734 DTST.trainer INFO: eta: 18:26:04  iter: 2040  loss_p_loss: 0.1545 (0.2303)  loss_n_loss: 0.0010 (0.0070)  time: 1.8896 (3.6952)  data: 0.0003 (0.0880)  lr: 0.000243  max mem: 19053
+2023-06-13 22:26:27,135 DTST.trainer INFO: eta: 18:21:00  iter: 2060  loss_p_loss: 0.1476 (0.2296)  loss_n_loss: 0.0008 (0.0070)  time: 1.8853 (3.6823)  data: 0.0002 (0.0871)  lr: 0.000243  max mem: 19053
+2023-06-13 22:27:14,521 DTST.trainer INFO: eta: 18:16:00  iter: 2080  loss_p_loss: 0.1866 (0.2296)  loss_n_loss: 0.0013 (0.0069)  time: 1.8857 (3.6697)  data: 0.0003 (0.0863)  lr: 0.000243  max mem: 19053
+2023-06-13 22:28:08,260 DTST.trainer INFO: eta: 18:11:59  iter: 2100  loss_p_loss: 0.1465 (0.2288)  loss_n_loss: 0.0009 (0.0069)  time: 1.8872 (3.6603)  data: 0.0003 (0.0855)  lr: 0.000242  max mem: 19053
+2023-06-13 22:29:02,013 DTST.trainer INFO: eta: 18:08:02  iter: 2120  loss_p_loss: 0.1770 (0.2283)  loss_n_loss: 0.0009 (0.0068)  time: 1.8881 (3.6511)  data: 0.0003 (0.0847)  lr: 0.000242  max mem: 19053
+2023-06-13 22:30:16,529 DTST.trainer INFO: eta: 18:07:01  iter: 2140  loss_p_loss: 0.1347 (0.2276)  loss_n_loss: 0.0009 (0.0068)  time: 1.8882 (3.6518)  data: 0.0002 (0.0839)  lr: 0.000242  max mem: 19053
+2023-06-13 22:31:37,407 DTST.trainer INFO: eta: 18:06:53  iter: 2160  loss_p_loss: 0.1425 (0.2270)  loss_n_loss: 0.0009 (0.0067)  time: 1.8876 (3.6555)  data: 0.0003 (0.0831)  lr: 0.000242  max mem: 19053
+2023-06-13 22:32:54,962 DTST.trainer INFO: eta: 18:06:16  iter: 2180  loss_p_loss: 0.1480 (0.2265)  loss_n_loss: 0.0009 (0.0067)  time: 1.8867 (3.6575)  data: 0.0002 (0.0823)  lr: 0.000242  max mem: 19053
+2023-06-13 22:34:26,732 DTST.trainer INFO: eta: 18:07:34  iter: 2200  loss_p_loss: 0.1512 (0.2259)  loss_n_loss: 0.0010 (0.0066)  time: 1.8862 (3.6660)  data: 0.0002 (0.0816)  lr: 0.000242  max mem: 19053
+2023-06-13 22:35:14,060 DTST.trainer INFO: eta: 18:02:52  iter: 2220  loss_p_loss: 0.1497 (0.2254)  loss_n_loss: 0.0008 (0.0066)  time: 1.8860 (3.6542)  data: 0.0002 (0.0809)  lr: 0.000242  max mem: 19053
+2023-06-13 22:36:07,515 DTST.trainer INFO: eta: 17:59:03  iter: 2240  loss_p_loss: 0.1580 (0.2248)  loss_n_loss: 0.0009 (0.0065)  time: 1.8865 (3.6455)  data: 0.0002 (0.0801)  lr: 0.000242  max mem: 19053
+2023-06-13 22:37:21,625 DTST.trainer INFO: eta: 17:58:00  iter: 2260  loss_p_loss: 0.1533 (0.2244)  loss_n_loss: 0.0008 (0.0065)  time: 1.8876 (3.6460)  data: 0.0002 (0.0794)  lr: 0.000242  max mem: 19053
+2023-06-13 22:38:48,342 DTST.trainer INFO: eta: 17:58:34  iter: 2280  loss_p_loss: 0.1958 (0.2240)  loss_n_loss: 0.0009 (0.0064)  time: 1.8885 (3.6521)  data: 0.0002 (0.0787)  lr: 0.000242  max mem: 19053
+2023-06-13 22:39:38,907 DTST.trainer INFO: eta: 17:54:28  iter: 2300  loss_p_loss: 0.1566 (0.2237)  loss_n_loss: 0.0009 (0.0064)  time: 1.8879 (3.6423)  data: 0.0002 (0.0781)  lr: 0.000242  max mem: 19053
+2023-06-13 22:40:30,956 DTST.trainer INFO: eta: 17:50:37  iter: 2320  loss_p_loss: 0.1522 (0.2232)  loss_n_loss: 0.0011 (0.0063)  time: 1.8871 (3.6333)  data: 0.0002 (0.0774)  lr: 0.000242  max mem: 19053
+2023-06-13 22:41:48,328 DTST.trainer INFO: eta: 17:50:00  iter: 2340  loss_p_loss: 0.1431 (0.2226)  loss_n_loss: 0.0007 (0.0063)  time: 1.8901 (3.6353)  data: 0.0003 (0.0767)  lr: 0.000242  max mem: 19053
+2023-06-13 22:43:04,368 DTST.trainer INFO: eta: 17:49:12  iter: 2360  loss_p_loss: 0.1312 (0.2219)  loss_n_loss: 0.0008 (0.0062)  time: 1.8887 (3.6368)  data: 0.0003 (0.0761)  lr: 0.000241  max mem: 19053
+2023-06-13 22:44:53,862 DTST.trainer INFO: eta: 17:52:31  iter: 2380  loss_p_loss: 0.1445 (0.2213)  loss_n_loss: 0.0008 (0.0062)  time: 1.8880 (3.6522)  data: 0.0003 (0.0754)  lr: 0.000241  max mem: 19053
+2023-06-13 22:45:55,625 DTST.trainer INFO: eta: 17:49:55  iter: 2400  loss_p_loss: 0.1406 (0.2208)  loss_n_loss: 0.0007 (0.0061)  time: 1.8885 (3.6475)  data: 0.0003 (0.0748)  lr: 0.000241  max mem: 19053
+2023-06-13 22:47:05,286 DTST.trainer INFO: eta: 17:48:19  iter: 2420  loss_p_loss: 0.1669 (0.2204)  loss_n_loss: 0.0007 (0.0061)  time: 1.8877 (3.6461)  data: 0.0002 (0.0742)  lr: 0.000241  max mem: 19053
+2023-06-13 22:48:10,217 DTST.trainer INFO: eta: 17:46:08  iter: 2440  loss_p_loss: 0.1375 (0.2198)  loss_n_loss: 0.0006 (0.0060)  time: 1.8870 (3.6429)  data: 0.0002 (0.0736)  lr: 0.000241  max mem: 19053
+2023-06-13 22:48:57,589 DTST.trainer INFO: eta: 17:41:54  iter: 2460  loss_p_loss: 0.1307 (0.2191)  loss_n_loss: 0.0008 (0.0060)  time: 1.8876 (3.6325)  data: 0.0002 (0.0730)  lr: 0.000241  max mem: 19053
+2023-06-13 22:49:57,689 DTST.trainer INFO: eta: 17:39:12  iter: 2480  loss_p_loss: 0.1309 (0.2186)  loss_n_loss: 0.0006 (0.0060)  time: 1.8884 (3.6274)  data: 0.0003 (0.0724)  lr: 0.000241  max mem: 19053
+2023-06-13 22:52:04,494 DTST.trainer INFO: eta: 17:44:20  iter: 2500  loss_p_loss: 0.1452 (0.2180)  loss_n_loss: 0.0006 (0.0059)  time: 1.8885 (3.6491)  data: 0.0003 (0.0718)  lr: 0.000241  max mem: 19053
+2023-06-13 22:53:01,376 DTST.trainer INFO: eta: 17:41:15  iter: 2520  loss_p_loss: 0.1423 (0.2175)  loss_n_loss: 0.0006 (0.0059)  time: 1.8865 (3.6428)  data: 0.0002 (0.0713)  lr: 0.000241  max mem: 19053
+2023-06-13 22:54:03,023 DTST.trainer INFO: eta: 17:38:45  iter: 2540  loss_p_loss: 0.1521 (0.2170)  loss_n_loss: 0.0007 (0.0058)  time: 1.8874 (3.6383)  data: 0.0002 (0.0707)  lr: 0.000241  max mem: 19053
+2023-06-13 22:54:59,993 DTST.trainer INFO: eta: 17:35:45  iter: 2560  loss_p_loss: 0.1323 (0.2164)  loss_n_loss: 0.0007 (0.0058)  time: 1.8880 (3.6322)  data: 0.0003 (0.0702)  lr: 0.000241  max mem: 19053
+2023-06-13 22:55:56,947 DTST.trainer INFO: eta: 17:32:46  iter: 2580  loss_p_loss: 0.1445 (0.2160)  loss_n_loss: 0.0007 (0.0058)  time: 1.8879 (3.6261)  data: 0.0002 (0.0696)  lr: 0.000241  max mem: 19053
+2023-06-13 22:56:57,071 DTST.trainer INFO: eta: 17:30:11  iter: 2600  loss_p_loss: 0.1401 (0.2154)  loss_n_loss: 0.0005 (0.0057)  time: 1.8888 (3.6213)  data: 0.0002 (0.0691)  lr: 0.000241  max mem: 19053
+2023-06-13 22:57:52,453 DTST.trainer INFO: eta: 17:27:05  iter: 2620  loss_p_loss: 0.1466 (0.2150)  loss_n_loss: 0.0006 (0.0057)  time: 1.8871 (3.6148)  data: 0.0002 (0.0686)  lr: 0.000241  max mem: 19053
+2023-06-13 22:59:48,095 DTST.trainer INFO: eta: 17:30:38  iter: 2640  loss_p_loss: 0.1361 (0.2144)  loss_n_loss: 0.0005 (0.0056)  time: 1.8878 (3.6312)  data: 0.0002 (0.0680)  lr: 0.000240  max mem: 19053
+2023-06-13 23:01:02,549 DTST.trainer INFO: eta: 17:29:37  iter: 2660  loss_p_loss: 0.1260 (0.2138)  loss_n_loss: 0.0005 (0.0056)  time: 1.8882 (3.6319)  data: 0.0002 (0.0675)  lr: 0.000240  max mem: 19053
+2023-06-13 23:02:20,082 DTST.trainer INFO: eta: 17:28:56  iter: 2680  loss_p_loss: 0.1472 (0.2135)  loss_n_loss: 0.0005 (0.0056)  time: 1.8886 (3.6338)  data: 0.0003 (0.0670)  lr: 0.000240  max mem: 19053
+2023-06-13 23:03:07,437 DTST.trainer INFO: eta: 17:25:01  iter: 2700  loss_p_loss: 0.2249 (0.2135)  loss_n_loss: 0.0009 (0.0055)  time: 1.8875 (3.6244)  data: 0.0002 (0.0665)  lr: 0.000240  max mem: 19053
+2023-06-13 23:03:54,753 DTST.trainer INFO: eta: 17:21:09  iter: 2720  loss_p_loss: 0.1346 (0.2131)  loss_n_loss: 0.0007 (0.0055)  time: 1.8867 (3.6151)  data: 0.0002 (0.0661)  lr: 0.000240  max mem: 19053
+2023-06-13 23:04:56,274 DTST.trainer INFO: eta: 17:18:49  iter: 2740  loss_p_loss: 0.1707 (0.2127)  loss_n_loss: 0.0008 (0.0055)  time: 1.8871 (3.6112)  data: 0.0002 (0.0656)  lr: 0.000240  max mem: 19053
+2023-06-13 23:06:02,668 DTST.trainer INFO: eta: 17:17:00  iter: 2760  loss_p_loss: 0.1614 (0.2123)  loss_n_loss: 0.0008 (0.0054)  time: 1.8861 (3.6091)  data: 0.0002 (0.0651)  lr: 0.000240  max mem: 19053
+2023-06-13 23:07:09,056 DTST.trainer INFO: eta: 17:15:12  iter: 2780  loss_p_loss: 0.1481 (0.2120)  loss_n_loss: 0.0008 (0.0054)  time: 1.8885 (3.6070)  data: 0.0002 (0.0646)  lr: 0.000240  max mem: 19053
+2023-06-13 23:08:15,392 DTST.trainer INFO: eta: 17:13:24  iter: 2800  loss_p_loss: 0.1425 (0.2116)  loss_n_loss: 0.0008 (0.0054)  time: 1.8874 (3.6049)  data: 0.0002 (0.0642)  lr: 0.000240  max mem: 19053
+2023-06-13 23:09:59,499 DTST.trainer INFO: eta: 17:15:27  iter: 2820  loss_p_loss: 0.1809 (0.2117)  loss_n_loss: 0.0010 (0.0053)  time: 1.8869 (3.6163)  data: 0.0002 (0.0637)  lr: 0.000240  max mem: 19053
+2023-06-13 23:11:15,545 DTST.trainer INFO: eta: 17:14:37  iter: 2840  loss_p_loss: 0.1582 (0.2114)  loss_n_loss: 0.0012 (0.0053)  time: 1.8874 (3.6176)  data: 0.0002 (0.0633)  lr: 0.000240  max mem: 19053
+2023-06-13 23:12:17,040 DTST.trainer INFO: eta: 17:12:20  iter: 2860  loss_p_loss: 0.1534 (0.2111)  loss_n_loss: 0.0009 (0.0053)  time: 1.8877 (3.6138)  data: 0.0002 (0.0628)  lr: 0.000240  max mem: 19053
+2023-06-13 23:13:10,786 DTST.trainer INFO: eta: 17:09:17  iter: 2880  loss_p_loss: 0.1250 (0.2105)  loss_n_loss: 0.0007 (0.0052)  time: 1.8875 (3.6073)  data: 0.0002 (0.0624)  lr: 0.000240  max mem: 19053
+2023-06-13 23:14:23,666 DTST.trainer INFO: eta: 17:08:09  iter: 2900  loss_p_loss: 0.1442 (0.2101)  loss_n_loss: 0.0009 (0.0052)  time: 1.8879 (3.6076)  data: 0.0002 (0.0620)  lr: 0.000240  max mem: 19053
+2023-06-13 23:15:34,882 DTST.trainer INFO: eta: 17:06:52  iter: 2920  loss_p_loss: 0.1551 (0.2099)  loss_n_loss: 0.0011 (0.0052)  time: 1.8874 (3.6073)  data: 0.0003 (0.0615)  lr: 0.000239  max mem: 19053
+2023-06-13 23:16:28,529 DTST.trainer INFO: eta: 17:03:52  iter: 2940  loss_p_loss: 0.1324 (0.2095)  loss_n_loss: 0.0010 (0.0052)  time: 1.8876 (3.6010)  data: 0.0002 (0.0611)  lr: 0.000239  max mem: 19053
+2023-06-13 23:17:25,470 DTST.trainer INFO: eta: 17:01:14  iter: 2960  loss_p_loss: 0.1462 (0.2091)  loss_n_loss: 0.0008 (0.0051)  time: 1.8877 (3.5959)  data: 0.0002 (0.0607)  lr: 0.000239  max mem: 19053
+2023-06-13 23:18:27,220 DTST.trainer INFO: eta: 16:59:04  iter: 2980  loss_p_loss: 0.1254 (0.2087)  loss_n_loss: 0.0008 (0.0051)  time: 1.8869 (3.5925)  data: 0.0002 (0.0603)  lr: 0.000239  max mem: 19053
+2023-06-13 23:33:55,464 DTST.trainer INFO: eta: 18:18:45  iter: 3000  loss_p_loss: 0.1509 (0.2085)  loss_n_loss: 0.0008 (0.0051)  time: 1.8887 (3.8779)  data: 0.0003 (0.3515)  lr: 0.000239  max mem: 19053
+2023-06-13 23:33:55,771 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-13 23:35:16,131 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4502/0.5520/0.8036.
+2023-06-13 23:35:16,132 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.6846/0.6884.
+2023-06-13 23:35:16,132 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.2910/0.9332.
+2023-06-13 23:35:16,132 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8149/0.9607.
+2023-06-13 23:35:16,132 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.1261/0.1330.
+2023-06-13 23:35:16,132 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0031/0.0031.
+2023-06-13 23:35:16,132 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.3080/0.3931.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.2232/0.2385.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.2983/0.3214.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8501/0.9021.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.8004/0.8624.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.6219/0.7454.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.2772/0.4661.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8421/0.9609.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.3293/0.3713.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2621/0.3253.
+2023-06-13 23:35:16,133 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.4709/0.5272.
+2023-06-13 23:36:28,513 DTST.trainer INFO: eta: 18:24:31  iter: 3020  loss_p_loss: 0.1736 (0.2084)  loss_n_loss: 0.0009 (0.0050)  time: 1.8878 (3.9029)  data: 0.0003 (0.3758)  lr: 0.000239  max mem: 19053
+2023-06-13 23:37:20,755 DTST.trainer INFO: eta: 18:20:49  iter: 3040  loss_p_loss: 0.1921 (0.2083)  loss_n_loss: 0.0010 (0.0050)  time: 1.8888 (3.8944)  data: 0.0003 (0.3734)  lr: 0.000239  max mem: 19053
+2023-06-13 23:39:16,719 DTST.trainer INFO: eta: 18:23:02  iter: 3060  loss_p_loss: 0.1946 (0.2082)  loss_n_loss: 0.0009 (0.0050)  time: 1.8879 (3.9069)  data: 0.0003 (0.3709)  lr: 0.000239  max mem: 19053
+2023-06-13 23:40:23,286 DTST.trainer INFO: eta: 18:20:41  iter: 3080  loss_p_loss: 0.1628 (0.2080)  loss_n_loss: 0.0008 (0.0050)  time: 1.8889 (3.9031)  data: 0.0003 (0.3685)  lr: 0.000239  max mem: 19053
+2023-06-13 23:41:21,861 DTST.trainer INFO: eta: 18:17:36  iter: 3100  loss_p_loss: 0.1968 (0.2079)  loss_n_loss: 0.0009 (0.0049)  time: 1.8892 (3.8968)  data: 0.0003 (0.3662)  lr: 0.000239  max mem: 19053
+2023-06-13 23:42:34,929 DTST.trainer INFO: eta: 18:15:52  iter: 3120  loss_p_loss: 0.1947 (0.2079)  loss_n_loss: 0.0008 (0.0049)  time: 1.8876 (3.8953)  data: 0.0003 (0.3638)  lr: 0.000239  max mem: 19053
+2023-06-13 23:43:46,213 DTST.trainer INFO: eta: 18:13:59  iter: 3140  loss_p_loss: 0.1874 (0.2079)  loss_n_loss: 0.0010 (0.0049)  time: 1.8883 (3.8932)  data: 0.0003 (0.3615)  lr: 0.000239  max mem: 19053
+2023-06-13 23:44:40,112 DTST.trainer INFO: eta: 18:10:33  iter: 3160  loss_p_loss: 0.2151 (0.2079)  loss_n_loss: 0.0014 (0.0049)  time: 1.8877 (3.8856)  data: 0.0003 (0.3592)  lr: 0.000239  max mem: 19053
+2023-06-13 23:46:04,257 DTST.trainer INFO: eta: 18:09:49  iter: 3180  loss_p_loss: 0.1917 (0.2078)  loss_n_loss: 0.0010 (0.0049)  time: 1.8884 (3.8876)  data: 0.0003 (0.3570)  lr: 0.000239  max mem: 19053
+2023-06-13 23:47:17,214 DTST.trainer INFO: eta: 18:08:06  iter: 3200  loss_p_loss: 0.2065 (0.2078)  loss_n_loss: 0.0011 (0.0048)  time: 1.8867 (3.8861)  data: 0.0003 (0.3547)  lr: 0.000238  max mem: 19053
+2023-06-13 23:48:47,728 DTST.trainer INFO: eta: 18:07:55  iter: 3220  loss_p_loss: 0.2011 (0.2076)  loss_n_loss: 0.0011 (0.0048)  time: 1.8906 (3.8901)  data: 0.0003 (0.3525)  lr: 0.000238  max mem: 19053
+2023-06-13 23:49:49,494 DTST.trainer INFO: eta: 18:05:15  iter: 3240  loss_p_loss: 0.2160 (0.2077)  loss_n_loss: 0.0012 (0.0048)  time: 1.8894 (3.8851)  data: 0.0002 (0.3504)  lr: 0.000238  max mem: 19053
+2023-06-13 23:50:52,845 DTST.trainer INFO: eta: 18:02:43  iter: 3260  loss_p_loss: 0.1875 (0.2076)  loss_n_loss: 0.0010 (0.0048)  time: 1.8884 (3.8807)  data: 0.0003 (0.3482)  lr: 0.000238  max mem: 19053
+2023-06-13 23:51:59,426 DTST.trainer INFO: eta: 18:00:29  iter: 3280  loss_p_loss: 0.1817 (0.2076)  loss_n_loss: 0.0012 (0.0047)  time: 1.8894 (3.8774)  data: 0.0003 (0.3461)  lr: 0.000238  max mem: 19053
+2023-06-13 23:53:01,148 DTST.trainer INFO: eta: 17:57:52  iter: 3300  loss_p_loss: 0.1720 (0.2074)  loss_n_loss: 0.0012 (0.0047)  time: 1.8884 (3.8726)  data: 0.0003 (0.3440)  lr: 0.000238  max mem: 19053
+2023-06-13 23:54:07,717 DTST.trainer INFO: eta: 17:55:39  iter: 3320  loss_p_loss: 0.1618 (0.2073)  loss_n_loss: 0.0012 (0.0047)  time: 1.8889 (3.8693)  data: 0.0003 (0.3419)  lr: 0.000238  max mem: 19053
+2023-06-13 23:54:55,227 DTST.trainer INFO: eta: 17:51:53  iter: 3340  loss_p_loss: 0.1994 (0.2072)  loss_n_loss: 0.0011 (0.0047)  time: 1.8895 (3.8604)  data: 0.0003 (0.3399)  lr: 0.000238  max mem: 19053
+2023-06-13 23:56:25,699 DTST.trainer INFO: eta: 17:51:42  iter: 3360  loss_p_loss: 0.1776 (0.2070)  loss_n_loss: 0.0010 (0.0047)  time: 1.8906 (3.8643)  data: 0.0003 (0.3379)  lr: 0.000238  max mem: 19053
+2023-06-13 23:57:13,094 DTST.trainer INFO: eta: 17:47:57  iter: 3380  loss_p_loss: 0.1916 (0.2070)  loss_n_loss: 0.0014 (0.0046)  time: 1.8890 (3.8555)  data: 0.0003 (0.3359)  lr: 0.000238  max mem: 19053
+2023-06-13 23:58:14,960 DTST.trainer INFO: eta: 17:45:26  iter: 3400  loss_p_loss: 0.1553 (0.2068)  loss_n_loss: 0.0012 (0.0046)  time: 1.8892 (3.8510)  data: 0.0003 (0.3339)  lr: 0.000238  max mem: 19053
+2023-06-13 23:59:02,395 DTST.trainer INFO: eta: 17:41:45  iter: 3420  loss_p_loss: 0.1701 (0.2065)  loss_n_loss: 0.0009 (0.0046)  time: 1.8888 (3.8423)  data: 0.0003 (0.3319)  lr: 0.000238  max mem: 19053
+2023-06-13 23:59:59,418 DTST.trainer INFO: eta: 17:38:53  iter: 3440  loss_p_loss: 0.2003 (0.2066)  loss_n_loss: 0.0009 (0.0046)  time: 1.8904 (3.8366)  data: 0.0003 (0.3300)  lr: 0.000238  max mem: 19053
+2023-06-14 00:01:10,885 DTST.trainer INFO: eta: 17:37:11  iter: 3460  loss_p_loss: 0.1517 (0.2063)  loss_n_loss: 0.0009 (0.0046)  time: 1.8906 (3.8350)  data: 0.0003 (0.3281)  lr: 0.000238  max mem: 19053
+2023-06-14 00:02:28,561 DTST.trainer INFO: eta: 17:35:59  iter: 3480  loss_p_loss: 0.1632 (0.2062)  loss_n_loss: 0.0010 (0.0045)  time: 1.8906 (3.8353)  data: 0.0003 (0.3262)  lr: 0.000237  max mem: 19053
+2023-06-14 00:03:23,997 DTST.trainer INFO: eta: 17:33:02  iter: 3500  loss_p_loss: 0.1726 (0.2060)  loss_n_loss: 0.0010 (0.0045)  time: 1.8893 (3.8292)  data: 0.0003 (0.3244)  lr: 0.000237  max mem: 19053
+2023-06-14 00:05:08,767 DTST.trainer INFO: eta: 17:33:57  iter: 3520  loss_p_loss: 0.1746 (0.2059)  loss_n_loss: 0.0009 (0.0045)  time: 1.8886 (3.8373)  data: 0.0003 (0.3225)  lr: 0.000237  max mem: 19053
+2023-06-14 00:06:39,143 DTST.trainer INFO: eta: 17:33:44  iter: 3540  loss_p_loss: 0.1753 (0.2057)  loss_n_loss: 0.0007 (0.0045)  time: 1.8888 (3.8411)  data: 0.0002 (0.3207)  lr: 0.000237  max mem: 19053
+2023-06-14 00:07:31,378 DTST.trainer INFO: eta: 17:30:34  iter: 3560  loss_p_loss: 0.1514 (0.2056)  loss_n_loss: 0.0011 (0.0045)  time: 1.8893 (3.8342)  data: 0.0003 (0.3189)  lr: 0.000237  max mem: 19053
+2023-06-14 00:08:39,528 DTST.trainer INFO: eta: 17:28:38  iter: 3580  loss_p_loss: 0.1547 (0.2055)  loss_n_loss: 0.0010 (0.0044)  time: 1.8888 (3.8318)  data: 0.0003 (0.3171)  lr: 0.000237  max mem: 19053
+2023-06-14 00:09:43,145 DTST.trainer INFO: eta: 17:26:22  iter: 3600  loss_p_loss: 0.1828 (0.2054)  loss_n_loss: 0.0010 (0.0044)  time: 1.8885 (3.8282)  data: 0.0003 (0.3154)  lr: 0.000237  max mem: 19053
+2023-06-14 00:10:45,006 DTST.trainer INFO: eta: 17:23:59  iter: 3620  loss_p_loss: 0.1724 (0.2053)  loss_n_loss: 0.0008 (0.0044)  time: 1.8888 (3.8241)  data: 0.0003 (0.3136)  lr: 0.000237  max mem: 19053
+2023-06-14 00:11:38,858 DTST.trainer INFO: eta: 17:21:01  iter: 3640  loss_p_loss: 0.1626 (0.2051)  loss_n_loss: 0.0009 (0.0044)  time: 1.8888 (3.8179)  data: 0.0003 (0.3119)  lr: 0.000237  max mem: 19053
+2023-06-14 00:12:53,573 DTST.trainer INFO: eta: 17:19:37  iter: 3660  loss_p_loss: 0.1355 (0.2048)  loss_n_loss: 0.0007 (0.0044)  time: 1.8886 (3.8175)  data: 0.0003 (0.3102)  lr: 0.000237  max mem: 19053
+2023-06-14 00:14:14,403 DTST.trainer INFO: eta: 17:18:40  iter: 3680  loss_p_loss: 0.1634 (0.2047)  loss_n_loss: 0.0008 (0.0044)  time: 1.8890 (3.8187)  data: 0.0003 (0.3085)  lr: 0.000237  max mem: 19053
+2023-06-14 00:15:08,250 DTST.trainer INFO: eta: 17:15:45  iter: 3700  loss_p_loss: 0.1336 (0.2044)  loss_n_loss: 0.0007 (0.0043)  time: 1.8890 (3.8126)  data: 0.0004 (0.3068)  lr: 0.000237  max mem: 19053
+2023-06-14 00:16:26,003 DTST.trainer INFO: eta: 17:14:35  iter: 3720  loss_p_loss: 0.1803 (0.2043)  loss_n_loss: 0.0007 (0.0043)  time: 1.8898 (3.8130)  data: 0.0003 (0.3052)  lr: 0.000237  max mem: 19053
+2023-06-14 00:17:14,969 DTST.trainer INFO: eta: 17:11:20  iter: 3740  loss_p_loss: 0.1732 (0.2042)  loss_n_loss: 0.0009 (0.0043)  time: 1.8884 (3.8057)  data: 0.0003 (0.3036)  lr: 0.000236  max mem: 19053
+2023-06-14 00:18:59,453 DTST.trainer INFO: eta: 17:12:07  iter: 3760  loss_p_loss: 0.1761 (0.2040)  loss_n_loss: 0.0007 (0.0043)  time: 1.8911 (3.8133)  data: 0.0003 (0.3020)  lr: 0.000236  max mem: 19053
+2023-06-14 00:20:15,455 DTST.trainer INFO: eta: 17:10:49  iter: 3780  loss_p_loss: 0.1708 (0.2039)  loss_n_loss: 0.0008 (0.0043)  time: 1.8879 (3.8132)  data: 0.0003 (0.3004)  lr: 0.000236  max mem: 19053
+2023-06-14 00:21:33,156 DTST.trainer INFO: eta: 17:09:39  iter: 3800  loss_p_loss: 0.1671 (0.2038)  loss_n_loss: 0.0007 (0.0042)  time: 1.8912 (3.8136)  data: 0.0003 (0.2988)  lr: 0.000236  max mem: 19053
+2023-06-14 00:23:03,190 DTST.trainer INFO: eta: 17:09:21  iter: 3820  loss_p_loss: 0.1977 (0.2039)  loss_n_loss: 0.0009 (0.0042)  time: 1.8870 (3.8172)  data: 0.0002 (0.2972)  lr: 0.000236  max mem: 19053
+2023-06-14 00:24:39,634 DTST.trainer INFO: eta: 17:09:29  iter: 3840  loss_p_loss: 0.1655 (0.2037)  loss_n_loss: 0.0010 (0.0042)  time: 1.8874 (3.8224)  data: 0.0002 (0.2957)  lr: 0.000236  max mem: 19053
+2023-06-14 00:26:28,866 DTST.trainer INFO: eta: 17:10:30  iter: 3860  loss_p_loss: 0.1567 (0.2035)  loss_n_loss: 0.0009 (0.0042)  time: 1.8884 (3.8309)  data: 0.0002 (0.2941)  lr: 0.000236  max mem: 19053
+2023-06-14 00:27:52,931 DTST.trainer INFO: eta: 17:09:44  iter: 3880  loss_p_loss: 0.2115 (0.2036)  loss_n_loss: 0.0009 (0.0042)  time: 1.8903 (3.8328)  data: 0.0003 (0.2926)  lr: 0.000236  max mem: 19053
+2023-06-14 00:28:51,446 DTST.trainer INFO: eta: 17:07:13  iter: 3900  loss_p_loss: 0.1486 (0.2033)  loss_n_loss: 0.0009 (0.0042)  time: 1.8887 (3.8282)  data: 0.0003 (0.2911)  lr: 0.000236  max mem: 19053
+2023-06-14 00:29:57,723 DTST.trainer INFO: eta: 17:05:14  iter: 3920  loss_p_loss: 0.1466 (0.2031)  loss_n_loss: 0.0007 (0.0041)  time: 1.8876 (3.8255)  data: 0.0002 (0.2896)  lr: 0.000236  max mem: 19053
+2023-06-14 00:30:54,615 DTST.trainer INFO: eta: 17:02:38  iter: 3940  loss_p_loss: 0.1522 (0.2029)  loss_n_loss: 0.0006 (0.0041)  time: 1.8896 (3.8206)  data: 0.0002 (0.2882)  lr: 0.000236  max mem: 19053
+2023-06-14 00:31:56,283 DTST.trainer INFO: eta: 17:00:21  iter: 3960  loss_p_loss: 0.1594 (0.2027)  loss_n_loss: 0.0007 (0.0041)  time: 1.8876 (3.8168)  data: 0.0002 (0.2867)  lr: 0.000236  max mem: 19053
+2023-06-14 00:32:49,872 DTST.trainer INFO: eta: 16:57:34  iter: 3980  loss_p_loss: 0.1782 (0.2026)  loss_n_loss: 0.0007 (0.0041)  time: 1.8877 (3.8111)  data: 0.0002 (0.2853)  lr: 0.000236  max mem: 19053
+2023-06-14 00:34:45,635 DTST.trainer INFO: eta: 16:58:56  iter: 4000  loss_p_loss: 0.1658 (0.2025)  loss_n_loss: 0.0008 (0.0041)  time: 1.8885 (3.8210)  data: 0.0003 (0.2839)  lr: 0.000236  max mem: 19053
+2023-06-14 00:34:45,973 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 00:36:07,112 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4603/0.5610/0.8125.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7066/0.7103.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3061/0.9343.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8150/0.9628.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.1446/0.1542.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0070/0.0073.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.3051/0.3825.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.2574/0.2823.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3245/0.3556.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8530/0.9031.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7928/0.8414.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.6179/0.7244.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3022/0.5128.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8416/0.9635.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2972/0.3345.
+2023-06-14 00:36:07,113 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2852/0.3265.
+2023-06-14 00:36:07,114 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5085/0.5804.
+2023-06-14 00:37:13,358 DTST.trainer INFO: eta: 17:02:23  iter: 4020  loss_p_loss: 0.1587 (0.2024)  loss_n_loss: 0.0006 (0.0041)  time: 1.8867 (3.8387)  data: 0.0002 (0.3027)  lr: 0.000235  max mem: 19053
+2023-06-14 00:38:00,718 DTST.trainer INFO: eta: 16:59:10  iter: 4040  loss_p_loss: 0.1572 (0.2023)  loss_n_loss: 0.0009 (0.0040)  time: 1.8879 (3.8315)  data: 0.0003 (0.3012)  lr: 0.000235  max mem: 19053
+2023-06-14 00:39:11,919 DTST.trainer INFO: eta: 16:57:32  iter: 4060  loss_p_loss: 0.1539 (0.2021)  loss_n_loss: 0.0009 (0.0040)  time: 1.8891 (3.8301)  data: 0.0003 (0.2997)  lr: 0.000235  max mem: 19053
+2023-06-14 00:40:38,994 DTST.trainer INFO: eta: 16:56:56  iter: 4080  loss_p_loss: 0.1578 (0.2019)  loss_n_loss: 0.0006 (0.0040)  time: 1.8874 (3.8327)  data: 0.0002 (0.2983)  lr: 0.000235  max mem: 19053
+2023-06-14 00:41:26,316 DTST.trainer INFO: eta: 16:53:45  iter: 4100  loss_p_loss: 0.1699 (0.2018)  loss_n_loss: 0.0008 (0.0040)  time: 1.8863 (3.8255)  data: 0.0002 (0.2968)  lr: 0.000235  max mem: 19053
+2023-06-14 00:42:20,064 DTST.trainer INFO: eta: 16:51:01  iter: 4120  loss_p_loss: 0.1728 (0.2016)  loss_n_loss: 0.0008 (0.0040)  time: 1.8878 (3.8200)  data: 0.0003 (0.2954)  lr: 0.000235  max mem: 19053
+2023-06-14 00:43:07,454 DTST.trainer INFO: eta: 16:47:54  iter: 4140  loss_p_loss: 0.1821 (0.2016)  loss_n_loss: 0.0006 (0.0040)  time: 1.8886 (3.8130)  data: 0.0002 (0.2939)  lr: 0.000235  max mem: 19053
+2023-06-14 00:44:04,368 DTST.trainer INFO: eta: 16:45:24  iter: 4160  loss_p_loss: 0.1706 (0.2014)  loss_n_loss: 0.0006 (0.0039)  time: 1.8865 (3.8084)  data: 0.0003 (0.2925)  lr: 0.000235  max mem: 19053
+2023-06-14 00:45:04,260 DTST.trainer INFO: eta: 16:43:06  iter: 4180  loss_p_loss: 0.1659 (0.2014)  loss_n_loss: 0.0008 (0.0039)  time: 1.8864 (3.8045)  data: 0.0002 (0.2911)  lr: 0.000235  max mem: 19053
+2023-06-14 00:45:51,512 DTST.trainer INFO: eta: 16:40:01  iter: 4200  loss_p_loss: 0.1599 (0.2012)  loss_n_loss: 0.0007 (0.0039)  time: 1.8869 (3.7976)  data: 0.0002 (0.2897)  lr: 0.000235  max mem: 19053
+2023-06-14 00:46:38,762 DTST.trainer INFO: eta: 16:36:58  iter: 4220  loss_p_loss: 0.1869 (0.2012)  loss_n_loss: 0.0009 (0.0039)  time: 1.8858 (3.7908)  data: 0.0002 (0.2884)  lr: 0.000235  max mem: 19053
+2023-06-14 00:47:30,677 DTST.trainer INFO: eta: 16:34:14  iter: 4240  loss_p_loss: 0.1664 (0.2010)  loss_n_loss: 0.0008 (0.0039)  time: 1.8876 (3.7852)  data: 0.0002 (0.2870)  lr: 0.000235  max mem: 19053
+2023-06-14 00:48:24,182 DTST.trainer INFO: eta: 16:31:36  iter: 4260  loss_p_loss: 0.1900 (0.2010)  loss_n_loss: 0.0010 (0.0039)  time: 1.8878 (3.7799)  data: 0.0002 (0.2857)  lr: 0.000235  max mem: 19053
+2023-06-14 00:49:35,014 DTST.trainer INFO: eta: 16:30:03  iter: 4280  loss_p_loss: 0.1689 (0.2009)  loss_n_loss: 0.0008 (0.0039)  time: 1.8857 (3.7788)  data: 0.0002 (0.2843)  lr: 0.000235  max mem: 19053
+2023-06-14 00:51:30,730 DTST.trainer INFO: eta: 16:31:14  iter: 4300  loss_p_loss: 0.1844 (0.2010)  loss_n_loss: 0.0012 (0.0039)  time: 1.8921 (3.7882)  data: 0.0003 (0.2830)  lr: 0.000234  max mem: 19053
+2023-06-14 00:52:35,545 DTST.trainer INFO: eta: 16:29:18  iter: 4320  loss_p_loss: 0.1628 (0.2009)  loss_n_loss: 0.0010 (0.0038)  time: 1.8877 (3.7856)  data: 0.0002 (0.2817)  lr: 0.000234  max mem: 19053
+2023-06-14 00:53:42,092 DTST.trainer INFO: eta: 16:27:29  iter: 4340  loss_p_loss: 0.1538 (0.2007)  loss_n_loss: 0.0009 (0.0038)  time: 1.8878 (3.7835)  data: 0.0002 (0.2804)  lr: 0.000234  max mem: 19053
+2023-06-14 00:54:59,677 DTST.trainer INFO: eta: 16:26:21  iter: 4360  loss_p_loss: 0.1493 (0.2005)  loss_n_loss: 0.0008 (0.0038)  time: 1.8873 (3.7840)  data: 0.0002 (0.2791)  lr: 0.000234  max mem: 19053
+2023-06-14 00:56:10,806 DTST.trainer INFO: eta: 16:24:49  iter: 4380  loss_p_loss: 0.1812 (0.2004)  loss_n_loss: 0.0010 (0.0038)  time: 1.8894 (3.7829)  data: 0.0002 (0.2779)  lr: 0.000234  max mem: 19053
+2023-06-14 00:57:36,319 DTST.trainer INFO: eta: 16:24:08  iter: 4400  loss_p_loss: 0.1346 (0.2002)  loss_n_loss: 0.0006 (0.0038)  time: 1.8894 (3.7852)  data: 0.0003 (0.2766)  lr: 0.000234  max mem: 19053
+2023-06-14 00:58:47,370 DTST.trainer INFO: eta: 16:22:36  iter: 4420  loss_p_loss: 0.1647 (0.2000)  loss_n_loss: 0.0007 (0.0038)  time: 1.8879 (3.7841)  data: 0.0002 (0.2753)  lr: 0.000234  max mem: 19053
+2023-06-14 00:59:54,043 DTST.trainer INFO: eta: 16:20:49  iter: 4440  loss_p_loss: 0.1426 (0.1998)  loss_n_loss: 0.0007 (0.0038)  time: 1.8887 (3.7821)  data: 0.0002 (0.2741)  lr: 0.000234  max mem: 19053
+2023-06-14 01:00:50,888 DTST.trainer INFO: eta: 16:18:27  iter: 4460  loss_p_loss: 0.1617 (0.1997)  loss_n_loss: 0.0007 (0.0037)  time: 1.8874 (3.7779)  data: 0.0002 (0.2729)  lr: 0.000234  max mem: 19053
+2023-06-14 01:02:02,038 DTST.trainer INFO: eta: 16:16:57  iter: 4480  loss_p_loss: 0.2120 (0.1999)  loss_n_loss: 0.0009 (0.0037)  time: 1.8889 (3.7769)  data: 0.0002 (0.2717)  lr: 0.000234  max mem: 19053
+2023-06-14 01:03:00,575 DTST.trainer INFO: eta: 16:14:43  iter: 4500  loss_p_loss: 0.1621 (0.1997)  loss_n_loss: 0.0010 (0.0037)  time: 1.8875 (3.7731)  data: 0.0002 (0.2705)  lr: 0.000234  max mem: 19053
+2023-06-14 01:04:06,905 DTST.trainer INFO: eta: 16:12:56  iter: 4520  loss_p_loss: 0.1549 (0.1996)  loss_n_loss: 0.0007 (0.0037)  time: 1.8874 (3.7711)  data: 0.0003 (0.2693)  lr: 0.000234  max mem: 19053
+2023-06-14 01:05:13,210 DTST.trainer INFO: eta: 16:11:09  iter: 4540  loss_p_loss: 0.1665 (0.1994)  loss_n_loss: 0.0007 (0.0037)  time: 1.8866 (3.7691)  data: 0.0002 (0.2681)  lr: 0.000234  max mem: 19053
+2023-06-14 01:06:00,563 DTST.trainer INFO: eta: 16:08:19  iter: 4560  loss_p_loss: 0.1560 (0.1993)  loss_n_loss: 0.0008 (0.0037)  time: 1.8875 (3.7629)  data: 0.0002 (0.2669)  lr: 0.000234  max mem: 19053
+2023-06-14 01:06:54,238 DTST.trainer INFO: eta: 16:05:51  iter: 4580  loss_p_loss: 0.1351 (0.1990)  loss_n_loss: 0.0007 (0.0037)  time: 1.8869 (3.7582)  data: 0.0002 (0.2657)  lr: 0.000233  max mem: 19053
+2023-06-14 01:07:55,791 DTST.trainer INFO: eta: 16:03:50  iter: 4600  loss_p_loss: 0.1476 (0.1988)  loss_n_loss: 0.0007 (0.0037)  time: 1.8881 (3.7553)  data: 0.0003 (0.2646)  lr: 0.000233  max mem: 19053
+2023-06-14 01:08:49,493 DTST.trainer INFO: eta: 16:01:24  iter: 4620  loss_p_loss: 0.1462 (0.1987)  loss_n_loss: 0.0006 (0.0036)  time: 1.8864 (3.7506)  data: 0.0002 (0.2634)  lr: 0.000233  max mem: 19053
+2023-06-14 01:10:00,725 DTST.trainer INFO: eta: 15:59:57  iter: 4640  loss_p_loss: 0.1522 (0.1985)  loss_n_loss: 0.0006 (0.0036)  time: 1.8878 (3.7498)  data: 0.0002 (0.2623)  lr: 0.000233  max mem: 19053
+2023-06-14 01:10:54,495 DTST.trainer INFO: eta: 15:57:32  iter: 4660  loss_p_loss: 0.1754 (0.1985)  loss_n_loss: 0.0008 (0.0036)  time: 1.8865 (3.7453)  data: 0.0003 (0.2612)  lr: 0.000233  max mem: 19053
+2023-06-14 01:12:12,204 DTST.trainer INFO: eta: 15:56:26  iter: 4680  loss_p_loss: 0.1647 (0.1984)  loss_n_loss: 0.0007 (0.0036)  time: 1.8907 (3.7458)  data: 0.0002 (0.2601)  lr: 0.000233  max mem: 19053
+2023-06-14 01:13:09,225 DTST.trainer INFO: eta: 15:54:13  iter: 4700  loss_p_loss: 0.1307 (0.1982)  loss_n_loss: 0.0005 (0.0036)  time: 1.8889 (3.7420)  data: 0.0003 (0.2590)  lr: 0.000233  max mem: 19053
+2023-06-14 01:13:56,614 DTST.trainer INFO: eta: 15:51:29  iter: 4720  loss_p_loss: 0.1654 (0.1982)  loss_n_loss: 0.0006 (0.0036)  time: 1.8883 (3.7362)  data: 0.0003 (0.2579)  lr: 0.000233  max mem: 19053
+2023-06-14 01:15:07,779 DTST.trainer INFO: eta: 15:50:03  iter: 4740  loss_p_loss: 0.1642 (0.1980)  loss_n_loss: 0.0007 (0.0036)  time: 1.8896 (3.7355)  data: 0.0003 (0.2568)  lr: 0.000233  max mem: 19053
+2023-06-14 01:16:28,553 DTST.trainer INFO: eta: 15:49:08  iter: 4760  loss_p_loss: 0.2175 (0.1981)  loss_n_loss: 0.0008 (0.0036)  time: 1.8888 (3.7367)  data: 0.0002 (0.2557)  lr: 0.000233  max mem: 19053
+2023-06-14 01:17:25,566 DTST.trainer INFO: eta: 15:46:56  iter: 4780  loss_p_loss: 0.2051 (0.1982)  loss_n_loss: 0.0009 (0.0036)  time: 1.8886 (3.7330)  data: 0.0003 (0.2546)  lr: 0.000233  max mem: 19053
+2023-06-14 01:18:36,916 DTST.trainer INFO: eta: 15:45:31  iter: 4800  loss_p_loss: 0.1820 (0.1982)  loss_n_loss: 0.0010 (0.0035)  time: 1.8880 (3.7324)  data: 0.0003 (0.2536)  lr: 0.000233  max mem: 19053
+2023-06-14 01:19:43,389 DTST.trainer INFO: eta: 15:43:51  iter: 4820  loss_p_loss: 0.1464 (0.1980)  loss_n_loss: 0.0011 (0.0035)  time: 1.8888 (3.7307)  data: 0.0003 (0.2525)  lr: 0.000233  max mem: 19053
+2023-06-14 01:20:45,049 DTST.trainer INFO: eta: 15:41:56  iter: 4840  loss_p_loss: 0.1636 (0.1979)  loss_n_loss: 0.0007 (0.0035)  time: 1.8869 (3.7280)  data: 0.0002 (0.2515)  lr: 0.000233  max mem: 19053
+2023-06-14 01:22:02,638 DTST.trainer INFO: eta: 15:40:51  iter: 4860  loss_p_loss: 0.1338 (0.1977)  loss_n_loss: 0.0007 (0.0035)  time: 1.8891 (3.7286)  data: 0.0003 (0.2504)  lr: 0.000232  max mem: 19053
+2023-06-14 01:23:09,189 DTST.trainer INFO: eta: 15:39:11  iter: 4880  loss_p_loss: 0.1588 (0.1976)  loss_n_loss: 0.0007 (0.0035)  time: 1.8898 (3.7270)  data: 0.0002 (0.2494)  lr: 0.000232  max mem: 19053
+2023-06-14 01:25:08,244 DTST.trainer INFO: eta: 15:40:14  iter: 4900  loss_p_loss: 0.1362 (0.1974)  loss_n_loss: 0.0007 (0.0035)  time: 1.8880 (3.7360)  data: 0.0002 (0.2484)  lr: 0.000232  max mem: 19053
+2023-06-14 01:26:38,430 DTST.trainer INFO: eta: 15:39:46  iter: 4920  loss_p_loss: 0.1436 (0.1972)  loss_n_loss: 0.0005 (0.0035)  time: 1.8929 (3.7392)  data: 0.0002 (0.2474)  lr: 0.000232  max mem: 19053
+2023-06-14 01:28:08,997 DTST.trainer INFO: eta: 15:39:20  iter: 4940  loss_p_loss: 0.1268 (0.1970)  loss_n_loss: 0.0004 (0.0035)  time: 1.8889 (3.7424)  data: 0.0002 (0.2464)  lr: 0.000232  max mem: 19053
+2023-06-14 01:29:02,714 DTST.trainer INFO: eta: 15:37:01  iter: 4960  loss_p_loss: 0.1419 (0.1969)  loss_n_loss: 0.0006 (0.0035)  time: 1.8884 (3.7381)  data: 0.0003 (0.2454)  lr: 0.000232  max mem: 19053
+2023-06-14 01:31:09,569 DTST.trainer INFO: eta: 15:38:23  iter: 4980  loss_p_loss: 0.1665 (0.1969)  loss_n_loss: 0.0005 (0.0034)  time: 1.8871 (3.7486)  data: 0.0003 (0.2444)  lr: 0.000232  max mem: 19053
+2023-06-14 01:32:06,510 DTST.trainer INFO: eta: 15:36:14  iter: 5000  loss_p_loss: 0.1568 (0.1967)  loss_n_loss: 0.0006 (0.0034)  time: 1.8870 (3.7450)  data: 0.0002 (0.2434)  lr: 0.000232  max mem: 19053
+2023-06-14 01:32:06,805 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 01:33:27,532 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4699/0.5715/0.8212.
+2023-06-14 01:33:27,532 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7281/0.7321.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3215/0.9306.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8157/0.9635.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.1802/0.1946.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0141/0.0151.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.3032/0.3780.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.2809/0.3167.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3392/0.3786.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8551/0.9040.
+2023-06-14 01:33:27,533 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7861/0.8275.
+2023-06-14 01:33:27,534 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.6116/0.7033.
+2023-06-14 01:33:27,534 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3275/0.5520.
+2023-06-14 01:33:27,534 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8402/0.9645.
+2023-06-14 01:33:27,534 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2900/0.3218.
+2023-06-14 01:33:27,534 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2889/0.3300.
+2023-06-14 01:33:27,534 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5362/0.6316.
+2023-06-14 01:34:57,886 DTST.trainer INFO: eta: 15:39:47  iter: 5020  loss_p_loss: 0.1463 (0.1966)  loss_n_loss: 0.0005 (0.0034)  time: 1.8892 (3.7642)  data: 0.0003 (0.2586)  lr: 0.000232  max mem: 19053
+2023-06-14 01:36:34,325 DTST.trainer INFO: eta: 15:39:35  iter: 5040  loss_p_loss: 0.1585 (0.1965)  loss_n_loss: 0.0006 (0.0034)  time: 1.8862 (3.7684)  data: 0.0002 (0.2576)  lr: 0.000232  max mem: 19053
+2023-06-14 01:37:31,257 DTST.trainer INFO: eta: 15:37:25  iter: 5060  loss_p_loss: 0.1377 (0.1963)  loss_n_loss: 0.0007 (0.0034)  time: 1.8887 (3.7647)  data: 0.0002 (0.2566)  lr: 0.000232  max mem: 19053
+2023-06-14 01:38:48,914 DTST.trainer INFO: eta: 15:36:16  iter: 5080  loss_p_loss: 0.1507 (0.1962)  loss_n_loss: 0.0006 (0.0034)  time: 1.8896 (3.7652)  data: 0.0003 (0.2556)  lr: 0.000232  max mem: 19053
+2023-06-14 01:40:19,152 DTST.trainer INFO: eta: 15:35:45  iter: 5100  loss_p_loss: 0.1740 (0.1963)  loss_n_loss: 0.0007 (0.0034)  time: 1.8866 (3.7681)  data: 0.0003 (0.2546)  lr: 0.000232  max mem: 19053
+2023-06-14 01:41:49,250 DTST.trainer INFO: eta: 15:35:12  iter: 5120  loss_p_loss: 0.1831 (0.1962)  loss_n_loss: 0.0009 (0.0034)  time: 1.8854 (3.7710)  data: 0.0002 (0.2536)  lr: 0.000231  max mem: 19053
+2023-06-14 01:43:01,916 DTST.trainer INFO: eta: 15:33:49  iter: 5140  loss_p_loss: 0.1614 (0.1961)  loss_n_loss: 0.0007 (0.0034)  time: 1.8882 (3.7705)  data: 0.0002 (0.2526)  lr: 0.000231  max mem: 19053
+2023-06-14 01:44:08,181 DTST.trainer INFO: eta: 15:32:07  iter: 5160  loss_p_loss: 0.1510 (0.1960)  loss_n_loss: 0.0006 (0.0033)  time: 1.8868 (3.7687)  data: 0.0002 (0.2516)  lr: 0.000231  max mem: 19053
+2023-06-14 01:45:01,798 DTST.trainer INFO: eta: 15:29:50  iter: 5180  loss_p_loss: 0.1525 (0.1958)  loss_n_loss: 0.0006 (0.0033)  time: 1.8871 (3.7645)  data: 0.0003 (0.2506)  lr: 0.000231  max mem: 19053
+2023-06-14 01:46:31,904 DTST.trainer INFO: eta: 15:29:16  iter: 5200  loss_p_loss: 0.1359 (0.1956)  loss_n_loss: 0.0005 (0.0033)  time: 1.8865 (3.7674)  data: 0.0003 (0.2497)  lr: 0.000231  max mem: 19053
+2023-06-14 01:47:25,581 DTST.trainer INFO: eta: 15:27:00  iter: 5220  loss_p_loss: 0.1440 (0.1955)  loss_n_loss: 0.0006 (0.0033)  time: 1.8878 (3.7632)  data: 0.0003 (0.2487)  lr: 0.000231  max mem: 19053
+2023-06-14 01:48:12,925 DTST.trainer INFO: eta: 15:24:26  iter: 5240  loss_p_loss: 0.1531 (0.1953)  loss_n_loss: 0.0006 (0.0033)  time: 1.8871 (3.7579)  data: 0.0002 (0.2478)  lr: 0.000231  max mem: 19053
+2023-06-14 01:49:25,981 DTST.trainer INFO: eta: 15:23:05  iter: 5260  loss_p_loss: 0.1430 (0.1952)  loss_n_loss: 0.0005 (0.0033)  time: 1.8894 (3.7575)  data: 0.0003 (0.2468)  lr: 0.000231  max mem: 19053
+2023-06-14 01:51:33,047 DTST.trainer INFO: eta: 15:24:14  iter: 5280  loss_p_loss: 0.1448 (0.1950)  loss_n_loss: 0.0006 (0.0033)  time: 1.8881 (3.7673)  data: 0.0003 (0.2459)  lr: 0.000231  max mem: 19053
+2023-06-14 01:52:29,996 DTST.trainer INFO: eta: 15:22:08  iter: 5300  loss_p_loss: 0.1493 (0.1949)  loss_n_loss: 0.0005 (0.0033)  time: 1.8878 (3.7638)  data: 0.0003 (0.2450)  lr: 0.000231  max mem: 19053
+2023-06-14 01:53:23,855 DTST.trainer INFO: eta: 15:19:54  iter: 5320  loss_p_loss: 0.1723 (0.1949)  loss_n_loss: 0.0005 (0.0033)  time: 1.8879 (3.7598)  data: 0.0003 (0.2440)  lr: 0.000231  max mem: 19053
+2023-06-14 01:54:25,644 DTST.trainer INFO: eta: 15:18:02  iter: 5340  loss_p_loss: 0.1577 (0.1948)  loss_n_loss: 0.0005 (0.0033)  time: 1.8895 (3.7573)  data: 0.0003 (0.2431)  lr: 0.000231  max mem: 19053
+2023-06-14 01:55:51,312 DTST.trainer INFO: eta: 15:17:15  iter: 5360  loss_p_loss: 0.1617 (0.1947)  loss_n_loss: 0.0007 (0.0032)  time: 1.8913 (3.7593)  data: 0.0003 (0.2422)  lr: 0.000231  max mem: 19053
+2023-06-14 01:57:21,850 DTST.trainer INFO: eta: 15:16:42  iter: 5380  loss_p_loss: 0.1538 (0.1946)  loss_n_loss: 0.0006 (0.0032)  time: 1.8885 (3.7621)  data: 0.0003 (0.2413)  lr: 0.000231  max mem: 19053
+2023-06-14 01:58:52,238 DTST.trainer INFO: eta: 15:16:07  iter: 5400  loss_p_loss: 0.1815 (0.1946)  loss_n_loss: 0.0006 (0.0032)  time: 1.8890 (3.7649)  data: 0.0002 (0.2404)  lr: 0.000230  max mem: 19053
+2023-06-14 01:59:39,636 DTST.trainer INFO: eta: 15:13:37  iter: 5420  loss_p_loss: 0.1599 (0.1945)  loss_n_loss: 0.0006 (0.0032)  time: 1.8889 (3.7598)  data: 0.0002 (0.2396)  lr: 0.000230  max mem: 19053
+2023-06-14 02:00:41,439 DTST.trainer INFO: eta: 15:11:46  iter: 5440  loss_p_loss: 0.1558 (0.1944)  loss_n_loss: 0.0007 (0.0032)  time: 1.8898 (3.7573)  data: 0.0003 (0.2387)  lr: 0.000230  max mem: 19053
+2023-06-14 02:01:35,126 DTST.trainer INFO: eta: 15:09:34  iter: 5460  loss_p_loss: 0.1442 (0.1943)  loss_n_loss: 0.0006 (0.0032)  time: 1.8880 (3.7534)  data: 0.0003 (0.2378)  lr: 0.000230  max mem: 19053
+2023-06-14 02:03:14,875 DTST.trainer INFO: eta: 15:09:24  iter: 5480  loss_p_loss: 0.1586 (0.1942)  loss_n_loss: 0.0007 (0.0032)  time: 1.8868 (3.7579)  data: 0.0003 (0.2369)  lr: 0.000230  max mem: 19053
+2023-06-14 02:04:30,923 DTST.trainer INFO: eta: 15:08:11  iter: 5500  loss_p_loss: 0.1958 (0.1942)  loss_n_loss: 0.0007 (0.0032)  time: 1.8863 (3.7581)  data: 0.0003 (0.2361)  lr: 0.000230  max mem: 19053
+2023-06-14 02:05:48,797 DTST.trainer INFO: eta: 15:07:03  iter: 5520  loss_p_loss: 0.1646 (0.1941)  loss_n_loss: 0.0008 (0.0032)  time: 1.8898 (3.7585)  data: 0.0003 (0.2352)  lr: 0.000230  max mem: 19053
+2023-06-14 02:06:55,207 DTST.trainer INFO: eta: 15:05:25  iter: 5540  loss_p_loss: 0.1449 (0.1940)  loss_n_loss: 0.0007 (0.0032)  time: 1.8867 (3.7570)  data: 0.0003 (0.2344)  lr: 0.000230  max mem: 19053
+2023-06-14 02:07:48,813 DTST.trainer INFO: eta: 15:03:14  iter: 5560  loss_p_loss: 0.1674 (0.1940)  loss_n_loss: 0.0006 (0.0032)  time: 1.8856 (3.7531)  data: 0.0002 (0.2335)  lr: 0.000230  max mem: 19053
+2023-06-14 02:08:56,850 DTST.trainer INFO: eta: 15:01:41  iter: 5580  loss_p_loss: 0.1338 (0.1938)  loss_n_loss: 0.0006 (0.0032)  time: 1.8869 (3.7518)  data: 0.0002 (0.2327)  lr: 0.000230  max mem: 19053
+2023-06-14 02:10:22,296 DTST.trainer INFO: eta: 15:00:53  iter: 5600  loss_p_loss: 0.1535 (0.1936)  loss_n_loss: 0.0007 (0.0031)  time: 1.8878 (3.7537)  data: 0.0003 (0.2319)  lr: 0.000230  max mem: 19053
+2023-06-14 02:11:33,657 DTST.trainer INFO: eta: 14:59:28  iter: 5620  loss_p_loss: 0.1457 (0.1936)  loss_n_loss: 0.0006 (0.0031)  time: 1.8895 (3.7530)  data: 0.0002 (0.2310)  lr: 0.000230  max mem: 19053
+2023-06-14 02:12:51,093 DTST.trainer INFO: eta: 14:58:19  iter: 5640  loss_p_loss: 0.1417 (0.1934)  loss_n_loss: 0.0007 (0.0031)  time: 1.8867 (3.7535)  data: 0.0002 (0.2302)  lr: 0.000230  max mem: 19053
+2023-06-14 02:14:12,089 DTST.trainer INFO: eta: 14:57:19  iter: 5660  loss_p_loss: 0.1500 (0.1932)  loss_n_loss: 0.0005 (0.0031)  time: 1.8898 (3.7545)  data: 0.0003 (0.2294)  lr: 0.000230  max mem: 19053
+2023-06-14 02:15:09,155 DTST.trainer INFO: eta: 14:55:18  iter: 5680  loss_p_loss: 0.1246 (0.1931)  loss_n_loss: 0.0005 (0.0031)  time: 1.8889 (3.7513)  data: 0.0003 (0.2286)  lr: 0.000229  max mem: 19053
+2023-06-14 02:16:03,099 DTST.trainer INFO: eta: 14:53:11  iter: 5700  loss_p_loss: 0.1506 (0.1929)  loss_n_loss: 0.0005 (0.0031)  time: 1.8891 (3.7476)  data: 0.0003 (0.2278)  lr: 0.000229  max mem: 19053
+2023-06-14 02:17:04,909 DTST.trainer INFO: eta: 14:51:23  iter: 5720  loss_p_loss: 0.1555 (0.1928)  loss_n_loss: 0.0004 (0.0031)  time: 1.8890 (3.7453)  data: 0.0003 (0.2270)  lr: 0.000229  max mem: 19053
+2023-06-14 02:17:58,704 DTST.trainer INFO: eta: 14:49:15  iter: 5740  loss_p_loss: 0.1632 (0.1927)  loss_n_loss: 0.0005 (0.0031)  time: 1.8892 (3.7417)  data: 0.0002 (0.2262)  lr: 0.000229  max mem: 19053
+2023-06-14 02:19:32,279 DTST.trainer INFO: eta: 14:48:47  iter: 5760  loss_p_loss: 0.1703 (0.1926)  loss_n_loss: 0.0004 (0.0031)  time: 1.8900 (3.7449)  data: 0.0002 (0.2254)  lr: 0.000229  max mem: 19053
+2023-06-14 02:20:34,061 DTST.trainer INFO: eta: 14:47:00  iter: 5780  loss_p_loss: 0.1552 (0.1925)  loss_n_loss: 0.0005 (0.0031)  time: 1.8890 (3.7426)  data: 0.0002 (0.2247)  lr: 0.000229  max mem: 19053
+2023-06-14 02:22:33,464 DTST.trainer INFO: eta: 14:47:34  iter: 5800  loss_p_loss: 0.1821 (0.1924)  loss_n_loss: 0.0005 (0.0031)  time: 1.8909 (3.7503)  data: 0.0004 (0.2239)  lr: 0.000229  max mem: 19053
+2023-06-14 02:23:27,385 DTST.trainer INFO: eta: 14:45:28  iter: 5820  loss_p_loss: 0.1367 (0.1923)  loss_n_loss: 0.0006 (0.0030)  time: 1.8909 (3.7467)  data: 0.0003 (0.2231)  lr: 0.000229  max mem: 19053
+2023-06-14 02:24:45,202 DTST.trainer INFO: eta: 14:44:20  iter: 5840  loss_p_loss: 0.1567 (0.1923)  loss_n_loss: 0.0007 (0.0030)  time: 1.8902 (3.7472)  data: 0.0003 (0.2223)  lr: 0.000229  max mem: 19053
+2023-06-14 02:26:11,020 DTST.trainer INFO: eta: 14:43:31  iter: 5860  loss_p_loss: 0.1390 (0.1921)  loss_n_loss: 0.0005 (0.0030)  time: 1.8908 (3.7490)  data: 0.0003 (0.2216)  lr: 0.000229  max mem: 19053
+2023-06-14 02:27:41,577 DTST.trainer INFO: eta: 14:42:53  iter: 5880  loss_p_loss: 0.1418 (0.1921)  loss_n_loss: 0.0005 (0.0030)  time: 1.8900 (3.7517)  data: 0.0004 (0.2208)  lr: 0.000229  max mem: 19053
+2023-06-14 02:29:12,119 DTST.trainer INFO: eta: 14:42:15  iter: 5900  loss_p_loss: 0.1390 (0.1919)  loss_n_loss: 0.0005 (0.0030)  time: 1.8889 (3.7543)  data: 0.0003 (0.2201)  lr: 0.000229  max mem: 19053
+2023-06-14 02:30:05,997 DTST.trainer INFO: eta: 14:40:10  iter: 5920  loss_p_loss: 0.1678 (0.1919)  loss_n_loss: 0.0005 (0.0030)  time: 1.8907 (3.7507)  data: 0.0003 (0.2193)  lr: 0.000229  max mem: 19053
+2023-06-14 02:30:59,856 DTST.trainer INFO: eta: 14:38:05  iter: 5940  loss_p_loss: 0.1514 (0.1918)  loss_n_loss: 0.0005 (0.0030)  time: 1.8905 (3.7472)  data: 0.0003 (0.2186)  lr: 0.000229  max mem: 19053
+2023-06-14 02:32:06,435 DTST.trainer INFO: eta: 14:36:30  iter: 5960  loss_p_loss: 0.1272 (0.1916)  loss_n_loss: 0.0005 (0.0030)  time: 1.8905 (3.7458)  data: 0.0003 (0.2179)  lr: 0.000228  max mem: 19053
+2023-06-14 02:33:01,904 DTST.trainer INFO: eta: 14:34:30  iter: 5980  loss_p_loss: 0.1508 (0.1915)  loss_n_loss: 0.0005 (0.0030)  time: 1.8886 (3.7425)  data: 0.0002 (0.2172)  lr: 0.000228  max mem: 19053
+2023-06-14 02:48:56,014 DTST.trainer INFO: eta: 15:07:26  iter: 6000  loss_p_loss: 0.1303 (0.1914)  loss_n_loss: 0.0005 (0.0030)  time: 1.8897 (3.8891)  data: 0.0003 (0.3625)  lr: 0.000228  max mem: 19053
+2023-06-14 02:48:56,324 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 02:50:16,529 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4753/0.5785/0.8274.
+2023-06-14 02:50:16,529 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7444/0.7487.
+2023-06-14 02:50:16,529 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3345/0.9274.
+2023-06-14 02:50:16,529 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8147/0.9650.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.2129/0.2308.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0192/0.0210.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.3002/0.3722.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.2929/0.3385.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3387/0.3802.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8565/0.9038.
+2023-06-14 02:50:16,530 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7788/0.8143.
+2023-06-14 02:50:16,531 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5996/0.6787.
+2023-06-14 02:50:16,531 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3360/0.5845.
+2023-06-14 02:50:16,531 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8405/0.9642.
+2023-06-14 02:50:16,531 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2927/0.3250.
+2023-06-14 02:50:16,531 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2969/0.3431.
+2023-06-14 02:50:16,531 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5469/0.6580.
+2023-06-14 02:51:03,960 DTST.trainer INFO: eta: 15:08:05  iter: 6020  loss_p_loss: 0.1442 (0.1912)  loss_n_loss: 0.0005 (0.0030)  time: 1.8850 (3.8974)  data: 0.0003 (0.3747)  lr: 0.000228  max mem: 19053
+2023-06-14 02:52:21,693 DTST.trainer INFO: eta: 15:06:47  iter: 6040  loss_p_loss: 0.1600 (0.1911)  loss_n_loss: 0.0005 (0.0030)  time: 1.8885 (3.8974)  data: 0.0003 (0.3734)  lr: 0.000228  max mem: 19053
+2023-06-14 02:53:41,010 DTST.trainer INFO: eta: 15:05:32  iter: 6060  loss_p_loss: 0.1397 (0.1910)  loss_n_loss: 0.0005 (0.0029)  time: 1.8885 (3.8976)  data: 0.0003 (0.3722)  lr: 0.000228  max mem: 19053
+2023-06-14 02:55:30,467 DTST.trainer INFO: eta: 15:05:26  iter: 6080  loss_p_loss: 0.1267 (0.1908)  loss_n_loss: 0.0005 (0.0029)  time: 1.8872 (3.9028)  data: 0.0002 (0.3710)  lr: 0.000228  max mem: 19053
+2023-06-14 02:56:17,729 DTST.trainer INFO: eta: 15:02:58  iter: 6100  loss_p_loss: 0.1525 (0.1907)  loss_n_loss: 0.0004 (0.0029)  time: 1.8869 (3.8977)  data: 0.0002 (0.3698)  lr: 0.000228  max mem: 19053
+2023-06-14 02:57:28,838 DTST.trainer INFO: eta: 15:01:24  iter: 6120  loss_p_loss: 0.1581 (0.1907)  loss_n_loss: 0.0006 (0.0029)  time: 1.8894 (3.8966)  data: 0.0002 (0.3686)  lr: 0.000228  max mem: 19053
+2023-06-14 02:59:18,227 DTST.trainer INFO: eta: 15:01:17  iter: 6140  loss_p_loss: 0.1342 (0.1906)  loss_n_loss: 0.0006 (0.0029)  time: 1.8870 (3.9017)  data: 0.0002 (0.3674)  lr: 0.000228  max mem: 19053
+2023-06-14 03:00:19,854 DTST.trainer INFO: eta: 14:59:23  iter: 6160  loss_p_loss: 0.1367 (0.1905)  loss_n_loss: 0.0004 (0.0029)  time: 1.8873 (3.8991)  data: 0.0002 (0.3662)  lr: 0.000228  max mem: 19053
+2023-06-14 03:02:19,023 DTST.trainer INFO: eta: 14:59:37  iter: 6180  loss_p_loss: 0.1568 (0.1903)  loss_n_loss: 0.0005 (0.0029)  time: 1.8929 (3.9057)  data: 0.0003 (0.3650)  lr: 0.000228  max mem: 19053
+2023-06-14 03:03:36,708 DTST.trainer INFO: eta: 14:58:18  iter: 6200  loss_p_loss: 0.1354 (0.1902)  loss_n_loss: 0.0004 (0.0029)  time: 1.8864 (3.9057)  data: 0.0002 (0.3638)  lr: 0.000228  max mem: 19053
+2023-06-14 03:04:24,068 DTST.trainer INFO: eta: 14:55:51  iter: 6220  loss_p_loss: 0.1399 (0.1901)  loss_n_loss: 0.0004 (0.0029)  time: 1.8868 (3.9007)  data: 0.0002 (0.3626)  lr: 0.000227  max mem: 19053
+2023-06-14 03:05:54,277 DTST.trainer INFO: eta: 14:55:00  iter: 6240  loss_p_loss: 0.1455 (0.1900)  loss_n_loss: 0.0004 (0.0029)  time: 1.8879 (3.9027)  data: 0.0002 (0.3615)  lr: 0.000227  max mem: 19053
+2023-06-14 03:07:24,431 DTST.trainer INFO: eta: 14:54:09  iter: 6260  loss_p_loss: 0.1353 (0.1899)  loss_n_loss: 0.0005 (0.0029)  time: 1.8879 (3.9046)  data: 0.0002 (0.3603)  lr: 0.000227  max mem: 19053
+2023-06-14 03:08:41,562 DTST.trainer INFO: eta: 14:52:49  iter: 6280  loss_p_loss: 0.1273 (0.1897)  loss_n_loss: 0.0004 (0.0029)  time: 1.8868 (3.9044)  data: 0.0002 (0.3592)  lr: 0.000227  max mem: 19053
+2023-06-14 03:09:35,086 DTST.trainer INFO: eta: 14:50:37  iter: 6300  loss_p_loss: 0.1392 (0.1896)  loss_n_loss: 0.0004 (0.0029)  time: 1.8873 (3.9005)  data: 0.0002 (0.3580)  lr: 0.000227  max mem: 19053
+2023-06-14 03:10:22,264 DTST.trainer INFO: eta: 14:48:12  iter: 6320  loss_p_loss: 0.1275 (0.1894)  loss_n_loss: 0.0004 (0.0028)  time: 1.8876 (3.8957)  data: 0.0002 (0.3569)  lr: 0.000227  max mem: 19053
+2023-06-14 03:11:39,239 DTST.trainer INFO: eta: 14:46:52  iter: 6340  loss_p_loss: 0.1529 (0.1894)  loss_n_loss: 0.0005 (0.0028)  time: 1.8870 (3.8955)  data: 0.0002 (0.3558)  lr: 0.000227  max mem: 19053
+2023-06-14 03:12:56,195 DTST.trainer INFO: eta: 14:45:32  iter: 6360  loss_p_loss: 0.1283 (0.1893)  loss_n_loss: 0.0004 (0.0028)  time: 1.8869 (3.8954)  data: 0.0002 (0.3547)  lr: 0.000227  max mem: 19053
+2023-06-14 03:13:52,779 DTST.trainer INFO: eta: 14:43:29  iter: 6380  loss_p_loss: 0.1568 (0.1892)  loss_n_loss: 0.0004 (0.0028)  time: 1.8873 (3.8920)  data: 0.0002 (0.3536)  lr: 0.000227  max mem: 19053
+2023-06-14 03:14:58,892 DTST.trainer INFO: eta: 14:41:46  iter: 6400  loss_p_loss: 0.1520 (0.1891)  loss_n_loss: 0.0004 (0.0028)  time: 1.8879 (3.8902)  data: 0.0002 (0.3525)  lr: 0.000227  max mem: 19053
+2023-06-14 03:16:09,550 DTST.trainer INFO: eta: 14:40:13  iter: 6420  loss_p_loss: 0.1336 (0.1890)  loss_n_loss: 0.0004 (0.0028)  time: 1.8867 (3.8891)  data: 0.0002 (0.3514)  lr: 0.000227  max mem: 19053
+2023-06-14 03:17:15,537 DTST.trainer INFO: eta: 14:38:31  iter: 6440  loss_p_loss: 0.1426 (0.1889)  loss_n_loss: 0.0005 (0.0028)  time: 1.8860 (3.8873)  data: 0.0002 (0.3503)  lr: 0.000227  max mem: 19053
+2023-06-14 03:18:08,922 DTST.trainer INFO: eta: 14:36:22  iter: 6460  loss_p_loss: 0.1387 (0.1887)  loss_n_loss: 0.0004 (0.0028)  time: 1.8869 (3.8835)  data: 0.0002 (0.3492)  lr: 0.000227  max mem: 19053
+2023-06-14 03:19:22,828 DTST.trainer INFO: eta: 14:34:56  iter: 6480  loss_p_loss: 0.1300 (0.1886)  loss_n_loss: 0.0004 (0.0028)  time: 1.8889 (3.8829)  data: 0.0002 (0.3481)  lr: 0.000227  max mem: 19053
+2023-06-14 03:20:25,762 DTST.trainer INFO: eta: 14:33:08  iter: 6500  loss_p_loss: 0.1434 (0.1885)  loss_n_loss: 0.0005 (0.0028)  time: 1.8874 (3.8806)  data: 0.0002 (0.3470)  lr: 0.000226  max mem: 19053
+2023-06-14 03:21:55,329 DTST.trainer INFO: eta: 14:32:15  iter: 6520  loss_p_loss: 0.1309 (0.1884)  loss_n_loss: 0.0004 (0.0028)  time: 1.8862 (3.8825)  data: 0.0002 (0.3460)  lr: 0.000226  max mem: 19053
+2023-06-14 03:22:48,771 DTST.trainer INFO: eta: 14:30:08  iter: 6540  loss_p_loss: 0.1374 (0.1883)  loss_n_loss: 0.0005 (0.0028)  time: 1.8868 (3.8788)  data: 0.0002 (0.3449)  lr: 0.000226  max mem: 19053
+2023-06-14 03:23:54,870 DTST.trainer INFO: eta: 14:28:27  iter: 6560  loss_p_loss: 0.1401 (0.1882)  loss_n_loss: 0.0004 (0.0028)  time: 1.8875 (3.8770)  data: 0.0002 (0.3439)  lr: 0.000226  max mem: 19053
+2023-06-14 03:25:30,994 DTST.trainer INFO: eta: 14:27:47  iter: 6580  loss_p_loss: 0.1112 (0.1880)  loss_n_loss: 0.0005 (0.0028)  time: 1.8876 (3.8798)  data: 0.0002 (0.3428)  lr: 0.000226  max mem: 19053
+2023-06-14 03:26:27,748 DTST.trainer INFO: eta: 14:25:47  iter: 6600  loss_p_loss: 0.1390 (0.1879)  loss_n_loss: 0.0003 (0.0028)  time: 1.8870 (3.8767)  data: 0.0002 (0.3418)  lr: 0.000226  max mem: 19053
+2023-06-14 03:27:45,090 DTST.trainer INFO: eta: 14:24:29  iter: 6620  loss_p_loss: 0.1465 (0.1878)  loss_n_loss: 0.0004 (0.0027)  time: 1.8888 (3.8767)  data: 0.0002 (0.3407)  lr: 0.000226  max mem: 19053
+2023-06-14 03:28:46,620 DTST.trainer INFO: eta: 14:22:39  iter: 6640  loss_p_loss: 0.1397 (0.1877)  loss_n_loss: 0.0004 (0.0027)  time: 1.8866 (3.8742)  data: 0.0002 (0.3397)  lr: 0.000226  max mem: 19053
+2023-06-14 03:30:16,962 DTST.trainer INFO: eta: 14:21:48  iter: 6660  loss_p_loss: 0.1222 (0.1876)  loss_n_loss: 0.0003 (0.0027)  time: 1.8877 (3.8762)  data: 0.0003 (0.3387)  lr: 0.000226  max mem: 19053
+2023-06-14 03:31:13,894 DTST.trainer INFO: eta: 14:19:49  iter: 6680  loss_p_loss: 0.1430 (0.1875)  loss_n_loss: 0.0003 (0.0027)  time: 1.8886 (3.8731)  data: 0.0003 (0.3377)  lr: 0.000226  max mem: 19053
+2023-06-14 03:32:15,562 DTST.trainer INFO: eta: 14:18:00  iter: 6700  loss_p_loss: 0.1431 (0.1874)  loss_n_loss: 0.0003 (0.0027)  time: 1.8871 (3.8707)  data: 0.0003 (0.3367)  lr: 0.000226  max mem: 19053
+2023-06-14 03:33:12,595 DTST.trainer INFO: eta: 14:16:03  iter: 6720  loss_p_loss: 0.1380 (0.1873)  loss_n_loss: 0.0004 (0.0027)  time: 1.8880 (3.8677)  data: 0.0002 (0.3357)  lr: 0.000226  max mem: 19053
+2023-06-14 03:34:18,989 DTST.trainer INFO: eta: 14:14:24  iter: 6740  loss_p_loss: 0.1246 (0.1871)  loss_n_loss: 0.0004 (0.0027)  time: 1.8884 (3.8661)  data: 0.0002 (0.3347)  lr: 0.000226  max mem: 19053
+2023-06-14 03:35:12,511 DTST.trainer INFO: eta: 14:12:20  iter: 6760  loss_p_loss: 0.1397 (0.1870)  loss_n_loss: 0.0005 (0.0027)  time: 1.8872 (3.8626)  data: 0.0002 (0.3337)  lr: 0.000226  max mem: 19053
+2023-06-14 03:36:23,877 DTST.trainer INFO: eta: 14:10:51  iter: 6780  loss_p_loss: 0.1726 (0.1871)  loss_n_loss: 0.0006 (0.0027)  time: 1.8918 (3.8617)  data: 0.0003 (0.3327)  lr: 0.000225  max mem: 19053
+2023-06-14 03:37:20,560 DTST.trainer INFO: eta: 14:08:54  iter: 6800  loss_p_loss: 0.2245 (0.1872)  loss_n_loss: 0.0007 (0.0027)  time: 1.8873 (3.8587)  data: 0.0002 (0.3317)  lr: 0.000225  max mem: 19053
+2023-06-14 03:38:50,439 DTST.trainer INFO: eta: 14:08:01  iter: 6820  loss_p_loss: 0.1725 (0.1873)  loss_n_loss: 0.0007 (0.0027)  time: 1.8885 (3.8605)  data: 0.0002 (0.3308)  lr: 0.000225  max mem: 19053
+2023-06-14 03:40:20,866 DTST.trainer INFO: eta: 14:07:09  iter: 6840  loss_p_loss: 0.1354 (0.1872)  loss_n_loss: 0.0005 (0.0027)  time: 1.8890 (3.8625)  data: 0.0002 (0.3298)  lr: 0.000225  max mem: 19053
+2023-06-14 03:41:14,425 DTST.trainer INFO: eta: 14:05:07  iter: 6860  loss_p_loss: 0.1754 (0.1872)  loss_n_loss: 0.0007 (0.0027)  time: 1.8879 (3.8590)  data: 0.0002 (0.3288)  lr: 0.000225  max mem: 19053
+2023-06-14 03:42:27,036 DTST.trainer INFO: eta: 14:03:41  iter: 6880  loss_p_loss: 0.1783 (0.1872)  loss_n_loss: 0.0006 (0.0027)  time: 1.8876 (3.8583)  data: 0.0002 (0.3279)  lr: 0.000225  max mem: 19053
+2023-06-14 03:44:03,837 DTST.trainer INFO: eta: 14:03:01  iter: 6900  loss_p_loss: 0.1648 (0.1871)  loss_n_loss: 0.0006 (0.0027)  time: 1.8867 (3.8612)  data: 0.0002 (0.3269)  lr: 0.000225  max mem: 19053
+2023-06-14 03:44:51,076 DTST.trainer INFO: eta: 14:00:47  iter: 6920  loss_p_loss: 0.1297 (0.1870)  loss_n_loss: 0.0005 (0.0026)  time: 1.8867 (3.8569)  data: 0.0002 (0.3260)  lr: 0.000225  max mem: 19053
+2023-06-14 03:46:46,811 DTST.trainer INFO: eta: 14:00:43  iter: 6940  loss_p_loss: 0.1533 (0.1869)  loss_n_loss: 0.0006 (0.0026)  time: 1.8872 (3.8624)  data: 0.0003 (0.3251)  lr: 0.000225  max mem: 19053
+2023-06-14 03:47:34,101 DTST.trainer INFO: eta: 13:58:29  iter: 6960  loss_p_loss: 0.1332 (0.1868)  loss_n_loss: 0.0006 (0.0026)  time: 1.8861 (3.8581)  data: 0.0002 (0.3241)  lr: 0.000225  max mem: 19053
+2023-06-14 03:48:51,364 DTST.trainer INFO: eta: 13:57:12  iter: 6980  loss_p_loss: 0.1378 (0.1867)  loss_n_loss: 0.0005 (0.0026)  time: 1.8845 (3.8581)  data: 0.0002 (0.3232)  lr: 0.000225  max mem: 19053
+2023-06-14 03:50:15,056 DTST.trainer INFO: eta: 13:56:07  iter: 7000  loss_p_loss: 0.1480 (0.1866)  loss_n_loss: 0.0004 (0.0026)  time: 1.8882 (3.8591)  data: 0.0002 (0.3223)  lr: 0.000225  max mem: 19053
+2023-06-14 03:50:15,352 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 03:51:36,595 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4802/0.5836/0.8347.
+2023-06-14 03:51:36,595 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7638/0.7685.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3508/0.9220.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8136/0.9657.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.2500/0.2740.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0269/0.0300.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2985/0.3675.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.2987/0.3539.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3412/0.3862.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8573/0.9035.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7718/0.8029.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5881/0.6607.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3421/0.5935.
+2023-06-14 03:51:36,596 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8399/0.9640.
+2023-06-14 03:51:36,597 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2885/0.3206.
+2023-06-14 03:51:36,597 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.2961/0.3425.
+2023-06-14 03:51:36,597 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5563/0.6821.
+2023-06-14 03:52:58,888 DTST.trainer INFO: eta: 13:57:30  iter: 7020  loss_p_loss: 0.1494 (0.1865)  loss_n_loss: 0.0005 (0.0026)  time: 1.8882 (3.8714)  data: 0.0003 (0.3330)  lr: 0.000225  max mem: 19053
+2023-06-14 03:53:49,504 DTST.trainer INFO: eta: 13:55:24  iter: 7040  loss_p_loss: 0.1165 (0.1863)  loss_n_loss: 0.0004 (0.0026)  time: 1.8873 (3.8676)  data: 0.0002 (0.3320)  lr: 0.000225  max mem: 19053
+2023-06-14 03:54:41,742 DTST.trainer INFO: eta: 13:53:20  iter: 7060  loss_p_loss: 0.1640 (0.1863)  loss_n_loss: 0.0005 (0.0026)  time: 1.8871 (3.8640)  data: 0.0002 (0.3311)  lr: 0.000224  max mem: 19053
+2023-06-14 03:55:38,567 DTST.trainer INFO: eta: 13:51:26  iter: 7080  loss_p_loss: 0.1566 (0.1862)  loss_n_loss: 0.0005 (0.0026)  time: 1.8869 (3.8611)  data: 0.0002 (0.3301)  lr: 0.000224  max mem: 19053
+2023-06-14 03:56:25,772 DTST.trainer INFO: eta: 13:49:14  iter: 7100  loss_p_loss: 0.1408 (0.1861)  loss_n_loss: 0.0004 (0.0026)  time: 1.8878 (3.8569)  data: 0.0002 (0.3292)  lr: 0.000224  max mem: 19053
+2023-06-14 03:57:25,695 DTST.trainer INFO: eta: 13:47:26  iter: 7120  loss_p_loss: 0.1505 (0.1860)  loss_n_loss: 0.0004 (0.0026)  time: 1.8880 (3.8545)  data: 0.0002 (0.3283)  lr: 0.000224  max mem: 19053
+2023-06-14 03:58:55,987 DTST.trainer INFO: eta: 13:46:32  iter: 7140  loss_p_loss: 0.1473 (0.1859)  loss_n_loss: 0.0005 (0.0026)  time: 1.8891 (3.8564)  data: 0.0003 (0.3274)  lr: 0.000224  max mem: 19053
+2023-06-14 04:00:26,161 DTST.trainer INFO: eta: 13:45:38  iter: 7160  loss_p_loss: 0.1496 (0.1859)  loss_n_loss: 0.0005 (0.0026)  time: 1.8878 (3.8582)  data: 0.0002 (0.3265)  lr: 0.000224  max mem: 19053
+2023-06-14 04:01:32,364 DTST.trainer INFO: eta: 13:44:02  iter: 7180  loss_p_loss: 0.1524 (0.1858)  loss_n_loss: 0.0005 (0.0026)  time: 1.8872 (3.8566)  data: 0.0002 (0.3256)  lr: 0.000224  max mem: 19053
+2023-06-14 04:02:19,714 DTST.trainer INFO: eta: 13:41:52  iter: 7200  loss_p_loss: 0.1342 (0.1857)  loss_n_loss: 0.0005 (0.0026)  time: 1.8872 (3.8525)  data: 0.0002 (0.3247)  lr: 0.000224  max mem: 19053
+2023-06-14 04:03:21,350 DTST.trainer INFO: eta: 13:40:07  iter: 7220  loss_p_loss: 0.1217 (0.1855)  loss_n_loss: 0.0004 (0.0026)  time: 1.8889 (3.8504)  data: 0.0002 (0.3238)  lr: 0.000224  max mem: 19053
+2023-06-14 04:04:15,063 DTST.trainer INFO: eta: 13:38:09  iter: 7240  loss_p_loss: 0.1357 (0.1854)  loss_n_loss: 0.0005 (0.0026)  time: 1.8876 (3.8472)  data: 0.0002 (0.3229)  lr: 0.000224  max mem: 19053
+2023-06-14 04:05:29,410 DTST.trainer INFO: eta: 13:36:48  iter: 7260  loss_p_loss: 0.1311 (0.1852)  loss_n_loss: 0.0005 (0.0026)  time: 1.8869 (3.8468)  data: 0.0002 (0.3220)  lr: 0.000224  max mem: 19053
+2023-06-14 04:06:35,749 DTST.trainer INFO: eta: 13:35:12  iter: 7280  loss_p_loss: 0.1357 (0.1851)  loss_n_loss: 0.0004 (0.0025)  time: 1.8877 (3.8453)  data: 0.0003 (0.3211)  lr: 0.000224  max mem: 19053
+2023-06-14 04:08:24,826 DTST.trainer INFO: eta: 13:34:51  iter: 7300  loss_p_loss: 0.1448 (0.1850)  loss_n_loss: 0.0004 (0.0025)  time: 1.8866 (3.8498)  data: 0.0002 (0.3202)  lr: 0.000224  max mem: 19053
+2023-06-14 04:09:16,835 DTST.trainer INFO: eta: 13:32:51  iter: 7320  loss_p_loss: 0.1186 (0.1849)  loss_n_loss: 0.0004 (0.0025)  time: 1.8862 (3.8463)  data: 0.0002 (0.3193)  lr: 0.000223  max mem: 19053
+2023-06-14 04:10:13,755 DTST.trainer INFO: eta: 13:31:00  iter: 7340  loss_p_loss: 0.1262 (0.1847)  loss_n_loss: 0.0003 (0.0025)  time: 1.8889 (3.8436)  data: 0.0003 (0.3185)  lr: 0.000223  max mem: 19053
+2023-06-14 04:11:01,191 DTST.trainer INFO: eta: 13:28:52  iter: 7360  loss_p_loss: 0.1330 (0.1847)  loss_n_loss: 0.0004 (0.0025)  time: 1.8887 (3.8396)  data: 0.0003 (0.3176)  lr: 0.000223  max mem: 19053
+2023-06-14 04:11:53,129 DTST.trainer INFO: eta: 13:26:53  iter: 7380  loss_p_loss: 0.1429 (0.1845)  loss_n_loss: 0.0003 (0.0025)  time: 1.8863 (3.8362)  data: 0.0002 (0.3167)  lr: 0.000223  max mem: 19053
+2023-06-14 04:12:48,349 DTST.trainer INFO: eta: 13:25:00  iter: 7400  loss_p_loss: 0.1232 (0.1844)  loss_n_loss: 0.0004 (0.0025)  time: 1.8882 (3.8333)  data: 0.0002 (0.3159)  lr: 0.000223  max mem: 19053
+2023-06-14 04:13:35,583 DTST.trainer INFO: eta: 13:22:53  iter: 7420  loss_p_loss: 0.1466 (0.1843)  loss_n_loss: 0.0003 (0.0025)  time: 1.8869 (3.8294)  data: 0.0002 (0.3150)  lr: 0.000223  max mem: 19053
+2023-06-14 04:14:27,703 DTST.trainer INFO: eta: 13:20:55  iter: 7440  loss_p_loss: 0.1619 (0.1843)  loss_n_loss: 0.0004 (0.0025)  time: 1.8879 (3.8261)  data: 0.0002 (0.3142)  lr: 0.000223  max mem: 19053
+2023-06-14 04:15:23,094 DTST.trainer INFO: eta: 13:19:03  iter: 7460  loss_p_loss: 0.1299 (0.1842)  loss_n_loss: 0.0004 (0.0025)  time: 1.8886 (3.8233)  data: 0.0003 (0.3133)  lr: 0.000223  max mem: 19053
+2023-06-14 04:16:10,465 DTST.trainer INFO: eta: 13:16:58  iter: 7480  loss_p_loss: 0.1333 (0.1840)  loss_n_loss: 0.0004 (0.0025)  time: 1.8882 (3.8194)  data: 0.0002 (0.3125)  lr: 0.000223  max mem: 19053
+2023-06-14 04:17:02,623 DTST.trainer INFO: eta: 13:15:01  iter: 7500  loss_p_loss: 0.1295 (0.1839)  loss_n_loss: 0.0004 (0.0025)  time: 1.8878 (3.8161)  data: 0.0002 (0.3117)  lr: 0.000223  max mem: 19053
+2023-06-14 04:17:59,481 DTST.trainer INFO: eta: 13:13:13  iter: 7520  loss_p_loss: 0.1177 (0.1838)  loss_n_loss: 0.0003 (0.0025)  time: 1.8855 (3.8135)  data: 0.0002 (0.3109)  lr: 0.000223  max mem: 19053
+2023-06-14 04:18:53,220 DTST.trainer INFO: eta: 13:11:19  iter: 7540  loss_p_loss: 0.1549 (0.1838)  loss_n_loss: 0.0004 (0.0025)  time: 1.8878 (3.8106)  data: 0.0002 (0.3100)  lr: 0.000223  max mem: 19053
+2023-06-14 04:19:54,546 DTST.trainer INFO: eta: 13:09:38  iter: 7560  loss_p_loss: 0.1823 (0.1838)  loss_n_loss: 0.0006 (0.0025)  time: 1.8871 (3.8086)  data: 0.0002 (0.3092)  lr: 0.000223  max mem: 19053
+2023-06-14 04:21:00,888 DTST.trainer INFO: eta: 13:08:06  iter: 7580  loss_p_loss: 0.1684 (0.1838)  loss_n_loss: 0.0005 (0.0025)  time: 1.8873 (3.8073)  data: 0.0002 (0.3084)  lr: 0.000223  max mem: 19053
+2023-06-14 04:22:04,115 DTST.trainer INFO: eta: 13:06:29  iter: 7600  loss_p_loss: 0.1562 (0.1838)  loss_n_loss: 0.0006 (0.0025)  time: 1.8885 (3.8056)  data: 0.0003 (0.3076)  lr: 0.000222  max mem: 19053
+2023-06-14 04:23:21,509 DTST.trainer INFO: eta: 13:05:15  iter: 7620  loss_p_loss: 0.1418 (0.1837)  loss_n_loss: 0.0007 (0.0025)  time: 1.8874 (3.8058)  data: 0.0003 (0.3068)  lr: 0.000222  max mem: 19053
+2023-06-14 04:24:23,030 DTST.trainer INFO: eta: 13:03:35  iter: 7640  loss_p_loss: 0.1574 (0.1837)  loss_n_loss: 0.0005 (0.0024)  time: 1.8874 (3.8038)  data: 0.0002 (0.3060)  lr: 0.000222  max mem: 19053
+2023-06-14 04:25:19,972 DTST.trainer INFO: eta: 13:01:48  iter: 7660  loss_p_loss: 0.1404 (0.1836)  loss_n_loss: 0.0004 (0.0024)  time: 1.8874 (3.8013)  data: 0.0002 (0.3052)  lr: 0.000222  max mem: 19053
+2023-06-14 04:26:28,079 DTST.trainer INFO: eta: 13:00:19  iter: 7680  loss_p_loss: 0.1460 (0.1835)  loss_n_loss: 0.0005 (0.0024)  time: 1.8902 (3.8003)  data: 0.0002 (0.3044)  lr: 0.000222  max mem: 19053
+2023-06-14 04:28:17,389 DTST.trainer INFO: eta: 12:59:57  iter: 7700  loss_p_loss: 0.1576 (0.1835)  loss_n_loss: 0.0006 (0.0024)  time: 1.8874 (3.8046)  data: 0.0003 (0.3036)  lr: 0.000222  max mem: 19053
+2023-06-14 04:29:04,816 DTST.trainer INFO: eta: 12:57:55  iter: 7720  loss_p_loss: 0.1285 (0.1834)  loss_n_loss: 0.0004 (0.0024)  time: 1.8889 (3.8009)  data: 0.0002 (0.3028)  lr: 0.000222  max mem: 19053
+2023-06-14 04:30:06,522 DTST.trainer INFO: eta: 12:56:16  iter: 7740  loss_p_loss: 0.1434 (0.1833)  loss_n_loss: 0.0005 (0.0024)  time: 1.8866 (3.7991)  data: 0.0002 (0.3020)  lr: 0.000222  max mem: 19053
+2023-06-14 04:31:12,805 DTST.trainer INFO: eta: 12:54:45  iter: 7760  loss_p_loss: 0.1208 (0.1832)  loss_n_loss: 0.0005 (0.0024)  time: 1.8874 (3.7978)  data: 0.0002 (0.3012)  lr: 0.000222  max mem: 19053
+2023-06-14 04:32:19,359 DTST.trainer INFO: eta: 12:53:14  iter: 7780  loss_p_loss: 0.1257 (0.1830)  loss_n_loss: 0.0004 (0.0024)  time: 1.8869 (3.7966)  data: 0.0002 (0.3005)  lr: 0.000222  max mem: 19053
+2023-06-14 04:33:36,785 DTST.trainer INFO: eta: 12:52:01  iter: 7800  loss_p_loss: 0.1196 (0.1829)  loss_n_loss: 0.0004 (0.0024)  time: 1.8878 (3.7968)  data: 0.0002 (0.2997)  lr: 0.000222  max mem: 19053
+2023-06-14 04:34:24,063 DTST.trainer INFO: eta: 12:50:00  iter: 7820  loss_p_loss: 0.1324 (0.1828)  loss_n_loss: 0.0004 (0.0024)  time: 1.8866 (3.7931)  data: 0.0002 (0.2989)  lr: 0.000222  max mem: 19053
+2023-06-14 04:35:54,529 DTST.trainer INFO: eta: 12:49:07  iter: 7840  loss_p_loss: 0.1608 (0.1827)  loss_n_loss: 0.0003 (0.0024)  time: 1.8894 (3.7950)  data: 0.0002 (0.2982)  lr: 0.000222  max mem: 19053
+2023-06-14 04:36:56,111 DTST.trainer INFO: eta: 12:47:29  iter: 7860  loss_p_loss: 0.1458 (0.1826)  loss_n_loss: 0.0004 (0.0024)  time: 1.8882 (3.7932)  data: 0.0002 (0.2974)  lr: 0.000222  max mem: 19053
+2023-06-14 04:38:12,004 DTST.trainer INFO: eta: 12:46:13  iter: 7880  loss_p_loss: 0.1460 (0.1825)  loss_n_loss: 0.0004 (0.0024)  time: 1.8875 (3.7932)  data: 0.0002 (0.2967)  lr: 0.000221  max mem: 19053
+2023-06-14 04:39:24,575 DTST.trainer INFO: eta: 12:44:52  iter: 7900  loss_p_loss: 0.1306 (0.1824)  loss_n_loss: 0.0004 (0.0024)  time: 1.8875 (3.7928)  data: 0.0002 (0.2959)  lr: 0.000221  max mem: 19053
+2023-06-14 04:40:18,152 DTST.trainer INFO: eta: 12:43:02  iter: 7920  loss_p_loss: 0.1342 (0.1823)  loss_n_loss: 0.0003 (0.0024)  time: 1.8878 (3.7900)  data: 0.0002 (0.2952)  lr: 0.000221  max mem: 19053
+2023-06-14 04:41:24,628 DTST.trainer INFO: eta: 12:41:32  iter: 7940  loss_p_loss: 0.1474 (0.1823)  loss_n_loss: 0.0004 (0.0024)  time: 1.8885 (3.7888)  data: 0.0002 (0.2944)  lr: 0.000221  max mem: 19053
+2023-06-14 04:42:45,238 DTST.trainer INFO: eta: 12:40:24  iter: 7960  loss_p_loss: 0.1741 (0.1823)  loss_n_loss: 0.0004 (0.0024)  time: 1.8877 (3.7894)  data: 0.0002 (0.2937)  lr: 0.000221  max mem: 19053
+2023-06-14 04:43:48,530 DTST.trainer INFO: eta: 12:38:49  iter: 7980  loss_p_loss: 0.1970 (0.1823)  loss_n_loss: 0.0005 (0.0024)  time: 1.8883 (3.7878)  data: 0.0002 (0.2929)  lr: 0.000221  max mem: 19053
+2023-06-14 04:45:18,847 DTST.trainer INFO: eta: 12:37:55  iter: 8000  loss_p_loss: 0.1315 (0.1822)  loss_n_loss: 0.0004 (0.0024)  time: 1.8910 (3.7897)  data: 0.0003 (0.2922)  lr: 0.000221  max mem: 19053
+2023-06-14 04:45:19,181 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 04:46:40,276 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4843/0.5882/0.8399.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7784/0.7838.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3640/0.9152.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8124/0.9659.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.2646/0.2952.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0367/0.0415.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2950/0.3595.
+2023-06-14 04:46:40,277 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3083/0.3734.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3461/0.3952.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8573/0.9036.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7613/0.7889.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5758/0.6431.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3435/0.6000.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8400/0.9645.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2885/0.3213.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3137/0.3603.
+2023-06-14 04:46:40,278 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5639/0.6997.
+2023-06-14 04:47:33,949 DTST.trainer INFO: eta: 12:38:08  iter: 8020  loss_p_loss: 0.1203 (0.1821)  loss_n_loss: 0.0004 (0.0024)  time: 1.8854 (3.7970)  data: 0.0002 (0.3016)  lr: 0.000221  max mem: 19053
+2023-06-14 04:48:30,580 DTST.trainer INFO: eta: 12:36:23  iter: 8040  loss_p_loss: 0.1453 (0.1820)  loss_n_loss: 0.0005 (0.0024)  time: 1.8859 (3.7946)  data: 0.0002 (0.3009)  lr: 0.000221  max mem: 19053
+2023-06-14 04:49:32,115 DTST.trainer INFO: eta: 12:34:46  iter: 8060  loss_p_loss: 0.1365 (0.1820)  loss_n_loss: 0.0004 (0.0023)  time: 1.8879 (3.7929)  data: 0.0002 (0.3001)  lr: 0.000221  max mem: 19053
+2023-06-14 04:51:28,039 DTST.trainer INFO: eta: 12:34:30  iter: 8080  loss_p_loss: 0.1319 (0.1819)  loss_n_loss: 0.0004 (0.0023)  time: 1.8913 (3.7978)  data: 0.0003 (0.2994)  lr: 0.000221  max mem: 19053
+2023-06-14 04:52:21,552 DTST.trainer INFO: eta: 12:32:41  iter: 8100  loss_p_loss: 0.1385 (0.1818)  loss_n_loss: 0.0005 (0.0023)  time: 1.8874 (3.7951)  data: 0.0002 (0.2987)  lr: 0.000221  max mem: 19053
+2023-06-14 04:53:27,730 DTST.trainer INFO: eta: 12:31:10  iter: 8120  loss_p_loss: 0.1351 (0.1817)  loss_n_loss: 0.0004 (0.0023)  time: 1.8886 (3.7939)  data: 0.0002 (0.2979)  lr: 0.000221  max mem: 19053
+2023-06-14 04:54:26,372 DTST.trainer INFO: eta: 12:29:30  iter: 8140  loss_p_loss: 0.1415 (0.1817)  loss_n_loss: 0.0004 (0.0023)  time: 1.8885 (3.7917)  data: 0.0002 (0.2972)  lr: 0.000220  max mem: 19053
+2023-06-14 04:55:43,967 DTST.trainer INFO: eta: 12:28:16  iter: 8160  loss_p_loss: 0.1416 (0.1816)  loss_n_loss: 0.0004 (0.0023)  time: 1.8880 (3.7920)  data: 0.0003 (0.2965)  lr: 0.000220  max mem: 19053
+2023-06-14 04:57:09,622 DTST.trainer INFO: eta: 12:27:15  iter: 8180  loss_p_loss: 0.1237 (0.1815)  loss_n_loss: 0.0004 (0.0023)  time: 1.8881 (3.7932)  data: 0.0003 (0.2957)  lr: 0.000220  max mem: 19053
+2023-06-14 04:58:20,846 DTST.trainer INFO: eta: 12:25:52  iter: 8200  loss_p_loss: 0.1557 (0.1815)  loss_n_loss: 0.0006 (0.0023)  time: 1.8893 (3.7926)  data: 0.0003 (0.2950)  lr: 0.000220  max mem: 19053
+2023-06-14 05:00:19,929 DTST.trainer INFO: eta: 12:25:38  iter: 8220  loss_p_loss: 0.1386 (0.1815)  loss_n_loss: 0.0005 (0.0023)  time: 1.8898 (3.7978)  data: 0.0002 (0.2943)  lr: 0.000220  max mem: 19053
+2023-06-14 05:01:07,126 DTST.trainer INFO: eta: 12:23:41  iter: 8240  loss_p_loss: 0.1684 (0.1815)  loss_n_loss: 0.0005 (0.0023)  time: 1.8869 (3.7944)  data: 0.0002 (0.2936)  lr: 0.000220  max mem: 19053
+2023-06-14 05:01:54,495 DTST.trainer INFO: eta: 12:21:45  iter: 8260  loss_p_loss: 0.1347 (0.1814)  loss_n_loss: 0.0005 (0.0023)  time: 1.8901 (3.7909)  data: 0.0002 (0.2929)  lr: 0.000220  max mem: 19053
+2023-06-14 05:02:46,594 DTST.trainer INFO: eta: 12:19:55  iter: 8280  loss_p_loss: 0.1208 (0.1813)  loss_n_loss: 0.0004 (0.0023)  time: 1.8873 (3.7880)  data: 0.0002 (0.2922)  lr: 0.000220  max mem: 19053
+2023-06-14 05:03:52,503 DTST.trainer INFO: eta: 12:18:26  iter: 8300  loss_p_loss: 0.1353 (0.1811)  loss_n_loss: 0.0004 (0.0023)  time: 1.8856 (3.7869)  data: 0.0002 (0.2915)  lr: 0.000220  max mem: 19053
+2023-06-14 05:05:41,808 DTST.trainer INFO: eta: 12:17:57  iter: 8320  loss_p_loss: 0.1393 (0.1811)  loss_n_loss: 0.0003 (0.0023)  time: 1.8888 (3.7909)  data: 0.0002 (0.2908)  lr: 0.000220  max mem: 19053
+2023-06-14 05:06:33,741 DTST.trainer INFO: eta: 12:16:08  iter: 8340  loss_p_loss: 0.1208 (0.1809)  loss_n_loss: 0.0004 (0.0023)  time: 1.8878 (3.7880)  data: 0.0002 (0.2901)  lr: 0.000220  max mem: 19053
+2023-06-14 05:07:46,438 DTST.trainer INFO: eta: 12:14:48  iter: 8360  loss_p_loss: 0.1289 (0.1808)  loss_n_loss: 0.0003 (0.0023)  time: 1.8866 (3.7877)  data: 0.0002 (0.2894)  lr: 0.000220  max mem: 19053
+2023-06-14 05:09:31,008 DTST.trainer INFO: eta: 12:14:12  iter: 8380  loss_p_loss: 0.1205 (0.1807)  loss_n_loss: 0.0003 (0.0023)  time: 1.8872 (3.7911)  data: 0.0003 (0.2887)  lr: 0.000220  max mem: 19053
+2023-06-14 05:10:53,255 DTST.trainer INFO: eta: 12:13:05  iter: 8400  loss_p_loss: 0.1257 (0.1806)  loss_n_loss: 0.0003 (0.0023)  time: 1.8896 (3.7919)  data: 0.0002 (0.2880)  lr: 0.000220  max mem: 19053
+2023-06-14 05:12:42,826 DTST.trainer INFO: eta: 12:12:36  iter: 8420  loss_p_loss: 0.1478 (0.1806)  loss_n_loss: 0.0004 (0.0023)  time: 1.8893 (3.7959)  data: 0.0002 (0.2873)  lr: 0.000219  max mem: 19053
+2023-06-14 05:13:30,093 DTST.trainer INFO: eta: 12:10:40  iter: 8440  loss_p_loss: 0.1515 (0.1806)  loss_n_loss: 0.0003 (0.0023)  time: 1.8869 (3.7925)  data: 0.0002 (0.2866)  lr: 0.000219  max mem: 19053
+2023-06-14 05:15:00,171 DTST.trainer INFO: eta: 12:09:44  iter: 8460  loss_p_loss: 0.1626 (0.1806)  loss_n_loss: 0.0005 (0.0023)  time: 1.8908 (3.7942)  data: 0.0002 (0.2860)  lr: 0.000219  max mem: 19053
+2023-06-14 05:16:17,796 DTST.trainer INFO: eta: 12:08:31  iter: 8480  loss_p_loss: 0.1340 (0.1805)  loss_n_loss: 0.0005 (0.0023)  time: 1.8895 (3.7944)  data: 0.0003 (0.2853)  lr: 0.000219  max mem: 19053
+2023-06-14 05:17:11,532 DTST.trainer INFO: eta: 12:06:45  iter: 8500  loss_p_loss: 0.1122 (0.1803)  loss_n_loss: 0.0004 (0.0023)  time: 1.8880 (3.7918)  data: 0.0002 (0.2846)  lr: 0.000219  max mem: 19053
+2023-06-14 05:18:51,231 DTST.trainer INFO: eta: 12:06:01  iter: 8520  loss_p_loss: 0.1298 (0.1802)  loss_n_loss: 0.0004 (0.0022)  time: 1.8902 (3.7946)  data: 0.0002 (0.2840)  lr: 0.000219  max mem: 19053
+2023-06-14 05:19:44,981 DTST.trainer INFO: eta: 12:04:15  iter: 8540  loss_p_loss: 0.1194 (0.1801)  loss_n_loss: 0.0004 (0.0022)  time: 1.8896 (3.7920)  data: 0.0002 (0.2833)  lr: 0.000219  max mem: 19053
+2023-06-14 05:20:38,590 DTST.trainer INFO: eta: 12:02:30  iter: 8560  loss_p_loss: 0.1454 (0.1800)  loss_n_loss: 0.0004 (0.0022)  time: 1.8879 (3.7894)  data: 0.0002 (0.2826)  lr: 0.000219  max mem: 19053
+2023-06-14 05:21:45,213 DTST.trainer INFO: eta: 12:01:02  iter: 8580  loss_p_loss: 0.1510 (0.1800)  loss_n_loss: 0.0004 (0.0022)  time: 1.8920 (3.7883)  data: 0.0003 (0.2820)  lr: 0.000219  max mem: 19053
+2023-06-14 05:22:32,618 DTST.trainer INFO: eta: 11:59:08  iter: 8600  loss_p_loss: 0.1201 (0.1799)  loss_n_loss: 0.0005 (0.0022)  time: 1.8871 (3.7850)  data: 0.0002 (0.2813)  lr: 0.000219  max mem: 19053
+2023-06-14 05:24:02,939 DTST.trainer INFO: eta: 11:58:12  iter: 8620  loss_p_loss: 0.1254 (0.1798)  loss_n_loss: 0.0005 (0.0022)  time: 1.8878 (3.7867)  data: 0.0002 (0.2807)  lr: 0.000219  max mem: 19053
+2023-06-14 05:25:04,440 DTST.trainer INFO: eta: 11:56:38  iter: 8640  loss_p_loss: 0.1353 (0.1797)  loss_n_loss: 0.0004 (0.0022)  time: 1.8868 (3.7850)  data: 0.0002 (0.2800)  lr: 0.000219  max mem: 19053
+2023-06-14 05:25:51,733 DTST.trainer INFO: eta: 11:54:45  iter: 8660  loss_p_loss: 0.1590 (0.1797)  loss_n_loss: 0.0004 (0.0022)  time: 1.8902 (3.7818)  data: 0.0003 (0.2794)  lr: 0.000219  max mem: 19053
+2023-06-14 05:26:48,738 DTST.trainer INFO: eta: 11:53:05  iter: 8680  loss_p_loss: 0.1302 (0.1796)  loss_n_loss: 0.0003 (0.0022)  time: 1.8881 (3.7796)  data: 0.0002 (0.2787)  lr: 0.000219  max mem: 19053
+2023-06-14 05:27:40,843 DTST.trainer INFO: eta: 11:51:19  iter: 8700  loss_p_loss: 0.1534 (0.1796)  loss_n_loss: 0.0004 (0.0022)  time: 1.8888 (3.7769)  data: 0.0002 (0.2781)  lr: 0.000218  max mem: 19053
+2023-06-14 05:28:43,922 DTST.trainer INFO: eta: 11:49:47  iter: 8720  loss_p_loss: 0.1473 (0.1796)  loss_n_loss: 0.0007 (0.0022)  time: 1.8873 (3.7755)  data: 0.0002 (0.2775)  lr: 0.000218  max mem: 19053
+2023-06-14 05:29:50,159 DTST.trainer INFO: eta: 11:48:20  iter: 8740  loss_p_loss: 0.1434 (0.1795)  loss_n_loss: 0.0004 (0.0022)  time: 1.8877 (3.7744)  data: 0.0002 (0.2768)  lr: 0.000218  max mem: 19053
+2023-06-14 05:30:37,366 DTST.trainer INFO: eta: 11:46:28  iter: 8760  loss_p_loss: 0.1173 (0.1794)  loss_n_loss: 0.0004 (0.0022)  time: 1.8861 (3.7712)  data: 0.0002 (0.2762)  lr: 0.000218  max mem: 19053
+2023-06-14 05:31:30,895 DTST.trainer INFO: eta: 11:44:44  iter: 8780  loss_p_loss: 0.1461 (0.1794)  loss_n_loss: 0.0005 (0.0022)  time: 1.8896 (3.7687)  data: 0.0002 (0.2756)  lr: 0.000218  max mem: 19053
+2023-06-14 05:32:24,650 DTST.trainer INFO: eta: 11:43:02  iter: 8800  loss_p_loss: 0.1545 (0.1793)  loss_n_loss: 0.0005 (0.0022)  time: 1.8891 (3.7663)  data: 0.0002 (0.2749)  lr: 0.000218  max mem: 19053
+2023-06-14 05:33:41,976 DTST.trainer INFO: eta: 11:41:49  iter: 8820  loss_p_loss: 0.1444 (0.1792)  loss_n_loss: 0.0003 (0.0022)  time: 1.8880 (3.7665)  data: 0.0002 (0.2743)  lr: 0.000218  max mem: 19053
+2023-06-14 05:34:35,625 DTST.trainer INFO: eta: 11:40:06  iter: 8840  loss_p_loss: 0.1281 (0.1791)  loss_n_loss: 0.0004 (0.0022)  time: 1.8876 (3.7640)  data: 0.0002 (0.2737)  lr: 0.000218  max mem: 19053
+2023-06-14 05:35:30,756 DTST.trainer INFO: eta: 11:38:25  iter: 8860  loss_p_loss: 0.1032 (0.1790)  loss_n_loss: 0.0004 (0.0022)  time: 1.8875 (3.7618)  data: 0.0002 (0.2731)  lr: 0.000218  max mem: 19053
+2023-06-14 05:37:26,135 DTST.trainer INFO: eta: 11:38:00  iter: 8880  loss_p_loss: 0.1326 (0.1789)  loss_n_loss: 0.0003 (0.0022)  time: 1.8882 (3.7663)  data: 0.0002 (0.2725)  lr: 0.000218  max mem: 19053
+2023-06-14 05:38:26,254 DTST.trainer INFO: eta: 11:36:26  iter: 8900  loss_p_loss: 0.1250 (0.1788)  loss_n_loss: 0.0003 (0.0022)  time: 1.8876 (3.7646)  data: 0.0003 (0.2718)  lr: 0.000218  max mem: 19053
+2023-06-14 05:39:43,819 DTST.trainer INFO: eta: 11:35:14  iter: 8920  loss_p_loss: 0.1282 (0.1787)  loss_n_loss: 0.0004 (0.0022)  time: 1.8882 (3.7648)  data: 0.0003 (0.2712)  lr: 0.000218  max mem: 19053
+2023-06-14 05:40:35,817 DTST.trainer INFO: eta: 11:33:30  iter: 8940  loss_p_loss: 0.1191 (0.1786)  loss_n_loss: 0.0004 (0.0022)  time: 1.8870 (3.7622)  data: 0.0002 (0.2706)  lr: 0.000218  max mem: 19053
+2023-06-14 05:41:42,049 DTST.trainer INFO: eta: 11:32:03  iter: 8960  loss_p_loss: 0.1331 (0.1785)  loss_n_loss: 0.0004 (0.0022)  time: 1.8887 (3.7612)  data: 0.0002 (0.2700)  lr: 0.000218  max mem: 19053
+2023-06-14 05:43:31,446 DTST.trainer INFO: eta: 11:31:30  iter: 8980  loss_p_loss: 0.1196 (0.1784)  loss_n_loss: 0.0002 (0.0022)  time: 1.8872 (3.7650)  data: 0.0002 (0.2694)  lr: 0.000217  max mem: 19053
+2023-06-14 05:59:03,826 DTST.trainer INFO: eta: 11:47:42  iter: 9000  loss_p_loss: 0.1149 (0.1783)  loss_n_loss: 0.0003 (0.0022)  time: 1.8879 (3.8602)  data: 0.0003 (0.3667)  lr: 0.000217  max mem: 19053
+2023-06-14 05:59:04,150 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 06:00:24,427 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4865/0.5905/0.8438.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7896/0.7957.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3746/0.9096.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8111/0.9661.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.2884/0.3263.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0442/0.0505.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2918/0.3540.
+2023-06-14 06:00:24,428 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3187/0.3892.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3500/0.4026.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8573/0.9034.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7542/0.7793.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5589/0.6184.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3410/0.6031.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8392/0.9640.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2802/0.3120.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3183/0.3633.
+2023-06-14 06:00:24,429 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5662/0.7107.
+2023-06-14 06:01:21,202 DTST.trainer INFO: eta: 11:47:38  iter: 9020  loss_p_loss: 0.1521 (0.1783)  loss_n_loss: 0.0004 (0.0021)  time: 1.8847 (3.8669)  data: 0.0002 (0.3748)  lr: 0.000217  max mem: 19053
+2023-06-14 06:02:22,946 DTST.trainer INFO: eta: 11:46:02  iter: 9040  loss_p_loss: 0.1354 (0.1782)  loss_n_loss: 0.0003 (0.0021)  time: 1.8884 (3.8652)  data: 0.0003 (0.3739)  lr: 0.000217  max mem: 19053
+2023-06-14 06:03:53,469 DTST.trainer INFO: eta: 11:45:01  iter: 9060  loss_p_loss: 0.1192 (0.1781)  loss_n_loss: 0.0003 (0.0021)  time: 1.8875 (3.8666)  data: 0.0002 (0.3731)  lr: 0.000217  max mem: 19053
+2023-06-14 06:04:40,888 DTST.trainer INFO: eta: 11:43:07  iter: 9080  loss_p_loss: 0.1283 (0.1781)  loss_n_loss: 0.0003 (0.0021)  time: 1.8887 (3.8634)  data: 0.0002 (0.3723)  lr: 0.000217  max mem: 19053
+2023-06-14 06:05:58,478 DTST.trainer INFO: eta: 11:41:50  iter: 9100  loss_p_loss: 0.1348 (0.1780)  loss_n_loss: 0.0004 (0.0021)  time: 1.8879 (3.8634)  data: 0.0002 (0.3715)  lr: 0.000217  max mem: 19053
+2023-06-14 06:07:08,175 DTST.trainer INFO: eta: 11:40:24  iter: 9120  loss_p_loss: 0.1488 (0.1780)  loss_n_loss: 0.0003 (0.0021)  time: 1.8897 (3.8626)  data: 0.0002 (0.3707)  lr: 0.000217  max mem: 19053
+2023-06-14 06:08:05,185 DTST.trainer INFO: eta: 11:38:43  iter: 9140  loss_p_loss: 0.1335 (0.1779)  loss_n_loss: 0.0004 (0.0021)  time: 1.8890 (3.8603)  data: 0.0003 (0.3699)  lr: 0.000217  max mem: 19053
+2023-06-14 06:09:35,657 DTST.trainer INFO: eta: 11:37:41  iter: 9160  loss_p_loss: 0.1418 (0.1779)  loss_n_loss: 0.0004 (0.0021)  time: 1.8899 (3.8618)  data: 0.0002 (0.3691)  lr: 0.000217  max mem: 19053
+2023-06-14 06:10:53,108 DTST.trainer INFO: eta: 11:36:24  iter: 9180  loss_p_loss: 0.1591 (0.1778)  loss_n_loss: 0.0004 (0.0021)  time: 1.8893 (3.8618)  data: 0.0002 (0.3682)  lr: 0.000217  max mem: 19053
+2023-06-14 06:12:10,564 DTST.trainer INFO: eta: 11:35:07  iter: 9200  loss_p_loss: 0.1411 (0.1778)  loss_n_loss: 0.0004 (0.0021)  time: 1.8879 (3.8618)  data: 0.0003 (0.3674)  lr: 0.000217  max mem: 19053
+2023-06-14 06:13:20,112 DTST.trainer INFO: eta: 11:33:41  iter: 9220  loss_p_loss: 0.1268 (0.1777)  loss_n_loss: 0.0004 (0.0021)  time: 1.8872 (3.8610)  data: 0.0002 (0.3667)  lr: 0.000217  max mem: 19053
+2023-06-14 06:14:13,825 DTST.trainer INFO: eta: 11:31:57  iter: 9240  loss_p_loss: 0.1368 (0.1776)  loss_n_loss: 0.0003 (0.0021)  time: 1.8877 (3.8585)  data: 0.0002 (0.3659)  lr: 0.000216  max mem: 19053
+2023-06-14 06:15:01,127 DTST.trainer INFO: eta: 11:30:05  iter: 9260  loss_p_loss: 0.1332 (0.1775)  loss_n_loss: 0.0003 (0.0021)  time: 1.8879 (3.8552)  data: 0.0002 (0.3651)  lr: 0.000216  max mem: 19053
+2023-06-14 06:15:54,799 DTST.trainer INFO: eta: 11:28:21  iter: 9280  loss_p_loss: 0.1175 (0.1774)  loss_n_loss: 0.0003 (0.0021)  time: 1.8886 (3.8527)  data: 0.0002 (0.3643)  lr: 0.000216  max mem: 19053
+2023-06-14 06:17:39,517 DTST.trainer INFO: eta: 11:27:35  iter: 9300  loss_p_loss: 0.1382 (0.1774)  loss_n_loss: 0.0005 (0.0021)  time: 1.8873 (3.8557)  data: 0.0002 (0.3635)  lr: 0.000216  max mem: 19053
+2023-06-14 06:19:01,979 DTST.trainer INFO: eta: 11:26:24  iter: 9320  loss_p_loss: 0.1280 (0.1773)  loss_n_loss: 0.0004 (0.0021)  time: 1.8880 (3.8563)  data: 0.0003 (0.3627)  lr: 0.000216  max mem: 19053
+2023-06-14 06:19:57,325 DTST.trainer INFO: eta: 11:24:42  iter: 9340  loss_p_loss: 0.1466 (0.1773)  loss_n_loss: 0.0004 (0.0021)  time: 1.8886 (3.8539)  data: 0.0003 (0.3619)  lr: 0.000216  max mem: 19053
+2023-06-14 06:21:14,826 DTST.trainer INFO: eta: 11:23:26  iter: 9360  loss_p_loss: 0.1432 (0.1772)  loss_n_loss: 0.0004 (0.0021)  time: 1.8881 (3.8540)  data: 0.0002 (0.3612)  lr: 0.000216  max mem: 19053
+2023-06-14 06:22:21,254 DTST.trainer INFO: eta: 11:21:57  iter: 9380  loss_p_loss: 0.1460 (0.1773)  loss_n_loss: 0.0004 (0.0021)  time: 1.8888 (3.8528)  data: 0.0003 (0.3604)  lr: 0.000216  max mem: 19053
+2023-06-14 06:23:34,174 DTST.trainer INFO: eta: 11:20:35  iter: 9400  loss_p_loss: 0.1694 (0.1774)  loss_n_loss: 0.0005 (0.0021)  time: 1.8910 (3.8524)  data: 0.0003 (0.3596)  lr: 0.000216  max mem: 19053
+2023-06-14 06:25:23,496 DTST.trainer INFO: eta: 11:19:54  iter: 9420  loss_p_loss: 0.1712 (0.1775)  loss_n_loss: 0.0006 (0.0021)  time: 1.8893 (3.8558)  data: 0.0003 (0.3589)  lr: 0.000216  max mem: 19053
+2023-06-14 06:26:53,640 DTST.trainer INFO: eta: 11:18:52  iter: 9440  loss_p_loss: 0.1443 (0.1775)  loss_n_loss: 0.0005 (0.0021)  time: 1.8882 (3.8572)  data: 0.0002 (0.3581)  lr: 0.000216  max mem: 19053
+2023-06-14 06:28:14,375 DTST.trainer INFO: eta: 11:17:38  iter: 9460  loss_p_loss: 0.1384 (0.1774)  loss_n_loss: 0.0004 (0.0021)  time: 1.8889 (3.8576)  data: 0.0003 (0.3574)  lr: 0.000216  max mem: 19053
+2023-06-14 06:29:12,871 DTST.trainer INFO: eta: 11:16:01  iter: 9480  loss_p_loss: 0.1403 (0.1773)  loss_n_loss: 0.0006 (0.0021)  time: 1.8888 (3.8556)  data: 0.0002 (0.3566)  lr: 0.000216  max mem: 19053
+2023-06-14 06:30:38,408 DTST.trainer INFO: eta: 11:14:53  iter: 9500  loss_p_loss: 0.1406 (0.1773)  loss_n_loss: 0.0005 (0.0021)  time: 1.8889 (3.8565)  data: 0.0003 (0.3559)  lr: 0.000216  max mem: 19053
+2023-06-14 06:31:55,822 DTST.trainer INFO: eta: 11:13:36  iter: 9520  loss_p_loss: 0.1223 (0.1772)  loss_n_loss: 0.0004 (0.0021)  time: 1.8886 (3.8565)  data: 0.0003 (0.3551)  lr: 0.000215  max mem: 19053
+2023-06-14 06:33:25,814 DTST.trainer INFO: eta: 11:12:33  iter: 9540  loss_p_loss: 0.1373 (0.1772)  loss_n_loss: 0.0005 (0.0021)  time: 1.8888 (3.8579)  data: 0.0002 (0.3544)  lr: 0.000215  max mem: 19053
+2023-06-14 06:34:56,084 DTST.trainer INFO: eta: 11:11:30  iter: 9560  loss_p_loss: 0.1473 (0.1771)  loss_n_loss: 0.0004 (0.0021)  time: 1.8880 (3.8593)  data: 0.0002 (0.3536)  lr: 0.000215  max mem: 19053
+2023-06-14 06:35:53,029 DTST.trainer INFO: eta: 11:09:51  iter: 9580  loss_p_loss: 0.1240 (0.1770)  loss_n_loss: 0.0004 (0.0020)  time: 1.8892 (3.8571)  data: 0.0003 (0.3529)  lr: 0.000215  max mem: 19053
+2023-06-14 06:36:45,277 DTST.trainer INFO: eta: 11:08:07  iter: 9600  loss_p_loss: 0.1310 (0.1769)  loss_n_loss: 0.0005 (0.0020)  time: 1.8886 (3.8545)  data: 0.0002 (0.3522)  lr: 0.000215  max mem: 19053
+2023-06-14 06:37:32,630 DTST.trainer INFO: eta: 11:06:18  iter: 9620  loss_p_loss: 0.1292 (0.1769)  loss_n_loss: 0.0004 (0.0020)  time: 1.8890 (3.8515)  data: 0.0002 (0.3514)  lr: 0.000215  max mem: 19053
+2023-06-14 06:38:19,932 DTST.trainer INFO: eta: 11:04:29  iter: 9640  loss_p_loss: 0.1231 (0.1768)  loss_n_loss: 0.0003 (0.0020)  time: 1.8882 (3.8484)  data: 0.0002 (0.3507)  lr: 0.000215  max mem: 19053
+2023-06-14 06:39:07,274 DTST.trainer INFO: eta: 11:02:40  iter: 9660  loss_p_loss: 0.1343 (0.1768)  loss_n_loss: 0.0004 (0.0020)  time: 1.8873 (3.8453)  data: 0.0002 (0.3500)  lr: 0.000215  max mem: 19053
+2023-06-14 06:40:08,915 DTST.trainer INFO: eta: 11:01:07  iter: 9680  loss_p_loss: 0.1136 (0.1766)  loss_n_loss: 0.0003 (0.0020)  time: 1.8898 (3.8437)  data: 0.0002 (0.3492)  lr: 0.000215  max mem: 19053
+2023-06-14 06:41:34,368 DTST.trainer INFO: eta: 10:59:59  iter: 9700  loss_p_loss: 0.1429 (0.1766)  loss_n_loss: 0.0003 (0.0020)  time: 1.8881 (3.8446)  data: 0.0002 (0.3485)  lr: 0.000215  max mem: 19053
+2023-06-14 06:42:26,438 DTST.trainer INFO: eta: 10:58:16  iter: 9720  loss_p_loss: 0.1706 (0.1766)  loss_n_loss: 0.0005 (0.0020)  time: 1.8898 (3.8421)  data: 0.0002 (0.3478)  lr: 0.000215  max mem: 19053
+2023-06-14 06:44:06,044 DTST.trainer INFO: eta: 10:57:23  iter: 9740  loss_p_loss: 0.1262 (0.1765)  loss_n_loss: 0.0004 (0.0020)  time: 1.8873 (3.8444)  data: 0.0003 (0.3471)  lr: 0.000215  max mem: 19053
+2023-06-14 06:45:09,244 DTST.trainer INFO: eta: 10:55:52  iter: 9760  loss_p_loss: 0.1368 (0.1764)  loss_n_loss: 0.0005 (0.0020)  time: 1.8894 (3.8430)  data: 0.0002 (0.3464)  lr: 0.000215  max mem: 19053
+2023-06-14 06:46:12,526 DTST.trainer INFO: eta: 10:54:21  iter: 9780  loss_p_loss: 0.1407 (0.1764)  loss_n_loss: 0.0004 (0.0020)  time: 1.8900 (3.8416)  data: 0.0002 (0.3457)  lr: 0.000215  max mem: 19053
+2023-06-14 06:47:06,216 DTST.trainer INFO: eta: 10:52:40  iter: 9800  loss_p_loss: 0.1577 (0.1764)  loss_n_loss: 0.0004 (0.0020)  time: 1.8896 (3.8392)  data: 0.0003 (0.3450)  lr: 0.000214  max mem: 19053
+2023-06-14 06:48:03,011 DTST.trainer INFO: eta: 10:51:02  iter: 9820  loss_p_loss: 0.1256 (0.1763)  loss_n_loss: 0.0004 (0.0020)  time: 1.8893 (3.8372)  data: 0.0002 (0.3443)  lr: 0.000214  max mem: 19053
+2023-06-14 06:48:56,676 DTST.trainer INFO: eta: 10:49:22  iter: 9840  loss_p_loss: 0.1274 (0.1762)  loss_n_loss: 0.0004 (0.0020)  time: 1.8879 (3.8349)  data: 0.0002 (0.3436)  lr: 0.000214  max mem: 19053
+2023-06-14 06:49:58,345 DTST.trainer INFO: eta: 10:47:50  iter: 9860  loss_p_loss: 0.1829 (0.1762)  loss_n_loss: 0.0007 (0.0020)  time: 1.8883 (3.8333)  data: 0.0003 (0.3429)  lr: 0.000214  max mem: 19053
+2023-06-14 06:51:54,225 DTST.trainer INFO: eta: 10:47:13  iter: 9880  loss_p_loss: 0.1328 (0.1762)  loss_n_loss: 0.0005 (0.0020)  time: 1.8901 (3.8373)  data: 0.0003 (0.3422)  lr: 0.000214  max mem: 19053
+2023-06-14 06:53:18,211 DTST.trainer INFO: eta: 10:46:04  iter: 9900  loss_p_loss: 0.1213 (0.1761)  loss_n_loss: 0.0005 (0.0020)  time: 1.8890 (3.8380)  data: 0.0003 (0.3415)  lr: 0.000214  max mem: 19053
+2023-06-14 06:55:07,422 DTST.trainer INFO: eta: 10:45:20  iter: 9920  loss_p_loss: 0.1221 (0.1760)  loss_n_loss: 0.0005 (0.0020)  time: 1.8869 (3.8413)  data: 0.0003 (0.3408)  lr: 0.000214  max mem: 19053
+2023-06-14 06:56:09,086 DTST.trainer INFO: eta: 10:43:48  iter: 9940  loss_p_loss: 0.1163 (0.1759)  loss_n_loss: 0.0004 (0.0020)  time: 1.8884 (3.8398)  data: 0.0002 (0.3401)  lr: 0.000214  max mem: 19053
+2023-06-14 06:58:08,137 DTST.trainer INFO: eta: 10:43:14  iter: 9960  loss_p_loss: 0.1256 (0.1758)  loss_n_loss: 0.0004 (0.0020)  time: 1.8909 (3.8440)  data: 0.0003 (0.3394)  lr: 0.000214  max mem: 19053
+2023-06-14 06:58:55,490 DTST.trainer INFO: eta: 10:41:27  iter: 9980  loss_p_loss: 0.1325 (0.1758)  loss_n_loss: 0.0004 (0.0020)  time: 1.8883 (3.8411)  data: 0.0003 (0.3388)  lr: 0.000214  max mem: 19053
+2023-06-14 07:00:01,871 DTST.trainer INFO: eta: 10:40:00  iter: 10000  loss_p_loss: 0.1086 (0.1757)  loss_n_loss: 0.0004 (0.0020)  time: 1.8891 (3.8400)  data: 0.0002 (0.3381)  lr: 0.000214  max mem: 19053
+2023-06-14 07:00:02,181 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 07:01:23,397 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4868/0.5908/0.8466.
+2023-06-14 07:01:23,398 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.7979/0.8047.
+2023-06-14 07:01:23,398 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3824/0.9033.
+2023-06-14 07:01:23,398 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8098/0.9667.
+2023-06-14 07:01:23,398 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3059/0.3505.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0473/0.0543.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2882/0.3458.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3216/0.4003.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3523/0.4079.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8570/0.9026.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7510/0.7758.
+2023-06-14 07:01:23,399 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5476/0.6034.
+2023-06-14 07:01:23,400 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3441/0.5952.
+2023-06-14 07:01:23,400 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8380/0.9625.
+2023-06-14 07:01:23,400 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2616/0.2908.
+2023-06-14 07:01:23,400 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3162/0.3667.
+2023-06-14 07:01:23,400 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5679/0.7219.
+2023-06-14 07:02:23,474 DTST.trainer INFO: eta: 10:39:47  iter: 10020  loss_p_loss: 0.1702 (0.1757)  loss_n_loss: 0.0004 (0.0020)  time: 1.8885 (3.8465)  data: 0.0003 (0.3455)  lr: 0.000214  max mem: 19053
+2023-06-14 07:03:10,803 DTST.trainer INFO: eta: 10:38:01  iter: 10040  loss_p_loss: 0.1193 (0.1756)  loss_n_loss: 0.0004 (0.0020)  time: 1.8876 (3.8435)  data: 0.0002 (0.3449)  lr: 0.000214  max mem: 19053
+2023-06-14 07:04:12,431 DTST.trainer INFO: eta: 10:36:29  iter: 10060  loss_p_loss: 0.1226 (0.1755)  loss_n_loss: 0.0004 (0.0020)  time: 1.8892 (3.8420)  data: 0.0002 (0.3442)  lr: 0.000213  max mem: 19053
+2023-06-14 07:05:15,850 DTST.trainer INFO: eta: 10:34:59  iter: 10080  loss_p_loss: 0.1239 (0.1754)  loss_n_loss: 0.0003 (0.0020)  time: 1.8880 (3.8407)  data: 0.0002 (0.3435)  lr: 0.000213  max mem: 19053
+2023-06-14 07:06:03,271 DTST.trainer INFO: eta: 10:33:14  iter: 10100  loss_p_loss: 0.1481 (0.1753)  loss_n_loss: 0.0004 (0.0020)  time: 1.8882 (3.8378)  data: 0.0002 (0.3428)  lr: 0.000213  max mem: 19053
+2023-06-14 07:07:47,828 DTST.trainer INFO: eta: 10:32:24  iter: 10120  loss_p_loss: 0.1332 (0.1752)  loss_n_loss: 0.0004 (0.0020)  time: 1.8893 (3.8405)  data: 0.0002 (0.3421)  lr: 0.000213  max mem: 19053
+2023-06-14 07:09:18,050 DTST.trainer INFO: eta: 10:31:20  iter: 10140  loss_p_loss: 0.1279 (0.1752)  loss_n_loss: 0.0005 (0.0020)  time: 1.8873 (3.8419)  data: 0.0002 (0.3415)  lr: 0.000213  max mem: 19053
+2023-06-14 07:10:14,831 DTST.trainer INFO: eta: 10:29:44  iter: 10160  loss_p_loss: 0.1300 (0.1751)  loss_n_loss: 0.0003 (0.0020)  time: 1.8877 (3.8399)  data: 0.0002 (0.3408)  lr: 0.000213  max mem: 19053
+2023-06-14 07:11:02,169 DTST.trainer INFO: eta: 10:27:59  iter: 10180  loss_p_loss: 0.1208 (0.1751)  loss_n_loss: 0.0004 (0.0020)  time: 1.8870 (3.8370)  data: 0.0002 (0.3401)  lr: 0.000213  max mem: 19053
+2023-06-14 07:12:46,925 DTST.trainer INFO: eta: 10:27:09  iter: 10200  loss_p_loss: 0.1371 (0.1750)  loss_n_loss: 0.0003 (0.0020)  time: 1.8910 (3.8397)  data: 0.0003 (0.3395)  lr: 0.000213  max mem: 19053
+2023-06-14 07:14:02,834 DTST.trainer INFO: eta: 10:25:51  iter: 10220  loss_p_loss: 0.1426 (0.1750)  loss_n_loss: 0.0004 (0.0020)  time: 1.8870 (3.8396)  data: 0.0003 (0.3388)  lr: 0.000213  max mem: 19053
+2023-06-14 07:15:04,467 DTST.trainer INFO: eta: 10:24:20  iter: 10240  loss_p_loss: 0.1330 (0.1749)  loss_n_loss: 0.0003 (0.0019)  time: 1.8891 (3.8382)  data: 0.0003 (0.3381)  lr: 0.000213  max mem: 19053
+2023-06-14 07:15:58,239 DTST.trainer INFO: eta: 10:22:41  iter: 10260  loss_p_loss: 0.1341 (0.1748)  loss_n_loss: 0.0004 (0.0019)  time: 1.8896 (3.8359)  data: 0.0002 (0.3375)  lr: 0.000213  max mem: 19053
+2023-06-14 07:17:47,466 DTST.trainer INFO: eta: 10:21:55  iter: 10280  loss_p_loss: 0.1150 (0.1748)  loss_n_loss: 0.0003 (0.0019)  time: 1.8891 (3.8391)  data: 0.0003 (0.3368)  lr: 0.000213  max mem: 19053
+2023-06-14 07:18:53,829 DTST.trainer INFO: eta: 10:20:29  iter: 10300  loss_p_loss: 0.1479 (0.1747)  loss_n_loss: 0.0004 (0.0019)  time: 1.8889 (3.8381)  data: 0.0003 (0.3362)  lr: 0.000213  max mem: 19053
+2023-06-14 07:19:47,556 DTST.trainer INFO: eta: 10:18:50  iter: 10320  loss_p_loss: 0.1331 (0.1747)  loss_n_loss: 0.0003 (0.0019)  time: 1.8886 (3.8358)  data: 0.0002 (0.3355)  lr: 0.000213  max mem: 19053
+2023-06-14 07:20:49,317 DTST.trainer INFO: eta: 10:17:20  iter: 10340  loss_p_loss: 0.1489 (0.1746)  loss_n_loss: 0.0003 (0.0019)  time: 1.8887 (3.8344)  data: 0.0003 (0.3349)  lr: 0.000212  max mem: 19053
+2023-06-14 07:21:36,678 DTST.trainer INFO: eta: 10:15:36  iter: 10360  loss_p_loss: 0.1114 (0.1745)  loss_n_loss: 0.0003 (0.0019)  time: 1.8885 (3.8316)  data: 0.0002 (0.3342)  lr: 0.000212  max mem: 19053
+2023-06-14 07:22:38,478 DTST.trainer INFO: eta: 10:14:05  iter: 10380  loss_p_loss: 0.1418 (0.1744)  loss_n_loss: 0.0003 (0.0019)  time: 1.8907 (3.8301)  data: 0.0002 (0.3336)  lr: 0.000212  max mem: 19053
+2023-06-14 07:23:27,442 DTST.trainer INFO: eta: 10:12:23  iter: 10400  loss_p_loss: 0.1587 (0.1744)  loss_n_loss: 0.0003 (0.0019)  time: 1.8895 (3.8275)  data: 0.0003 (0.3329)  lr: 0.000212  max mem: 19053
+2023-06-14 07:24:38,479 DTST.trainer INFO: eta: 10:11:02  iter: 10420  loss_p_loss: 0.1184 (0.1744)  loss_n_loss: 0.0003 (0.0019)  time: 1.8899 (3.8270)  data: 0.0003 (0.3323)  lr: 0.000212  max mem: 19053
+2023-06-14 07:26:27,859 DTST.trainer INFO: eta: 10:10:15  iter: 10440  loss_p_loss: 0.1326 (0.1743)  loss_n_loss: 0.0003 (0.0019)  time: 1.8911 (3.8301)  data: 0.0002 (0.3317)  lr: 0.000212  max mem: 19053
+2023-06-14 07:27:29,592 DTST.trainer INFO: eta: 10:08:45  iter: 10460  loss_p_loss: 0.1426 (0.1743)  loss_n_loss: 0.0003 (0.0019)  time: 1.8905 (3.8287)  data: 0.0003 (0.3310)  lr: 0.000212  max mem: 19053
+2023-06-14 07:28:32,678 DTST.trainer INFO: eta: 10:07:16  iter: 10480  loss_p_loss: 0.1345 (0.1742)  loss_n_loss: 0.0004 (0.0019)  time: 1.8881 (3.8274)  data: 0.0002 (0.3304)  lr: 0.000212  max mem: 19053
+2023-06-14 07:30:02,695 DTST.trainer INFO: eta: 10:06:12  iter: 10500  loss_p_loss: 0.1285 (0.1742)  loss_n_loss: 0.0004 (0.0019)  time: 1.8899 (3.8287)  data: 0.0002 (0.3298)  lr: 0.000212  max mem: 19053
+2023-06-14 07:31:05,888 DTST.trainer INFO: eta: 10:04:43  iter: 10520  loss_p_loss: 0.1298 (0.1741)  loss_n_loss: 0.0004 (0.0019)  time: 1.8897 (3.8274)  data: 0.0002 (0.3291)  lr: 0.000212  max mem: 19053
+2023-06-14 07:32:35,945 DTST.trainer INFO: eta: 10:03:39  iter: 10540  loss_p_loss: 0.1384 (0.1741)  loss_n_loss: 0.0003 (0.0019)  time: 1.8898 (3.8287)  data: 0.0002 (0.3285)  lr: 0.000212  max mem: 19053
+2023-06-14 07:34:06,317 DTST.trainer INFO: eta: 10:02:35  iter: 10560  loss_p_loss: 0.1267 (0.1740)  loss_n_loss: 0.0004 (0.0019)  time: 1.8894 (3.8300)  data: 0.0002 (0.3279)  lr: 0.000212  max mem: 19053
+2023-06-14 07:34:59,983 DTST.trainer INFO: eta: 10:00:58  iter: 10580  loss_p_loss: 0.1276 (0.1739)  loss_n_loss: 0.0004 (0.0019)  time: 1.8883 (3.8278)  data: 0.0002 (0.3273)  lr: 0.000212  max mem: 19053
+2023-06-14 07:35:47,476 DTST.trainer INFO: eta: 9:59:15  iter: 10600  loss_p_loss: 0.1210 (0.1738)  loss_n_loss: 0.0003 (0.0019)  time: 1.8893 (3.8251)  data: 0.0002 (0.3267)  lr: 0.000211  max mem: 19053
+2023-06-14 07:36:34,799 DTST.trainer INFO: eta: 9:57:33  iter: 10620  loss_p_loss: 0.1337 (0.1737)  loss_n_loss: 0.0004 (0.0019)  time: 1.8896 (3.8223)  data: 0.0002 (0.3260)  lr: 0.000211  max mem: 19053
+2023-06-14 07:37:36,404 DTST.trainer INFO: eta: 9:56:03  iter: 10640  loss_p_loss: 0.1333 (0.1737)  loss_n_loss: 0.0004 (0.0019)  time: 1.8895 (3.8209)  data: 0.0002 (0.3254)  lr: 0.000211  max mem: 19053
+2023-06-14 07:38:39,839 DTST.trainer INFO: eta: 9:54:36  iter: 10660  loss_p_loss: 0.1320 (0.1736)  loss_n_loss: 0.0004 (0.0019)  time: 1.8889 (3.8197)  data: 0.0002 (0.3248)  lr: 0.000211  max mem: 19053
+2023-06-14 07:39:33,579 DTST.trainer INFO: eta: 9:53:00  iter: 10680  loss_p_loss: 0.1208 (0.1735)  loss_n_loss: 0.0003 (0.0019)  time: 1.8882 (3.8176)  data: 0.0002 (0.3242)  lr: 0.000211  max mem: 19053
+2023-06-14 07:41:03,923 DTST.trainer INFO: eta: 9:51:55  iter: 10700  loss_p_loss: 0.1000 (0.1734)  loss_n_loss: 0.0003 (0.0019)  time: 1.8907 (3.8189)  data: 0.0003 (0.3236)  lr: 0.000211  max mem: 19053
+2023-06-14 07:42:34,177 DTST.trainer INFO: eta: 9:50:51  iter: 10720  loss_p_loss: 0.1267 (0.1734)  loss_n_loss: 0.0002 (0.0019)  time: 1.8884 (3.8202)  data: 0.0002 (0.3230)  lr: 0.000211  max mem: 19053
+2023-06-14 07:43:35,776 DTST.trainer INFO: eta: 9:49:22  iter: 10740  loss_p_loss: 0.1248 (0.1733)  loss_n_loss: 0.0003 (0.0019)  time: 1.8882 (3.8188)  data: 0.0003 (0.3224)  lr: 0.000211  max mem: 19053
+2023-06-14 07:44:23,069 DTST.trainer INFO: eta: 9:47:40  iter: 10760  loss_p_loss: 0.1245 (0.1733)  loss_n_loss: 0.0004 (0.0019)  time: 1.8887 (3.8161)  data: 0.0002 (0.3218)  lr: 0.000211  max mem: 19053
+2023-06-14 07:45:35,742 DTST.trainer INFO: eta: 9:46:21  iter: 10780  loss_p_loss: 0.1353 (0.1732)  loss_n_loss: 0.0003 (0.0019)  time: 1.8884 (3.8158)  data: 0.0002 (0.3212)  lr: 0.000211  max mem: 19053
+2023-06-14 07:46:23,127 DTST.trainer INFO: eta: 9:44:40  iter: 10800  loss_p_loss: 0.1366 (0.1732)  loss_n_loss: 0.0004 (0.0019)  time: 1.8882 (3.8131)  data: 0.0002 (0.3206)  lr: 0.000211  max mem: 19053
+2023-06-14 07:47:16,728 DTST.trainer INFO: eta: 9:43:05  iter: 10820  loss_p_loss: 0.1272 (0.1731)  loss_n_loss: 0.0004 (0.0019)  time: 1.8873 (3.8110)  data: 0.0002 (0.3200)  lr: 0.000211  max mem: 19053
+2023-06-14 07:48:04,076 DTST.trainer INFO: eta: 9:41:24  iter: 10840  loss_p_loss: 0.1145 (0.1730)  loss_n_loss: 0.0003 (0.0019)  time: 1.8877 (3.8083)  data: 0.0002 (0.3194)  lr: 0.000211  max mem: 19053
+2023-06-14 07:49:21,475 DTST.trainer INFO: eta: 9:40:09  iter: 10860  loss_p_loss: 0.1236 (0.1729)  loss_n_loss: 0.0002 (0.0019)  time: 1.8878 (3.8085)  data: 0.0002 (0.3188)  lr: 0.000211  max mem: 19053
+2023-06-14 07:50:15,066 DTST.trainer INFO: eta: 9:38:34  iter: 10880  loss_p_loss: 0.1297 (0.1729)  loss_n_loss: 0.0002 (0.0019)  time: 1.8887 (3.8064)  data: 0.0002 (0.3183)  lr: 0.000210  max mem: 19053
+2023-06-14 07:51:48,256 DTST.trainer INFO: eta: 9:37:32  iter: 10900  loss_p_loss: 0.1293 (0.1728)  loss_n_loss: 0.0003 (0.0019)  time: 1.8856 (3.8079)  data: 0.0002 (0.3177)  lr: 0.000210  max mem: 19053
+2023-06-14 07:52:56,012 DTST.trainer INFO: eta: 9:36:09  iter: 10920  loss_p_loss: 0.1073 (0.1727)  loss_n_loss: 0.0003 (0.0019)  time: 1.8870 (3.8072)  data: 0.0002 (0.3171)  lr: 0.000210  max mem: 19053
+2023-06-14 07:54:54,550 DTST.trainer INFO: eta: 9:35:28  iter: 10940  loss_p_loss: 0.1479 (0.1727)  loss_n_loss: 0.0003 (0.0018)  time: 1.8875 (3.8111)  data: 0.0002 (0.3165)  lr: 0.000210  max mem: 19053
+2023-06-14 07:56:11,510 DTST.trainer INFO: eta: 9:34:12  iter: 10960  loss_p_loss: 0.1194 (0.1726)  loss_n_loss: 0.0004 (0.0018)  time: 1.8876 (3.8111)  data: 0.0002 (0.3159)  lr: 0.000210  max mem: 19053
+2023-06-14 07:57:53,663 DTST.trainer INFO: eta: 9:33:17  iter: 10980  loss_p_loss: 0.1063 (0.1725)  loss_n_loss: 0.0003 (0.0018)  time: 1.8884 (3.8135)  data: 0.0002 (0.3154)  lr: 0.000210  max mem: 19053
+2023-06-14 07:58:41,016 DTST.trainer INFO: eta: 9:31:37  iter: 11000  loss_p_loss: 0.1134 (0.1724)  loss_n_loss: 0.0003 (0.0018)  time: 1.8894 (3.8109)  data: 0.0002 (0.3148)  lr: 0.000210  max mem: 19053
+2023-06-14 07:58:41,332 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 08:00:02,562 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4896/0.5940/0.8497.
+2023-06-14 08:00:02,562 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.8065/0.8140.
+2023-06-14 08:00:02,562 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3909/0.8973.
+2023-06-14 08:00:02,562 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8089/0.9667.
+2023-06-14 08:00:02,562 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3287/0.3816.
+2023-06-14 08:00:02,562 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0531/0.0614.
+2023-06-14 08:00:02,562 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2847/0.3393.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3189/0.4056.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3573/0.4163.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8569/0.9028.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7458/0.7694.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5314/0.5823.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3427/0.5931.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8379/0.9618.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2720/0.3000.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3289/0.3879.
+2023-06-14 08:00:02,563 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5696/0.7244.
+2023-06-14 08:01:27,829 DTST.trainer INFO: eta: 9:31:35  iter: 11020  loss_p_loss: 0.1231 (0.1723)  loss_n_loss: 0.0003 (0.0018)  time: 1.8871 (3.8191)  data: 0.0002 (0.3216)  lr: 0.000210  max mem: 19053
+2023-06-14 08:02:38,746 DTST.trainer INFO: eta: 9:30:14  iter: 11040  loss_p_loss: 0.1186 (0.1722)  loss_n_loss: 0.0002 (0.0018)  time: 1.8879 (3.8186)  data: 0.0002 (0.3210)  lr: 0.000210  max mem: 19053
+2023-06-14 08:04:27,798 DTST.trainer INFO: eta: 9:29:24  iter: 11060  loss_p_loss: 0.1225 (0.1722)  loss_n_loss: 0.0003 (0.0018)  time: 1.8892 (3.8215)  data: 0.0002 (0.3205)  lr: 0.000210  max mem: 19053
+2023-06-14 08:05:29,352 DTST.trainer INFO: eta: 9:27:56  iter: 11080  loss_p_loss: 0.1234 (0.1721)  loss_n_loss: 0.0003 (0.0018)  time: 1.8881 (3.8202)  data: 0.0002 (0.3199)  lr: 0.000210  max mem: 19053
+2023-06-14 08:06:46,893 DTST.trainer INFO: eta: 9:26:40  iter: 11100  loss_p_loss: 0.1238 (0.1720)  loss_n_loss: 0.0003 (0.0018)  time: 1.8906 (3.8203)  data: 0.0002 (0.3193)  lr: 0.000210  max mem: 19053
+2023-06-14 08:08:46,054 DTST.trainer INFO: eta: 9:25:58  iter: 11120  loss_p_loss: 0.1125 (0.1719)  loss_n_loss: 0.0003 (0.0018)  time: 1.8899 (3.8241)  data: 0.0003 (0.3187)  lr: 0.000210  max mem: 19053
+2023-06-14 08:09:33,446 DTST.trainer INFO: eta: 9:24:18  iter: 11140  loss_p_loss: 0.1289 (0.1719)  loss_n_loss: 0.0003 (0.0018)  time: 1.8888 (3.8215)  data: 0.0002 (0.3182)  lr: 0.000210  max mem: 19053
+2023-06-14 08:10:35,210 DTST.trainer INFO: eta: 9:22:50  iter: 11160  loss_p_loss: 0.1451 (0.1719)  loss_n_loss: 0.0003 (0.0018)  time: 1.8886 (3.8202)  data: 0.0002 (0.3176)  lr: 0.000209  max mem: 19053
+2023-06-14 08:11:41,933 DTST.trainer INFO: eta: 9:21:26  iter: 11180  loss_p_loss: 0.1105 (0.1718)  loss_n_loss: 0.0003 (0.0018)  time: 1.8898 (3.8193)  data: 0.0003 (0.3170)  lr: 0.000209  max mem: 19053
+2023-06-14 08:12:48,551 DTST.trainer INFO: eta: 9:20:02  iter: 11200  loss_p_loss: 0.1190 (0.1717)  loss_n_loss: 0.0003 (0.0018)  time: 1.8884 (3.8185)  data: 0.0003 (0.3165)  lr: 0.000209  max mem: 19053
+2023-06-14 08:13:50,365 DTST.trainer INFO: eta: 9:18:34  iter: 11220  loss_p_loss: 0.1215 (0.1716)  loss_n_loss: 0.0003 (0.0018)  time: 1.8906 (3.8172)  data: 0.0003 (0.3159)  lr: 0.000209  max mem: 19053
+2023-06-14 08:15:16,252 DTST.trainer INFO: eta: 9:17:25  iter: 11240  loss_p_loss: 0.1215 (0.1716)  loss_n_loss: 0.0003 (0.0018)  time: 1.8893 (3.8180)  data: 0.0003 (0.3153)  lr: 0.000209  max mem: 19053
+2023-06-14 08:16:18,067 DTST.trainer INFO: eta: 9:15:58  iter: 11260  loss_p_loss: 0.1278 (0.1715)  loss_n_loss: 0.0003 (0.0018)  time: 1.8898 (3.8167)  data: 0.0003 (0.3148)  lr: 0.000209  max mem: 19053
+2023-06-14 08:17:15,192 DTST.trainer INFO: eta: 9:14:27  iter: 11280  loss_p_loss: 0.1395 (0.1714)  loss_n_loss: 0.0003 (0.0018)  time: 1.8908 (3.8150)  data: 0.0003 (0.3142)  lr: 0.000209  max mem: 19053
+2023-06-14 08:18:02,656 DTST.trainer INFO: eta: 9:12:48  iter: 11300  loss_p_loss: 0.1204 (0.1713)  loss_n_loss: 0.0002 (0.0018)  time: 1.8897 (3.8125)  data: 0.0003 (0.3137)  lr: 0.000209  max mem: 19053
+2023-06-14 08:19:28,159 DTST.trainer INFO: eta: 9:11:39  iter: 11320  loss_p_loss: 0.1239 (0.1713)  loss_n_loss: 0.0002 (0.0018)  time: 1.8892 (3.8133)  data: 0.0002 (0.3131)  lr: 0.000209  max mem: 19053
+2023-06-14 08:21:12,467 DTST.trainer INFO: eta: 9:10:44  iter: 11340  loss_p_loss: 0.1035 (0.1712)  loss_n_loss: 0.0002 (0.0018)  time: 1.8886 (3.8158)  data: 0.0003 (0.3126)  lr: 0.000209  max mem: 19053
+2023-06-14 08:22:28,394 DTST.trainer INFO: eta: 9:09:27  iter: 11360  loss_p_loss: 0.1249 (0.1711)  loss_n_loss: 0.0003 (0.0018)  time: 1.8880 (3.8157)  data: 0.0002 (0.3120)  lr: 0.000209  max mem: 19053
+2023-06-14 08:23:58,566 DTST.trainer INFO: eta: 9:08:22  iter: 11380  loss_p_loss: 0.1153 (0.1710)  loss_n_loss: 0.0003 (0.0018)  time: 1.8888 (3.8170)  data: 0.0003 (0.3115)  lr: 0.000209  max mem: 19053
+2023-06-14 08:25:35,292 DTST.trainer INFO: eta: 9:07:21  iter: 11400  loss_p_loss: 0.1112 (0.1709)  loss_n_loss: 0.0002 (0.0018)  time: 1.8901 (3.8187)  data: 0.0003 (0.3109)  lr: 0.000209  max mem: 19053
+2023-06-14 08:26:41,783 DTST.trainer INFO: eta: 9:05:57  iter: 11420  loss_p_loss: 0.1186 (0.1709)  loss_n_loss: 0.0002 (0.0018)  time: 1.8911 (3.8179)  data: 0.0003 (0.3104)  lr: 0.000208  max mem: 19053
+2023-06-14 08:27:56,091 DTST.trainer INFO: eta: 9:04:39  iter: 11440  loss_p_loss: 0.1245 (0.1708)  loss_n_loss: 0.0002 (0.0018)  time: 1.8906 (3.8177)  data: 0.0003 (0.3098)  lr: 0.000208  max mem: 19053
+2023-06-14 08:29:32,741 DTST.trainer INFO: eta: 9:03:38  iter: 11460  loss_p_loss: 0.1336 (0.1708)  loss_n_loss: 0.0004 (0.0018)  time: 1.8893 (3.8195)  data: 0.0002 (0.3093)  lr: 0.000208  max mem: 19053
+2023-06-14 08:30:58,184 DTST.trainer INFO: eta: 9:02:28  iter: 11480  loss_p_loss: 0.1153 (0.1707)  loss_n_loss: 0.0003 (0.0018)  time: 1.8889 (3.8203)  data: 0.0003 (0.3087)  lr: 0.000208  max mem: 19053
+2023-06-14 08:31:51,891 DTST.trainer INFO: eta: 9:00:55  iter: 11500  loss_p_loss: 0.1249 (0.1707)  loss_n_loss: 0.0003 (0.0018)  time: 1.8882 (3.8183)  data: 0.0002 (0.3082)  lr: 0.000208  max mem: 19053
+2023-06-14 08:33:22,202 DTST.trainer INFO: eta: 8:59:49  iter: 11520  loss_p_loss: 0.1223 (0.1706)  loss_n_loss: 0.0004 (0.0018)  time: 1.8886 (3.8195)  data: 0.0002 (0.3077)  lr: 0.000208  max mem: 19053
+2023-06-14 08:34:52,562 DTST.trainer INFO: eta: 8:58:43  iter: 11540  loss_p_loss: 0.1304 (0.1706)  loss_n_loss: 0.0003 (0.0018)  time: 1.8896 (3.8207)  data: 0.0003 (0.3071)  lr: 0.000208  max mem: 19053
+2023-06-14 08:35:46,355 DTST.trainer INFO: eta: 8:57:10  iter: 11560  loss_p_loss: 0.1430 (0.1705)  loss_n_loss: 0.0002 (0.0018)  time: 1.8896 (3.8187)  data: 0.0002 (0.3066)  lr: 0.000208  max mem: 19053
+2023-06-14 08:37:53,329 DTST.trainer INFO: eta: 8:56:30  iter: 11580  loss_p_loss: 0.1325 (0.1705)  loss_n_loss: 0.0003 (0.0018)  time: 1.8923 (3.8231)  data: 0.0003 (0.3061)  lr: 0.000208  max mem: 19053
+2023-06-14 08:38:59,626 DTST.trainer INFO: eta: 8:55:06  iter: 11600  loss_p_loss: 0.1525 (0.1705)  loss_n_loss: 0.0004 (0.0018)  time: 1.8894 (3.8222)  data: 0.0002 (0.3056)  lr: 0.000208  max mem: 19053
+2023-06-14 08:40:48,906 DTST.trainer INFO: eta: 8:54:14  iter: 11620  loss_p_loss: 0.1271 (0.1704)  loss_n_loss: 0.0002 (0.0018)  time: 1.8879 (3.8251)  data: 0.0002 (0.3050)  lr: 0.000208  max mem: 19053
+2023-06-14 08:41:42,607 DTST.trainer INFO: eta: 8:52:41  iter: 11640  loss_p_loss: 0.1398 (0.1703)  loss_n_loss: 0.0003 (0.0018)  time: 1.8891 (3.8231)  data: 0.0002 (0.3045)  lr: 0.000208  max mem: 19053
+2023-06-14 08:42:42,663 DTST.trainer INFO: eta: 8:51:12  iter: 11660  loss_p_loss: 0.1036 (0.1702)  loss_n_loss: 0.0004 (0.0018)  time: 1.8900 (3.8217)  data: 0.0003 (0.3040)  lr: 0.000208  max mem: 19053
+2023-06-14 08:44:32,098 DTST.trainer INFO: eta: 8:50:20  iter: 11680  loss_p_loss: 0.1618 (0.1702)  loss_n_loss: 0.0005 (0.0018)  time: 1.8881 (3.8245)  data: 0.0003 (0.3035)  lr: 0.000208  max mem: 19053
+2023-06-14 08:46:02,179 DTST.trainer INFO: eta: 8:49:13  iter: 11700  loss_p_loss: 0.1438 (0.1702)  loss_n_loss: 0.0004 (0.0017)  time: 1.8883 (3.8257)  data: 0.0002 (0.3029)  lr: 0.000207  max mem: 19053
+2023-06-14 08:47:05,497 DTST.trainer INFO: eta: 8:47:47  iter: 11720  loss_p_loss: 0.1310 (0.1702)  loss_n_loss: 0.0004 (0.0017)  time: 1.8898 (3.8246)  data: 0.0002 (0.3024)  lr: 0.000207  max mem: 19053
+2023-06-14 08:48:07,160 DTST.trainer INFO: eta: 8:46:20  iter: 11740  loss_p_loss: 0.1115 (0.1701)  loss_n_loss: 0.0003 (0.0017)  time: 1.8893 (3.8233)  data: 0.0002 (0.3019)  lr: 0.000207  max mem: 19053
+2023-06-14 08:49:00,825 DTST.trainer INFO: eta: 8:44:48  iter: 11760  loss_p_loss: 0.1199 (0.1701)  loss_n_loss: 0.0003 (0.0017)  time: 1.8882 (3.8214)  data: 0.0002 (0.3014)  lr: 0.000207  max mem: 19053
+2023-06-14 08:50:00,794 DTST.trainer INFO: eta: 8:43:20  iter: 11780  loss_p_loss: 0.1293 (0.1700)  loss_n_loss: 0.0004 (0.0017)  time: 1.8876 (3.8200)  data: 0.0002 (0.3009)  lr: 0.000207  max mem: 19053
+2023-06-14 08:51:00,906 DTST.trainer INFO: eta: 8:41:52  iter: 11800  loss_p_loss: 0.1198 (0.1699)  loss_n_loss: 0.0003 (0.0017)  time: 1.8895 (3.8186)  data: 0.0002 (0.3004)  lr: 0.000207  max mem: 19053
+2023-06-14 08:52:01,091 DTST.trainer INFO: eta: 8:40:24  iter: 11820  loss_p_loss: 0.1394 (0.1699)  loss_n_loss: 0.0003 (0.0017)  time: 1.8897 (3.8172)  data: 0.0002 (0.2999)  lr: 0.000207  max mem: 19053
+2023-06-14 08:53:02,732 DTST.trainer INFO: eta: 8:38:58  iter: 11840  loss_p_loss: 0.1179 (0.1698)  loss_n_loss: 0.0003 (0.0017)  time: 1.8887 (3.8160)  data: 0.0002 (0.2994)  lr: 0.000207  max mem: 19053
+2023-06-14 08:53:56,341 DTST.trainer INFO: eta: 8:37:26  iter: 11860  loss_p_loss: 0.1144 (0.1697)  loss_n_loss: 0.0003 (0.0017)  time: 1.8885 (3.8141)  data: 0.0002 (0.2989)  lr: 0.000207  max mem: 19053
+2023-06-14 08:56:02,942 DTST.trainer INFO: eta: 8:36:44  iter: 11880  loss_p_loss: 0.1345 (0.1697)  loss_n_loss: 0.0002 (0.0017)  time: 1.8874 (3.8183)  data: 0.0002 (0.2984)  lr: 0.000207  max mem: 19053
+2023-06-14 08:56:50,387 DTST.trainer INFO: eta: 8:35:08  iter: 11900  loss_p_loss: 0.1180 (0.1696)  loss_n_loss: 0.0004 (0.0017)  time: 1.8889 (3.8159)  data: 0.0002 (0.2979)  lr: 0.000207  max mem: 19053
+2023-06-14 08:57:37,842 DTST.trainer INFO: eta: 8:33:32  iter: 11920  loss_p_loss: 0.1005 (0.1696)  loss_n_loss: 0.0002 (0.0017)  time: 1.8888 (3.8134)  data: 0.0003 (0.2974)  lr: 0.000207  max mem: 19053
+2023-06-14 08:58:25,223 DTST.trainer INFO: eta: 8:31:56  iter: 11940  loss_p_loss: 0.1236 (0.1695)  loss_n_loss: 0.0003 (0.0017)  time: 1.8900 (3.8110)  data: 0.0003 (0.2969)  lr: 0.000207  max mem: 19053
+2023-06-14 08:59:18,934 DTST.trainer INFO: eta: 8:30:25  iter: 11960  loss_p_loss: 0.1140 (0.1694)  loss_n_loss: 0.0002 (0.0017)  time: 1.8881 (3.8091)  data: 0.0003 (0.2964)  lr: 0.000207  max mem: 19053
+2023-06-14 09:00:20,582 DTST.trainer INFO: eta: 8:28:59  iter: 11980  loss_p_loss: 0.1130 (0.1694)  loss_n_loss: 0.0002 (0.0017)  time: 1.8895 (3.8079)  data: 0.0003 (0.2959)  lr: 0.000206  max mem: 19053
+2023-06-14 09:15:52,811 DTST.trainer INFO: eta: 8:37:14  iter: 12000  loss_p_loss: 0.1255 (0.1693)  loss_n_loss: 0.0003 (0.0017)  time: 1.8898 (3.8793)  data: 0.0002 (0.3675)  lr: 0.000206  max mem: 19053
+2023-06-14 09:15:53,211 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 09:17:12,992 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4908/0.5950/0.8516.
+2023-06-14 09:17:12,993 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.8128/0.8209.
+2023-06-14 09:17:12,993 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.3972/0.8911.
+2023-06-14 09:17:12,993 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8071/0.9678.
+2023-06-14 09:17:12,993 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3483/0.4079.
+2023-06-14 09:17:12,993 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0609/0.0709.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2798/0.3307.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3221/0.4103.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3564/0.4172.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8567/0.9016.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7392/0.7617.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5209/0.5702.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3412/0.5829.
+2023-06-14 09:17:12,994 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8374/0.9610.
+2023-06-14 09:17:12,995 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2542/0.2825.
+2023-06-14 09:17:12,995 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3483/0.4177.
+2023-06-14 09:17:12,995 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5704/0.7255.
+2023-06-14 09:18:06,510 DTST.trainer INFO: eta: 8:36:33  iter: 12020  loss_p_loss: 0.1132 (0.1693)  loss_n_loss: 0.0003 (0.0017)  time: 1.8869 (3.8839)  data: 0.0003 (0.3736)  lr: 0.000206  max mem: 19053
+2023-06-14 09:20:13,627 DTST.trainer INFO: eta: 8:35:48  iter: 12040  loss_p_loss: 0.1130 (0.1692)  loss_n_loss: 0.0003 (0.0017)  time: 1.8919 (3.8880)  data: 0.0003 (0.3730)  lr: 0.000206  max mem: 19053
+2023-06-14 09:21:10,559 DTST.trainer INFO: eta: 8:34:17  iter: 12060  loss_p_loss: 0.1302 (0.1692)  loss_n_loss: 0.0004 (0.0017)  time: 1.8890 (3.8863)  data: 0.0003 (0.3724)  lr: 0.000206  max mem: 19053
+2023-06-14 09:22:12,308 DTST.trainer INFO: eta: 8:32:49  iter: 12080  loss_p_loss: 0.1185 (0.1691)  loss_n_loss: 0.0003 (0.0017)  time: 1.8903 (3.8850)  data: 0.0003 (0.3718)  lr: 0.000206  max mem: 19053
+2023-06-14 09:23:34,705 DTST.trainer INFO: eta: 8:31:34  iter: 12100  loss_p_loss: 0.1386 (0.1690)  loss_n_loss: 0.0003 (0.0017)  time: 1.8892 (3.8854)  data: 0.0003 (0.3711)  lr: 0.000206  max mem: 19053
+2023-06-14 09:24:28,409 DTST.trainer INFO: eta: 8:30:01  iter: 12120  loss_p_loss: 0.1420 (0.1690)  loss_n_loss: 0.0003 (0.0017)  time: 1.8897 (3.8834)  data: 0.0002 (0.3705)  lr: 0.000206  max mem: 19053
+2023-06-14 09:25:15,706 DTST.trainer INFO: eta: 8:28:23  iter: 12140  loss_p_loss: 0.1346 (0.1690)  loss_n_loss: 0.0003 (0.0017)  time: 1.8904 (3.8809)  data: 0.0002 (0.3699)  lr: 0.000206  max mem: 19053
+2023-06-14 09:26:12,569 DTST.trainer INFO: eta: 8:26:52  iter: 12160  loss_p_loss: 0.1250 (0.1689)  loss_n_loss: 0.0002 (0.0017)  time: 1.8901 (3.8792)  data: 0.0003 (0.3693)  lr: 0.000206  max mem: 19053
+2023-06-14 09:27:30,093 DTST.trainer INFO: eta: 8:25:35  iter: 12180  loss_p_loss: 0.1271 (0.1689)  loss_n_loss: 0.0003 (0.0017)  time: 1.8903 (3.8792)  data: 0.0003 (0.3687)  lr: 0.000206  max mem: 19053
+2023-06-14 09:28:17,496 DTST.trainer INFO: eta: 8:23:58  iter: 12200  loss_p_loss: 0.1192 (0.1688)  loss_n_loss: 0.0003 (0.0017)  time: 1.8897 (3.8767)  data: 0.0002 (0.3681)  lr: 0.000206  max mem: 19053
+2023-06-14 09:29:25,525 DTST.trainer INFO: eta: 8:22:34  iter: 12220  loss_p_loss: 0.1261 (0.1687)  loss_n_loss: 0.0003 (0.0017)  time: 1.8892 (3.8759)  data: 0.0002 (0.3675)  lr: 0.000206  max mem: 19053
+2023-06-14 09:30:20,648 DTST.trainer INFO: eta: 8:21:03  iter: 12240  loss_p_loss: 0.1344 (0.1687)  loss_n_loss: 0.0003 (0.0017)  time: 1.8892 (3.8741)  data: 0.0002 (0.3669)  lr: 0.000205  max mem: 19053
+2023-06-14 09:31:17,425 DTST.trainer INFO: eta: 8:19:32  iter: 12260  loss_p_loss: 0.1214 (0.1686)  loss_n_loss: 0.0002 (0.0017)  time: 1.8894 (3.8724)  data: 0.0002 (0.3663)  lr: 0.000205  max mem: 19053
+2023-06-14 09:32:19,048 DTST.trainer INFO: eta: 8:18:05  iter: 12280  loss_p_loss: 0.1091 (0.1686)  loss_n_loss: 0.0002 (0.0017)  time: 1.8894 (3.8711)  data: 0.0002 (0.3657)  lr: 0.000205  max mem: 19053
+2023-06-14 09:33:31,904 DTST.trainer INFO: eta: 8:16:44  iter: 12300  loss_p_loss: 0.1306 (0.1685)  loss_n_loss: 0.0002 (0.0017)  time: 1.8932 (3.8708)  data: 0.0003 (0.3651)  lr: 0.000205  max mem: 19053
+2023-06-14 09:35:21,427 DTST.trainer INFO: eta: 8:15:47  iter: 12320  loss_p_loss: 0.1219 (0.1684)  loss_n_loss: 0.0003 (0.0017)  time: 1.8900 (3.8734)  data: 0.0003 (0.3645)  lr: 0.000205  max mem: 19053
+2023-06-14 09:36:35,943 DTST.trainer INFO: eta: 8:14:28  iter: 12340  loss_p_loss: 0.1301 (0.1684)  loss_n_loss: 0.0002 (0.0017)  time: 1.8902 (3.8731)  data: 0.0003 (0.3639)  lr: 0.000205  max mem: 19053
+2023-06-14 09:38:06,175 DTST.trainer INFO: eta: 8:13:18  iter: 12360  loss_p_loss: 0.1107 (0.1683)  loss_n_loss: 0.0002 (0.0017)  time: 1.8893 (3.8742)  data: 0.0003 (0.3633)  lr: 0.000205  max mem: 19053
+2023-06-14 09:39:36,546 DTST.trainer INFO: eta: 8:12:08  iter: 12380  loss_p_loss: 0.1689 (0.1683)  loss_n_loss: 0.0002 (0.0017)  time: 1.8894 (3.8752)  data: 0.0003 (0.3628)  lr: 0.000205  max mem: 19053
+2023-06-14 09:40:54,220 DTST.trainer INFO: eta: 8:10:51  iter: 12400  loss_p_loss: 0.1835 (0.1684)  loss_n_loss: 0.0003 (0.0017)  time: 1.8913 (3.8752)  data: 0.0003 (0.3622)  lr: 0.000205  max mem: 19053
+2023-06-14 09:41:51,168 DTST.trainer INFO: eta: 8:09:21  iter: 12420  loss_p_loss: 0.1264 (0.1683)  loss_n_loss: 0.0004 (0.0017)  time: 1.8907 (3.8736)  data: 0.0003 (0.3616)  lr: 0.000205  max mem: 19053
+2023-06-14 09:42:44,886 DTST.trainer INFO: eta: 8:07:49  iter: 12440  loss_p_loss: 0.1111 (0.1683)  loss_n_loss: 0.0004 (0.0017)  time: 1.8899 (3.8716)  data: 0.0003 (0.3610)  lr: 0.000205  max mem: 19053
+2023-06-14 09:44:14,807 DTST.trainer INFO: eta: 8:06:39  iter: 12460  loss_p_loss: 0.1256 (0.1682)  loss_n_loss: 0.0003 (0.0017)  time: 1.8892 (3.8726)  data: 0.0003 (0.3604)  lr: 0.000205  max mem: 19053
+2023-06-14 09:45:51,658 DTST.trainer INFO: eta: 8:05:33  iter: 12480  loss_p_loss: 0.1160 (0.1681)  loss_n_loss: 0.0003 (0.0017)  time: 1.8898 (3.8742)  data: 0.0003 (0.3598)  lr: 0.000205  max mem: 19053
+2023-06-14 09:46:58,101 DTST.trainer INFO: eta: 8:04:09  iter: 12500  loss_p_loss: 0.1188 (0.1681)  loss_n_loss: 0.0003 (0.0017)  time: 1.8894 (3.8733)  data: 0.0003 (0.3593)  lr: 0.000205  max mem: 19053
+2023-06-14 09:48:15,624 DTST.trainer INFO: eta: 8:02:52  iter: 12520  loss_p_loss: 0.1513 (0.1681)  loss_n_loss: 0.0003 (0.0017)  time: 1.8897 (3.8733)  data: 0.0003 (0.3587)  lr: 0.000204  max mem: 19053
+2023-06-14 09:49:42,847 DTST.trainer INFO: eta: 8:01:40  iter: 12540  loss_p_loss: 0.1221 (0.1680)  loss_n_loss: 0.0003 (0.0017)  time: 1.8908 (3.8741)  data: 0.0003 (0.3581)  lr: 0.000204  max mem: 19053
+2023-06-14 09:50:47,810 DTST.trainer INFO: eta: 8:00:15  iter: 12560  loss_p_loss: 0.1194 (0.1680)  loss_n_loss: 0.0003 (0.0017)  time: 1.8915 (3.8731)  data: 0.0002 (0.3576)  lr: 0.000204  max mem: 19053
+2023-06-14 09:51:35,226 DTST.trainer INFO: eta: 7:58:40  iter: 12580  loss_p_loss: 0.1336 (0.1679)  loss_n_loss: 0.0003 (0.0017)  time: 1.8904 (3.8707)  data: 0.0003 (0.3570)  lr: 0.000204  max mem: 19053
+2023-06-14 09:52:36,790 DTST.trainer INFO: eta: 7:57:13  iter: 12600  loss_p_loss: 0.1285 (0.1679)  loss_n_loss: 0.0003 (0.0016)  time: 1.8912 (3.8695)  data: 0.0002 (0.3564)  lr: 0.000204  max mem: 19053
+2023-06-14 09:54:35,888 DTST.trainer INFO: eta: 7:56:20  iter: 12620  loss_p_loss: 0.1109 (0.1678)  loss_n_loss: 0.0002 (0.0016)  time: 1.8911 (3.8728)  data: 0.0003 (0.3559)  lr: 0.000204  max mem: 19053
+2023-06-14 09:55:23,183 DTST.trainer INFO: eta: 7:54:45  iter: 12640  loss_p_loss: 0.1164 (0.1678)  loss_n_loss: 0.0003 (0.0016)  time: 1.8890 (3.8704)  data: 0.0002 (0.3553)  lr: 0.000204  max mem: 19053
+2023-06-14 09:56:24,838 DTST.trainer INFO: eta: 7:53:19  iter: 12660  loss_p_loss: 0.1112 (0.1677)  loss_n_loss: 0.0002 (0.0016)  time: 1.8890 (3.8691)  data: 0.0003 (0.3547)  lr: 0.000204  max mem: 19053
+2023-06-14 09:57:21,735 DTST.trainer INFO: eta: 7:51:50  iter: 12680  loss_p_loss: 0.1073 (0.1676)  loss_n_loss: 0.0002 (0.0016)  time: 1.8894 (3.8675)  data: 0.0003 (0.3542)  lr: 0.000204  max mem: 19053
+2023-06-14 09:58:09,087 DTST.trainer INFO: eta: 7:50:15  iter: 12700  loss_p_loss: 0.1144 (0.1675)  loss_n_loss: 0.0002 (0.0016)  time: 1.8890 (3.8652)  data: 0.0002 (0.3536)  lr: 0.000204  max mem: 19053
+2023-06-14 09:59:02,807 DTST.trainer INFO: eta: 7:48:44  iter: 12720  loss_p_loss: 0.1342 (0.1675)  loss_n_loss: 0.0003 (0.0016)  time: 1.8904 (3.8633)  data: 0.0002 (0.3531)  lr: 0.000204  max mem: 19053
+2023-06-14 09:59:50,179 DTST.trainer INFO: eta: 7:47:10  iter: 12740  loss_p_loss: 0.1309 (0.1674)  loss_n_loss: 0.0003 (0.0016)  time: 1.8911 (3.8610)  data: 0.0002 (0.3525)  lr: 0.000204  max mem: 19053
+2023-06-14 10:00:42,339 DTST.trainer INFO: eta: 7:45:39  iter: 12760  loss_p_loss: 0.1111 (0.1673)  loss_n_loss: 0.0002 (0.0016)  time: 1.8893 (3.8590)  data: 0.0003 (0.3520)  lr: 0.000204  max mem: 19053
+2023-06-14 10:01:39,350 DTST.trainer INFO: eta: 7:44:10  iter: 12780  loss_p_loss: 0.1256 (0.1673)  loss_n_loss: 0.0002 (0.0016)  time: 1.8895 (3.8574)  data: 0.0003 (0.3514)  lr: 0.000203  max mem: 19053
+2023-06-14 10:02:41,034 DTST.trainer INFO: eta: 7:42:44  iter: 12800  loss_p_loss: 0.1111 (0.1672)  loss_n_loss: 0.0002 (0.0016)  time: 1.8908 (3.8562)  data: 0.0003 (0.3509)  lr: 0.000203  max mem: 19053
+2023-06-14 10:03:34,616 DTST.trainer INFO: eta: 7:41:14  iter: 12820  loss_p_loss: 0.1105 (0.1671)  loss_n_loss: 0.0002 (0.0016)  time: 1.8889 (3.8544)  data: 0.0002 (0.3503)  lr: 0.000203  max mem: 19053
+2023-06-14 10:04:49,010 DTST.trainer INFO: eta: 7:39:55  iter: 12840  loss_p_loss: 0.1237 (0.1671)  loss_n_loss: 0.0003 (0.0016)  time: 1.8907 (3.8542)  data: 0.0002 (0.3498)  lr: 0.000203  max mem: 19053
+2023-06-14 10:06:05,052 DTST.trainer INFO: eta: 7:38:38  iter: 12860  loss_p_loss: 0.1122 (0.1670)  loss_n_loss: 0.0002 (0.0016)  time: 1.8899 (3.8541)  data: 0.0003 (0.3492)  lr: 0.000203  max mem: 19053
+2023-06-14 10:07:16,409 DTST.trainer INFO: eta: 7:37:17  iter: 12880  loss_p_loss: 0.1180 (0.1670)  loss_n_loss: 0.0002 (0.0016)  time: 1.8916 (3.8536)  data: 0.0003 (0.3487)  lr: 0.000203  max mem: 19053
+2023-06-14 10:08:03,799 DTST.trainer INFO: eta: 7:35:44  iter: 12900  loss_p_loss: 0.1205 (0.1669)  loss_n_loss: 0.0002 (0.0016)  time: 1.8899 (3.8513)  data: 0.0002 (0.3481)  lr: 0.000203  max mem: 19053
+2023-06-14 10:09:21,314 DTST.trainer INFO: eta: 7:34:27  iter: 12920  loss_p_loss: 0.1155 (0.1668)  loss_n_loss: 0.0002 (0.0016)  time: 1.8899 (3.8514)  data: 0.0003 (0.3476)  lr: 0.000203  max mem: 19053
+2023-06-14 10:11:04,415 DTST.trainer INFO: eta: 7:33:24  iter: 12940  loss_p_loss: 0.1136 (0.1668)  loss_n_loss: 0.0002 (0.0016)  time: 1.8889 (3.8534)  data: 0.0003 (0.3471)  lr: 0.000203  max mem: 19053
+2023-06-14 10:12:59,897 DTST.trainer INFO: eta: 7:32:28  iter: 12960  loss_p_loss: 0.1328 (0.1667)  loss_n_loss: 0.0002 (0.0016)  time: 1.8890 (3.8563)  data: 0.0003 (0.3465)  lr: 0.000203  max mem: 19053
+2023-06-14 10:14:14,513 DTST.trainer INFO: eta: 7:31:10  iter: 12980  loss_p_loss: 0.1298 (0.1667)  loss_n_loss: 0.0003 (0.0016)  time: 1.8905 (3.8562)  data: 0.0003 (0.3460)  lr: 0.000203  max mem: 19053
+2023-06-14 10:15:31,991 DTST.trainer INFO: eta: 7:29:53  iter: 13000  loss_p_loss: 0.1140 (0.1666)  loss_n_loss: 0.0002 (0.0016)  time: 1.8889 (3.8562)  data: 0.0003 (0.3455)  lr: 0.000203  max mem: 19053
+2023-06-14 10:15:32,322 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 10:16:52,666 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4909/0.5955/0.8541.
+2023-06-14 10:16:52,667 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.8202/0.8292.
+2023-06-14 10:16:52,667 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.4048/0.8838.
+2023-06-14 10:16:52,667 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8064/0.9677.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3520/0.4179.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0680/0.0796.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2766/0.3251.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3256/0.4230.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3531/0.4153.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8565/0.9013.
+2023-06-14 10:16:52,668 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7381/0.7602.
+2023-06-14 10:16:52,669 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5119/0.5601.
+2023-06-14 10:16:52,669 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3417/0.5760.
+2023-06-14 10:16:52,669 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8363/0.9606.
+2023-06-14 10:16:52,669 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2342/0.2626.
+2023-06-14 10:16:52,669 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3579/0.4381.
+2023-06-14 10:16:52,669 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5714/0.7278.
+2023-06-14 10:18:35,613 DTST.trainer INFO: eta: 7:29:33  iter: 13020  loss_p_loss: 0.1183 (0.1665)  loss_n_loss: 0.0002 (0.0016)  time: 1.8888 (3.8644)  data: 0.0002 (0.3511)  lr: 0.000203  max mem: 19053
+2023-06-14 10:19:22,950 DTST.trainer INFO: eta: 7:27:59  iter: 13040  loss_p_loss: 0.1170 (0.1665)  loss_n_loss: 0.0002 (0.0016)  time: 1.8883 (3.8621)  data: 0.0003 (0.3506)  lr: 0.000203  max mem: 19053
+2023-06-14 10:20:40,413 DTST.trainer INFO: eta: 7:26:42  iter: 13060  loss_p_loss: 0.1093 (0.1664)  loss_n_loss: 0.0002 (0.0016)  time: 1.8896 (3.8621)  data: 0.0003 (0.3501)  lr: 0.000202  max mem: 19053
+2023-06-14 10:22:23,532 DTST.trainer INFO: eta: 7:25:39  iter: 13080  loss_p_loss: 0.1297 (0.1663)  loss_n_loss: 0.0002 (0.0016)  time: 1.8895 (3.8641)  data: 0.0003 (0.3495)  lr: 0.000202  max mem: 19053
+2023-06-14 10:23:20,488 DTST.trainer INFO: eta: 7:24:11  iter: 13100  loss_p_loss: 0.1039 (0.1663)  loss_n_loss: 0.0002 (0.0016)  time: 1.8884 (3.8625)  data: 0.0002 (0.3490)  lr: 0.000202  max mem: 19053
+2023-06-14 10:24:07,750 DTST.trainer INFO: eta: 7:22:38  iter: 13120  loss_p_loss: 0.1108 (0.1662)  loss_n_loss: 0.0002 (0.0016)  time: 1.8881 (3.8602)  data: 0.0002 (0.3485)  lr: 0.000202  max mem: 19053
+2023-06-14 10:25:09,109 DTST.trainer INFO: eta: 7:21:12  iter: 13140  loss_p_loss: 0.1216 (0.1662)  loss_n_loss: 0.0002 (0.0016)  time: 1.8894 (3.8590)  data: 0.0002 (0.3479)  lr: 0.000202  max mem: 19053
+2023-06-14 10:25:56,398 DTST.trainer INFO: eta: 7:19:40  iter: 13160  loss_p_loss: 0.1219 (0.1661)  loss_n_loss: 0.0002 (0.0016)  time: 1.8881 (3.8567)  data: 0.0003 (0.3474)  lr: 0.000202  max mem: 19053
+2023-06-14 10:26:43,697 DTST.trainer INFO: eta: 7:18:07  iter: 13180  loss_p_loss: 0.1260 (0.1661)  loss_n_loss: 0.0002 (0.0016)  time: 1.8895 (3.8545)  data: 0.0002 (0.3469)  lr: 0.000202  max mem: 19053
+2023-06-14 10:27:51,460 DTST.trainer INFO: eta: 7:16:45  iter: 13200  loss_p_loss: 0.1070 (0.1660)  loss_n_loss: 0.0002 (0.0016)  time: 1.8886 (3.8538)  data: 0.0002 (0.3463)  lr: 0.000202  max mem: 19053
+2023-06-14 10:28:43,669 DTST.trainer INFO: eta: 7:15:15  iter: 13220  loss_p_loss: 0.1259 (0.1660)  loss_n_loss: 0.0002 (0.0016)  time: 1.8897 (3.8519)  data: 0.0003 (0.3458)  lr: 0.000202  max mem: 19053
+2023-06-14 10:29:37,293 DTST.trainer INFO: eta: 7:13:46  iter: 13240  loss_p_loss: 0.1244 (0.1659)  loss_n_loss: 0.0003 (0.0016)  time: 1.8897 (3.8501)  data: 0.0003 (0.3453)  lr: 0.000202  max mem: 19053
+2023-06-14 10:30:29,249 DTST.trainer INFO: eta: 7:12:17  iter: 13260  loss_p_loss: 0.1102 (0.1659)  loss_n_loss: 0.0002 (0.0016)  time: 1.8885 (3.8482)  data: 0.0002 (0.3448)  lr: 0.000202  max mem: 19053
+2023-06-14 10:31:25,865 DTST.trainer INFO: eta: 7:10:49  iter: 13280  loss_p_loss: 0.1203 (0.1659)  loss_n_loss: 0.0002 (0.0016)  time: 1.8880 (3.8467)  data: 0.0002 (0.3443)  lr: 0.000202  max mem: 19053
+2023-06-14 10:32:27,447 DTST.trainer INFO: eta: 7:09:25  iter: 13300  loss_p_loss: 0.1373 (0.1658)  loss_n_loss: 0.0003 (0.0016)  time: 1.8887 (3.8455)  data: 0.0002 (0.3437)  lr: 0.000202  max mem: 19053
+2023-06-14 10:33:21,102 DTST.trainer INFO: eta: 7:07:56  iter: 13320  loss_p_loss: 0.1408 (0.1658)  loss_n_loss: 0.0003 (0.0016)  time: 1.8886 (3.8438)  data: 0.0002 (0.3432)  lr: 0.000201  max mem: 19053
+2023-06-14 10:34:40,245 DTST.trainer INFO: eta: 7:06:40  iter: 13340  loss_p_loss: 0.1183 (0.1657)  loss_n_loss: 0.0002 (0.0016)  time: 1.8886 (3.8440)  data: 0.0003 (0.3427)  lr: 0.000201  max mem: 19053
+2023-06-14 10:35:33,920 DTST.trainer INFO: eta: 7:05:12  iter: 13360  loss_p_loss: 0.1308 (0.1657)  loss_n_loss: 0.0003 (0.0016)  time: 1.8879 (3.8422)  data: 0.0002 (0.3422)  lr: 0.000201  max mem: 19053
+2023-06-14 10:37:18,527 DTST.trainer INFO: eta: 7:04:09  iter: 13380  loss_p_loss: 0.1272 (0.1656)  loss_n_loss: 0.0002 (0.0016)  time: 1.8890 (3.8443)  data: 0.0003 (0.3417)  lr: 0.000201  max mem: 19053
+2023-06-14 10:38:40,954 DTST.trainer INFO: eta: 7:02:55  iter: 13400  loss_p_loss: 0.1206 (0.1656)  loss_n_loss: 0.0002 (0.0016)  time: 1.8881 (3.8447)  data: 0.0003 (0.3412)  lr: 0.000201  max mem: 19053
+2023-06-14 10:39:45,699 DTST.trainer INFO: eta: 7:01:32  iter: 13420  loss_p_loss: 0.1074 (0.1655)  loss_n_loss: 0.0002 (0.0016)  time: 1.8874 (3.8438)  data: 0.0002 (0.3407)  lr: 0.000201  max mem: 19053
+2023-06-14 10:40:47,233 DTST.trainer INFO: eta: 7:00:07  iter: 13440  loss_p_loss: 0.1110 (0.1654)  loss_n_loss: 0.0002 (0.0016)  time: 1.8888 (3.8427)  data: 0.0003 (0.3402)  lr: 0.000201  max mem: 19053
+2023-06-14 10:41:44,213 DTST.trainer INFO: eta: 6:58:41  iter: 13460  loss_p_loss: 0.1347 (0.1654)  loss_n_loss: 0.0002 (0.0016)  time: 1.8874 (3.8412)  data: 0.0003 (0.3397)  lr: 0.000201  max mem: 19053
+2023-06-14 10:42:45,845 DTST.trainer INFO: eta: 6:57:17  iter: 13480  loss_p_loss: 0.1196 (0.1653)  loss_n_loss: 0.0002 (0.0016)  time: 1.8890 (3.8401)  data: 0.0002 (0.3392)  lr: 0.000201  max mem: 19053
+2023-06-14 10:43:42,713 DTST.trainer INFO: eta: 6:55:50  iter: 13500  loss_p_loss: 0.1338 (0.1653)  loss_n_loss: 0.0002 (0.0016)  time: 1.8888 (3.8386)  data: 0.0003 (0.3387)  lr: 0.000201  max mem: 19053
+2023-06-14 10:44:44,179 DTST.trainer INFO: eta: 6:54:26  iter: 13520  loss_p_loss: 0.1230 (0.1652)  loss_n_loss: 0.0002 (0.0016)  time: 1.8885 (3.8375)  data: 0.0002 (0.3382)  lr: 0.000201  max mem: 19053
+2023-06-14 10:45:31,534 DTST.trainer INFO: eta: 6:52:56  iter: 13540  loss_p_loss: 0.1149 (0.1652)  loss_n_loss: 0.0002 (0.0016)  time: 1.8883 (3.8353)  data: 0.0003 (0.3377)  lr: 0.000201  max mem: 19053
+2023-06-14 10:46:18,860 DTST.trainer INFO: eta: 6:51:25  iter: 13560  loss_p_loss: 0.1482 (0.1652)  loss_n_loss: 0.0003 (0.0016)  time: 1.8891 (3.8331)  data: 0.0003 (0.3372)  lr: 0.000201  max mem: 19053
+2023-06-14 10:47:18,565 DTST.trainer INFO: eta: 6:50:00  iter: 13580  loss_p_loss: 0.1279 (0.1651)  loss_n_loss: 0.0002 (0.0016)  time: 1.8887 (3.8319)  data: 0.0003 (0.3367)  lr: 0.000201  max mem: 19053
+2023-06-14 10:48:13,817 DTST.trainer INFO: eta: 6:48:33  iter: 13600  loss_p_loss: 0.1201 (0.1651)  loss_n_loss: 0.0002 (0.0015)  time: 1.8875 (3.8303)  data: 0.0002 (0.3362)  lr: 0.000200  max mem: 19053
+2023-06-14 10:49:53,699 DTST.trainer INFO: eta: 6:47:28  iter: 13620  loss_p_loss: 0.1242 (0.1650)  loss_n_loss: 0.0002 (0.0015)  time: 1.8887 (3.8320)  data: 0.0003 (0.3357)  lr: 0.000200  max mem: 19053
+2023-06-14 10:50:47,224 DTST.trainer INFO: eta: 6:46:00  iter: 13640  loss_p_loss: 0.1098 (0.1649)  loss_n_loss: 0.0003 (0.0015)  time: 1.8875 (3.8303)  data: 0.0002 (0.3352)  lr: 0.000200  max mem: 19053
+2023-06-14 10:52:36,533 DTST.trainer INFO: eta: 6:44:59  iter: 13660  loss_p_loss: 0.1063 (0.1649)  loss_n_loss: 0.0002 (0.0015)  time: 1.8892 (3.8327)  data: 0.0003 (0.3347)  lr: 0.000200  max mem: 19053
+2023-06-14 10:53:38,102 DTST.trainer INFO: eta: 6:43:35  iter: 13680  loss_p_loss: 0.1234 (0.1648)  loss_n_loss: 0.0002 (0.0015)  time: 1.8888 (3.8316)  data: 0.0002 (0.3342)  lr: 0.000200  max mem: 19053
+2023-06-14 10:55:17,721 DTST.trainer INFO: eta: 6:42:29  iter: 13700  loss_p_loss: 0.1045 (0.1648)  loss_n_loss: 0.0002 (0.0015)  time: 1.8889 (3.8333)  data: 0.0003 (0.3337)  lr: 0.000200  max mem: 19053
+2023-06-14 10:56:33,806 DTST.trainer INFO: eta: 6:41:12  iter: 13720  loss_p_loss: 0.1348 (0.1647)  loss_n_loss: 0.0002 (0.0015)  time: 1.8886 (3.8332)  data: 0.0003 (0.3332)  lr: 0.000200  max mem: 19053
+2023-06-14 10:57:51,344 DTST.trainer INFO: eta: 6:39:56  iter: 13740  loss_p_loss: 0.1202 (0.1647)  loss_n_loss: 0.0002 (0.0015)  time: 1.8882 (3.8333)  data: 0.0003 (0.3327)  lr: 0.000200  max mem: 19053
+2023-06-14 10:58:52,963 DTST.trainer INFO: eta: 6:38:33  iter: 13760  loss_p_loss: 0.1291 (0.1646)  loss_n_loss: 0.0003 (0.0015)  time: 1.8888 (3.8322)  data: 0.0003 (0.3323)  lr: 0.000200  max mem: 19053
+2023-06-14 11:00:34,393 DTST.trainer INFO: eta: 6:37:27  iter: 13780  loss_p_loss: 0.1194 (0.1646)  loss_n_loss: 0.0002 (0.0015)  time: 1.8897 (3.8340)  data: 0.0003 (0.3318)  lr: 0.000200  max mem: 19053
+2023-06-14 11:02:04,373 DTST.trainer INFO: eta: 6:36:16  iter: 13800  loss_p_loss: 0.1245 (0.1645)  loss_n_loss: 0.0003 (0.0015)  time: 1.8916 (3.8350)  data: 0.0002 (0.3313)  lr: 0.000200  max mem: 19053
+2023-06-14 11:02:58,046 DTST.trainer INFO: eta: 6:34:49  iter: 13820  loss_p_loss: 0.1095 (0.1645)  loss_n_loss: 0.0002 (0.0015)  time: 1.8886 (3.8333)  data: 0.0003 (0.3308)  lr: 0.000200  max mem: 19053
+2023-06-14 11:03:45,453 DTST.trainer INFO: eta: 6:33:20  iter: 13840  loss_p_loss: 0.1167 (0.1644)  loss_n_loss: 0.0002 (0.0015)  time: 1.8909 (3.8312)  data: 0.0002 (0.3303)  lr: 0.000200  max mem: 19053
+2023-06-14 11:04:39,234 DTST.trainer INFO: eta: 6:31:53  iter: 13860  loss_p_loss: 0.1063 (0.1643)  loss_n_loss: 0.0002 (0.0015)  time: 1.8919 (3.8296)  data: 0.0003 (0.3299)  lr: 0.000200  max mem: 19053
+2023-06-14 11:05:33,063 DTST.trainer INFO: eta: 6:30:26  iter: 13880  loss_p_loss: 0.1139 (0.1643)  loss_n_loss: 0.0002 (0.0015)  time: 1.8921 (3.8279)  data: 0.0003 (0.3294)  lr: 0.000199  max mem: 19053
+2023-06-14 11:06:47,503 DTST.trainer INFO: eta: 6:29:09  iter: 13900  loss_p_loss: 0.1325 (0.1643)  loss_n_loss: 0.0002 (0.0015)  time: 1.8948 (3.8278)  data: 0.0003 (0.3289)  lr: 0.000199  max mem: 19053
+2023-06-14 11:08:14,922 DTST.trainer INFO: eta: 6:27:57  iter: 13920  loss_p_loss: 0.1106 (0.1642)  loss_n_loss: 0.0002 (0.0015)  time: 1.8964 (3.8285)  data: 0.0003 (0.3285)  lr: 0.000199  max mem: 19053
+2023-06-14 11:09:48,747 DTST.trainer INFO: eta: 6:26:48  iter: 13940  loss_p_loss: 0.1313 (0.1642)  loss_n_loss: 0.0002 (0.0015)  time: 1.8928 (3.8298)  data: 0.0003 (0.3280)  lr: 0.000199  max mem: 19053
+2023-06-14 11:11:19,193 DTST.trainer INFO: eta: 6:25:37  iter: 13960  loss_p_loss: 0.1089 (0.1641)  loss_n_loss: 0.0003 (0.0015)  time: 1.8936 (3.8308)  data: 0.0003 (0.3275)  lr: 0.000199  max mem: 19053
+2023-06-14 11:12:49,397 DTST.trainer INFO: eta: 6:24:27  iter: 13980  loss_p_loss: 0.1073 (0.1641)  loss_n_loss: 0.0002 (0.0015)  time: 1.8951 (3.8317)  data: 0.0002 (0.3270)  lr: 0.000199  max mem: 19053
+2023-06-14 11:13:43,512 DTST.trainer INFO: eta: 6:23:00  iter: 14000  loss_p_loss: 0.1363 (0.1640)  loss_n_loss: 0.0003 (0.0015)  time: 1.8976 (3.8301)  data: 0.0004 (0.3266)  lr: 0.000199  max mem: 19053
+2023-06-14 11:13:43,837 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 11:15:05,119 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4920/0.5971/0.8563.
+2023-06-14 11:15:05,120 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.8258/0.8355.
+2023-06-14 11:15:05,120 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.4109/0.8777.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8068/0.9672.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3608/0.4384.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0736/0.0864.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2737/0.3202.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3256/0.4295.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3486/0.4116.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8572/0.9028.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7388/0.7604.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.5023/0.5490.
+2023-06-14 11:15:05,121 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3429/0.5732.
+2023-06-14 11:15:05,122 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8352/0.9599.
+2023-06-14 11:15:05,122 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2266/0.2547.
+2023-06-14 11:15:05,122 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3699/0.4595.
+2023-06-14 11:15:05,122 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5732/0.7282.
+2023-06-14 11:16:05,099 DTST.trainer INFO: eta: 6:22:11  iter: 14020  loss_p_loss: 0.1149 (0.1640)  loss_n_loss: 0.0003 (0.0015)  time: 1.8904 (3.8348)  data: 0.0003 (0.3319)  lr: 0.000199  max mem: 19053
+2023-06-14 11:17:49,711 DTST.trainer INFO: eta: 6:21:07  iter: 14040  loss_p_loss: 0.0931 (0.1639)  loss_n_loss: 0.0002 (0.0015)  time: 1.8901 (3.8368)  data: 0.0003 (0.3315)  lr: 0.000199  max mem: 19053
+2023-06-14 11:19:05,796 DTST.trainer INFO: eta: 6:19:50  iter: 14060  loss_p_loss: 0.1160 (0.1638)  loss_n_loss: 0.0002 (0.0015)  time: 1.8878 (3.8367)  data: 0.0002 (0.3310)  lr: 0.000199  max mem: 19053
+2023-06-14 11:20:07,430 DTST.trainer INFO: eta: 6:18:26  iter: 14080  loss_p_loss: 0.1173 (0.1638)  loss_n_loss: 0.0002 (0.0015)  time: 1.8881 (3.8356)  data: 0.0003 (0.3305)  lr: 0.000199  max mem: 19053
+2023-06-14 11:21:23,102 DTST.trainer INFO: eta: 6:17:09  iter: 14100  loss_p_loss: 0.1027 (0.1637)  loss_n_loss: 0.0002 (0.0015)  time: 1.8885 (3.8356)  data: 0.0002 (0.3301)  lr: 0.000199  max mem: 19053
+2023-06-14 11:22:35,905 DTST.trainer INFO: eta: 6:15:51  iter: 14120  loss_p_loss: 0.1061 (0.1637)  loss_n_loss: 0.0002 (0.0015)  time: 1.8888 (3.8353)  data: 0.0002 (0.3296)  lr: 0.000199  max mem: 19053
+2023-06-14 11:23:53,370 DTST.trainer INFO: eta: 6:14:35  iter: 14140  loss_p_loss: 0.1098 (0.1636)  loss_n_loss: 0.0002 (0.0015)  time: 1.8890 (3.8353)  data: 0.0003 (0.3291)  lr: 0.000198  max mem: 19053
+2023-06-14 11:25:16,929 DTST.trainer INFO: eta: 6:13:21  iter: 14160  loss_p_loss: 0.0948 (0.1635)  loss_n_loss: 0.0002 (0.0015)  time: 1.8892 (3.8358)  data: 0.0002 (0.3287)  lr: 0.000198  max mem: 19053
+2023-06-14 11:26:13,974 DTST.trainer INFO: eta: 6:11:56  iter: 14180  loss_p_loss: 0.1205 (0.1635)  loss_n_loss: 0.0002 (0.0015)  time: 1.8905 (3.8344)  data: 0.0003 (0.3282)  lr: 0.000198  max mem: 19053
+2023-06-14 11:27:20,339 DTST.trainer INFO: eta: 6:10:35  iter: 14200  loss_p_loss: 0.1286 (0.1634)  loss_n_loss: 0.0002 (0.0015)  time: 1.8897 (3.8337)  data: 0.0002 (0.3277)  lr: 0.000198  max mem: 19053
+2023-06-14 11:28:31,082 DTST.trainer INFO: eta: 6:09:16  iter: 14220  loss_p_loss: 0.1104 (0.1634)  loss_n_loss: 0.0002 (0.0015)  time: 1.8892 (3.8333)  data: 0.0002 (0.3273)  lr: 0.000198  max mem: 19053
+2023-06-14 11:29:19,916 DTST.trainer INFO: eta: 6:07:48  iter: 14240  loss_p_loss: 0.1066 (0.1633)  loss_n_loss: 0.0002 (0.0015)  time: 1.8895 (3.8313)  data: 0.0002 (0.3268)  lr: 0.000198  max mem: 19053
+2023-06-14 11:30:19,755 DTST.trainer INFO: eta: 6:06:25  iter: 14260  loss_p_loss: 0.0988 (0.1632)  loss_n_loss: 0.0002 (0.0015)  time: 1.8904 (3.8302)  data: 0.0002 (0.3264)  lr: 0.000198  max mem: 19053
+2023-06-14 11:31:13,536 DTST.trainer INFO: eta: 6:04:59  iter: 14280  loss_p_loss: 0.1251 (0.1632)  loss_n_loss: 0.0002 (0.0015)  time: 1.8922 (3.8286)  data: 0.0003 (0.3259)  lr: 0.000198  max mem: 19053
+2023-06-14 11:32:00,948 DTST.trainer INFO: eta: 6:03:31  iter: 14300  loss_p_loss: 0.1230 (0.1631)  loss_n_loss: 0.0002 (0.0015)  time: 1.8942 (3.8265)  data: 0.0003 (0.3254)  lr: 0.000198  max mem: 19053
+2023-06-14 11:33:02,321 DTST.trainer INFO: eta: 6:02:08  iter: 14320  loss_p_loss: 0.1128 (0.1631)  loss_n_loss: 0.0002 (0.0015)  time: 1.8959 (3.8255)  data: 0.0002 (0.3250)  lr: 0.000198  max mem: 19053
+2023-06-14 11:34:43,311 DTST.trainer INFO: eta: 6:01:01  iter: 14340  loss_p_loss: 0.1119 (0.1630)  loss_n_loss: 0.0002 (0.0015)  time: 1.8960 (3.8272)  data: 0.0002 (0.3245)  lr: 0.000198  max mem: 19053
+2023-06-14 11:35:43,372 DTST.trainer INFO: eta: 5:59:38  iter: 14360  loss_p_loss: 0.1123 (0.1629)  loss_n_loss: 0.0002 (0.0015)  time: 1.8981 (3.8260)  data: 0.0002 (0.3241)  lr: 0.000198  max mem: 19053
+2023-06-14 11:36:57,558 DTST.trainer INFO: eta: 5:58:21  iter: 14380  loss_p_loss: 0.1201 (0.1629)  loss_n_loss: 0.0002 (0.0015)  time: 1.8981 (3.8259)  data: 0.0002 (0.3236)  lr: 0.000198  max mem: 19053
+2023-06-14 11:38:14,979 DTST.trainer INFO: eta: 5:57:05  iter: 14400  loss_p_loss: 0.1137 (0.1628)  loss_n_loss: 0.0002 (0.0015)  time: 1.9021 (3.8259)  data: 0.0002 (0.3232)  lr: 0.000198  max mem: 19053
+2023-06-14 11:39:08,734 DTST.trainer INFO: eta: 5:55:39  iter: 14420  loss_p_loss: 0.1272 (0.1628)  loss_n_loss: 0.0002 (0.0015)  time: 1.9004 (3.8243)  data: 0.0002 (0.3227)  lr: 0.000197  max mem: 19053
+2023-06-14 11:40:01,113 DTST.trainer INFO: eta: 5:54:14  iter: 14440  loss_p_loss: 0.1107 (0.1627)  loss_n_loss: 0.0002 (0.0015)  time: 1.9020 (3.8227)  data: 0.0002 (0.3223)  lr: 0.000197  max mem: 19053
+2023-06-14 11:40:54,949 DTST.trainer INFO: eta: 5:52:48  iter: 14460  loss_p_loss: 0.1067 (0.1627)  loss_n_loss: 0.0002 (0.0015)  time: 1.9014 (3.8211)  data: 0.0002 (0.3218)  lr: 0.000197  max mem: 19053
+2023-06-14 11:41:59,757 DTST.trainer INFO: eta: 5:51:28  iter: 14480  loss_p_loss: 0.1151 (0.1626)  loss_n_loss: 0.0002 (0.0015)  time: 1.9003 (3.8203)  data: 0.0002 (0.3214)  lr: 0.000197  max mem: 19053
+2023-06-14 11:43:57,853 DTST.trainer INFO: eta: 5:50:27  iter: 14500  loss_p_loss: 0.1157 (0.1626)  loss_n_loss: 0.0002 (0.0015)  time: 1.8939 (3.8232)  data: 0.0002 (0.3210)  lr: 0.000197  max mem: 19053
+2023-06-14 11:44:45,353 DTST.trainer INFO: eta: 5:49:00  iter: 14520  loss_p_loss: 0.1110 (0.1626)  loss_n_loss: 0.0002 (0.0015)  time: 1.8928 (3.8212)  data: 0.0003 (0.3205)  lr: 0.000197  max mem: 19053
+2023-06-14 11:45:47,055 DTST.trainer INFO: eta: 5:47:38  iter: 14540  loss_p_loss: 0.1241 (0.1625)  loss_n_loss: 0.0002 (0.0015)  time: 1.8909 (3.8202)  data: 0.0003 (0.3201)  lr: 0.000197  max mem: 19053
+2023-06-14 11:46:34,561 DTST.trainer INFO: eta: 5:46:10  iter: 14560  loss_p_loss: 0.1090 (0.1625)  loss_n_loss: 0.0002 (0.0015)  time: 1.8920 (3.8182)  data: 0.0003 (0.3196)  lr: 0.000197  max mem: 19053
+2023-06-14 11:48:04,339 DTST.trainer INFO: eta: 5:44:59  iter: 14580  loss_p_loss: 0.1076 (0.1624)  loss_n_loss: 0.0002 (0.0015)  time: 1.8921 (3.8191)  data: 0.0002 (0.3192)  lr: 0.000197  max mem: 19053
+2023-06-14 11:49:34,108 DTST.trainer INFO: eta: 5:43:48  iter: 14600  loss_p_loss: 0.1114 (0.1624)  loss_n_loss: 0.0001 (0.0015)  time: 1.8915 (3.8200)  data: 0.0002 (0.3188)  lr: 0.000197  max mem: 19053
+2023-06-14 11:50:45,488 DTST.trainer INFO: eta: 5:42:29  iter: 14620  loss_p_loss: 0.1150 (0.1623)  loss_n_loss: 0.0001 (0.0015)  time: 1.8955 (3.8197)  data: 0.0003 (0.3183)  lr: 0.000197  max mem: 19053
+2023-06-14 11:51:42,570 DTST.trainer INFO: eta: 5:41:06  iter: 14640  loss_p_loss: 0.1022 (0.1622)  loss_n_loss: 0.0002 (0.0015)  time: 1.8991 (3.8184)  data: 0.0002 (0.3179)  lr: 0.000197  max mem: 19053
+2023-06-14 11:52:30,220 DTST.trainer INFO: eta: 5:39:39  iter: 14660  loss_p_loss: 0.1138 (0.1622)  loss_n_loss: 0.0002 (0.0015)  time: 1.9023 (3.8164)  data: 0.0003 (0.3175)  lr: 0.000197  max mem: 19053
+2023-06-14 11:53:38,852 DTST.trainer INFO: eta: 5:38:20  iter: 14680  loss_p_loss: 0.1065 (0.1621)  loss_n_loss: 0.0002 (0.0015)  time: 1.9046 (3.8159)  data: 0.0003 (0.3170)  lr: 0.000196  max mem: 19053
+2023-06-14 11:54:32,881 DTST.trainer INFO: eta: 5:36:56  iter: 14700  loss_p_loss: 0.1166 (0.1621)  loss_n_loss: 0.0003 (0.0015)  time: 1.9014 (3.8144)  data: 0.0003 (0.3166)  lr: 0.000196  max mem: 19053
+2023-06-14 11:55:39,448 DTST.trainer INFO: eta: 5:35:36  iter: 14720  loss_p_loss: 0.1010 (0.1620)  loss_n_loss: 0.0002 (0.0014)  time: 1.9000 (3.8137)  data: 0.0002 (0.3162)  lr: 0.000196  max mem: 19053
+2023-06-14 11:57:06,762 DTST.trainer INFO: eta: 5:34:24  iter: 14740  loss_p_loss: 0.1166 (0.1620)  loss_n_loss: 0.0002 (0.0014)  time: 1.8998 (3.8145)  data: 0.0002 (0.3157)  lr: 0.000196  max mem: 19053
+2023-06-14 11:58:40,469 DTST.trainer INFO: eta: 5:33:13  iter: 14760  loss_p_loss: 0.1122 (0.1619)  loss_n_loss: 0.0002 (0.0014)  time: 1.9005 (3.8156)  data: 0.0002 (0.3153)  lr: 0.000196  max mem: 19053
+2023-06-14 11:59:42,275 DTST.trainer INFO: eta: 5:31:52  iter: 14780  loss_p_loss: 0.1314 (0.1619)  loss_n_loss: 0.0002 (0.0014)  time: 1.9022 (3.8147)  data: 0.0002 (0.3149)  lr: 0.000196  max mem: 19053
+2023-06-14 12:00:53,699 DTST.trainer INFO: eta: 5:30:34  iter: 14800  loss_p_loss: 0.1245 (0.1619)  loss_n_loss: 0.0002 (0.0014)  time: 1.9028 (3.8143)  data: 0.0002 (0.3145)  lr: 0.000196  max mem: 19053
+2023-06-14 12:02:53,239 DTST.trainer INFO: eta: 5:29:33  iter: 14820  loss_p_loss: 0.1037 (0.1618)  loss_n_loss: 0.0002 (0.0014)  time: 1.9071 (3.8172)  data: 0.0002 (0.3140)  lr: 0.000196  max mem: 19053
+2023-06-14 12:03:47,395 DTST.trainer INFO: eta: 5:28:09  iter: 14840  loss_p_loss: 0.1145 (0.1617)  loss_n_loss: 0.0002 (0.0014)  time: 1.9069 (3.8158)  data: 0.0002 (0.3136)  lr: 0.000196  max mem: 19053
+2023-06-14 12:04:48,015 DTST.trainer INFO: eta: 5:26:47  iter: 14860  loss_p_loss: 0.1182 (0.1617)  loss_n_loss: 0.0002 (0.0014)  time: 1.9073 (3.8147)  data: 0.0002 (0.3132)  lr: 0.000196  max mem: 19053
+2023-06-14 12:05:40,577 DTST.trainer INFO: eta: 5:25:23  iter: 14880  loss_p_loss: 0.1371 (0.1617)  loss_n_loss: 0.0002 (0.0014)  time: 1.9072 (3.8131)  data: 0.0002 (0.3128)  lr: 0.000196  max mem: 19053
+2023-06-14 12:06:28,438 DTST.trainer INFO: eta: 5:23:57  iter: 14900  loss_p_loss: 0.0976 (0.1616)  loss_n_loss: 0.0002 (0.0014)  time: 1.9068 (3.8112)  data: 0.0003 (0.3123)  lr: 0.000196  max mem: 19053
+2023-06-14 12:07:16,359 DTST.trainer INFO: eta: 5:22:31  iter: 14920  loss_p_loss: 0.1276 (0.1616)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8093)  data: 0.0003 (0.3119)  lr: 0.000196  max mem: 19053
+2023-06-14 12:08:17,093 DTST.trainer INFO: eta: 5:21:09  iter: 14940  loss_p_loss: 0.1079 (0.1615)  loss_n_loss: 0.0002 (0.0014)  time: 1.9088 (3.8083)  data: 0.0003 (0.3115)  lr: 0.000196  max mem: 19053
+2023-06-14 12:09:24,244 DTST.trainer INFO: eta: 5:19:50  iter: 14960  loss_p_loss: 0.1184 (0.1615)  loss_n_loss: 0.0002 (0.0014)  time: 1.9095 (3.8077)  data: 0.0003 (0.3111)  lr: 0.000195  max mem: 19053
+2023-06-14 12:10:42,519 DTST.trainer INFO: eta: 5:18:35  iter: 14980  loss_p_loss: 0.1148 (0.1614)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8078)  data: 0.0003 (0.3107)  lr: 0.000195  max mem: 19053
+2023-06-14 12:26:59,775 DTST.trainer INFO: eta: 5:22:19  iter: 15000  loss_p_loss: 0.1255 (0.1613)  loss_n_loss: 0.0002 (0.0014)  time: 1.9083 (3.8679)  data: 0.0003 (0.3702)  lr: 0.000195  max mem: 19053
+2023-06-14 12:27:00,076 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 12:28:21,047 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4925/0.5973/0.8592.
+2023-06-14 12:28:21,052 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.8330/0.8443.
+2023-06-14 12:28:21,052 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.4172/0.8653.
+2023-06-14 12:28:21,052 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8080/0.9671.
+2023-06-14 12:28:21,052 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3610/0.4458.
+2023-06-14 12:28:21,052 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0799/0.0940.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2711/0.3151.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3259/0.4252.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3471/0.4133.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8580/0.9047.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7425/0.7646.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.4927/0.5378.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3401/0.5741.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8347/0.9581.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2224/0.2487.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3723/0.4688.
+2023-06-14 12:28:21,053 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5736/0.7295.
+2023-06-14 12:29:54,464 DTST.trainer INFO: eta: 5:21:34  iter: 15020  loss_p_loss: 0.1210 (0.1613)  loss_n_loss: 0.0002 (0.0014)  time: 1.9045 (3.8744)  data: 0.0003 (0.3751)  lr: 0.000195  max mem: 19053
+2023-06-14 12:30:56,878 DTST.trainer INFO: eta: 5:20:11  iter: 15040  loss_p_loss: 0.1145 (0.1612)  loss_n_loss: 0.0001 (0.0014)  time: 1.9080 (3.8734)  data: 0.0003 (0.3746)  lr: 0.000195  max mem: 19053
+2023-06-14 12:32:15,177 DTST.trainer INFO: eta: 5:18:54  iter: 15060  loss_p_loss: 0.1236 (0.1612)  loss_n_loss: 0.0002 (0.0014)  time: 1.9098 (3.8734)  data: 0.0003 (0.3741)  lr: 0.000195  max mem: 19053
+2023-06-14 12:33:22,408 DTST.trainer INFO: eta: 5:17:33  iter: 15080  loss_p_loss: 0.1108 (0.1612)  loss_n_loss: 0.0002 (0.0014)  time: 1.9089 (3.8727)  data: 0.0003 (0.3736)  lr: 0.000195  max mem: 19053
+2023-06-14 12:34:10,355 DTST.trainer INFO: eta: 5:16:06  iter: 15100  loss_p_loss: 0.1133 (0.1611)  loss_n_loss: 0.0001 (0.0014)  time: 1.9100 (3.8708)  data: 0.0003 (0.3731)  lr: 0.000195  max mem: 19053
+2023-06-14 12:34:58,201 DTST.trainer INFO: eta: 5:14:39  iter: 15120  loss_p_loss: 0.1170 (0.1611)  loss_n_loss: 0.0001 (0.0014)  time: 1.9079 (3.8688)  data: 0.0003 (0.3726)  lr: 0.000195  max mem: 19053
+2023-06-14 12:35:46,033 DTST.trainer INFO: eta: 5:13:12  iter: 15140  loss_p_loss: 0.0998 (0.1610)  loss_n_loss: 0.0001 (0.0014)  time: 1.9099 (3.8669)  data: 0.0003 (0.3722)  lr: 0.000195  max mem: 19053
+2023-06-14 12:36:38,741 DTST.trainer INFO: eta: 5:11:47  iter: 15160  loss_p_loss: 0.1165 (0.1610)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8652)  data: 0.0002 (0.3717)  lr: 0.000195  max mem: 19053
+2023-06-14 12:38:35,757 DTST.trainer INFO: eta: 5:10:43  iter: 15180  loss_p_loss: 0.1413 (0.1610)  loss_n_loss: 0.0002 (0.0014)  time: 1.9095 (3.8679)  data: 0.0003 (0.3712)  lr: 0.000195  max mem: 19053
+2023-06-14 12:39:36,581 DTST.trainer INFO: eta: 5:09:20  iter: 15200  loss_p_loss: 0.1172 (0.1609)  loss_n_loss: 0.0002 (0.0014)  time: 1.9103 (3.8668)  data: 0.0003 (0.3707)  lr: 0.000195  max mem: 19053
+2023-06-14 12:41:22,264 DTST.trainer INFO: eta: 5:08:12  iter: 15220  loss_p_loss: 0.1103 (0.1609)  loss_n_loss: 0.0002 (0.0014)  time: 1.9085 (3.8686)  data: 0.0003 (0.3702)  lr: 0.000194  max mem: 19053
+2023-06-14 12:42:53,634 DTST.trainer INFO: eta: 5:06:59  iter: 15240  loss_p_loss: 0.1008 (0.1608)  loss_n_loss: 0.0002 (0.0014)  time: 1.9098 (3.8696)  data: 0.0003 (0.3697)  lr: 0.000194  max mem: 19053
+2023-06-14 12:44:53,912 DTST.trainer INFO: eta: 5:05:55  iter: 15260  loss_p_loss: 0.1094 (0.1608)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8724)  data: 0.0003 (0.3692)  lr: 0.000194  max mem: 19053
+2023-06-14 12:45:48,237 DTST.trainer INFO: eta: 5:04:30  iter: 15280  loss_p_loss: 0.1127 (0.1608)  loss_n_loss: 0.0002 (0.0014)  time: 1.9088 (3.8709)  data: 0.0003 (0.3687)  lr: 0.000194  max mem: 19053
+2023-06-14 12:46:45,906 DTST.trainer INFO: eta: 5:03:06  iter: 15300  loss_p_loss: 0.1355 (0.1607)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8696)  data: 0.0003 (0.3683)  lr: 0.000194  max mem: 19053
+2023-06-14 12:48:17,214 DTST.trainer INFO: eta: 5:01:53  iter: 15320  loss_p_loss: 0.1333 (0.1607)  loss_n_loss: 0.0002 (0.0014)  time: 1.9111 (3.8705)  data: 0.0003 (0.3678)  lr: 0.000194  max mem: 19053
+2023-06-14 12:49:48,574 DTST.trainer INFO: eta: 5:00:40  iter: 15340  loss_p_loss: 0.1049 (0.1607)  loss_n_loss: 0.0002 (0.0014)  time: 1.9068 (3.8714)  data: 0.0003 (0.3673)  lr: 0.000194  max mem: 19053
+2023-06-14 12:50:42,903 DTST.trainer INFO: eta: 4:59:16  iter: 15360  loss_p_loss: 0.1028 (0.1606)  loss_n_loss: 0.0002 (0.0014)  time: 1.9080 (3.8699)  data: 0.0003 (0.3668)  lr: 0.000194  max mem: 19053
+2023-06-14 12:52:01,118 DTST.trainer INFO: eta: 4:57:59  iter: 15380  loss_p_loss: 0.1047 (0.1605)  loss_n_loss: 0.0001 (0.0014)  time: 1.9083 (3.8699)  data: 0.0003 (0.3663)  lr: 0.000194  max mem: 19053
+2023-06-14 12:52:55,482 DTST.trainer INFO: eta: 4:56:34  iter: 15400  loss_p_loss: 0.1275 (0.1605)  loss_n_loss: 0.0002 (0.0014)  time: 1.9078 (3.8684)  data: 0.0003 (0.3659)  lr: 0.000194  max mem: 19053
+2023-06-14 12:54:29,606 DTST.trainer INFO: eta: 4:55:22  iter: 15420  loss_p_loss: 0.1260 (0.1605)  loss_n_loss: 0.0002 (0.0014)  time: 1.9092 (3.8695)  data: 0.0003 (0.3654)  lr: 0.000194  max mem: 19053
+2023-06-14 12:55:17,461 DTST.trainer INFO: eta: 4:53:56  iter: 15440  loss_p_loss: 0.1145 (0.1604)  loss_n_loss: 0.0002 (0.0014)  time: 1.9081 (3.8676)  data: 0.0003 (0.3649)  lr: 0.000194  max mem: 19053
+2023-06-14 12:56:19,874 DTST.trainer INFO: eta: 4:52:34  iter: 15460  loss_p_loss: 0.1243 (0.1604)  loss_n_loss: 0.0002 (0.0014)  time: 1.9093 (3.8666)  data: 0.0003 (0.3645)  lr: 0.000194  max mem: 19053
+2023-06-14 12:57:14,099 DTST.trainer INFO: eta: 4:51:10  iter: 15480  loss_p_loss: 0.1317 (0.1604)  loss_n_loss: 0.0002 (0.0014)  time: 1.9082 (3.8651)  data: 0.0003 (0.3640)  lr: 0.000194  max mem: 19053
+2023-06-14 12:58:08,268 DTST.trainer INFO: eta: 4:49:46  iter: 15500  loss_p_loss: 0.1099 (0.1603)  loss_n_loss: 0.0002 (0.0014)  time: 1.9080 (3.8637)  data: 0.0003 (0.3635)  lr: 0.000193  max mem: 19053
+2023-06-14 12:59:42,778 DTST.trainer INFO: eta: 4:48:34  iter: 15520  loss_p_loss: 0.1061 (0.1603)  loss_n_loss: 0.0002 (0.0014)  time: 1.9082 (3.8648)  data: 0.0003 (0.3630)  lr: 0.000193  max mem: 19053
+2023-06-14 13:00:54,656 DTST.trainer INFO: eta: 4:47:15  iter: 15540  loss_p_loss: 0.0965 (0.1602)  loss_n_loss: 0.0002 (0.0014)  time: 1.9085 (3.8644)  data: 0.0003 (0.3626)  lr: 0.000193  max mem: 19053
+2023-06-14 13:02:45,095 DTST.trainer INFO: eta: 4:46:07  iter: 15560  loss_p_loss: 0.1292 (0.1602)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8665)  data: 0.0003 (0.3621)  lr: 0.000193  max mem: 19053
+2023-06-14 13:03:46,973 DTST.trainer INFO: eta: 4:44:45  iter: 15580  loss_p_loss: 0.1173 (0.1602)  loss_n_loss: 0.0002 (0.0014)  time: 1.9083 (3.8656)  data: 0.0002 (0.3617)  lr: 0.000193  max mem: 19053
+2023-06-14 13:05:05,218 DTST.trainer INFO: eta: 4:43:28  iter: 15600  loss_p_loss: 0.1026 (0.1601)  loss_n_loss: 0.0002 (0.0014)  time: 1.9086 (3.8656)  data: 0.0003 (0.3612)  lr: 0.000193  max mem: 19053
+2023-06-14 13:06:09,156 DTST.trainer INFO: eta: 4:42:07  iter: 15620  loss_p_loss: 0.1285 (0.1601)  loss_n_loss: 0.0002 (0.0014)  time: 1.9091 (3.8648)  data: 0.0003 (0.3607)  lr: 0.000193  max mem: 19053
+2023-06-14 13:07:03,486 DTST.trainer INFO: eta: 4:40:43  iter: 15640  loss_p_loss: 0.1148 (0.1600)  loss_n_loss: 0.0002 (0.0014)  time: 1.9099 (3.8633)  data: 0.0003 (0.3603)  lr: 0.000193  max mem: 19053
+2023-06-14 13:07:57,731 DTST.trainer INFO: eta: 4:39:20  iter: 15660  loss_p_loss: 0.1258 (0.1600)  loss_n_loss: 0.0002 (0.0014)  time: 1.9075 (3.8618)  data: 0.0002 (0.3598)  lr: 0.000193  max mem: 19053
+2023-06-14 13:09:38,458 DTST.trainer INFO: eta: 4:38:09  iter: 15680  loss_p_loss: 0.1206 (0.1599)  loss_n_loss: 0.0002 (0.0014)  time: 1.9079 (3.8633)  data: 0.0003 (0.3593)  lr: 0.000193  max mem: 19053
+2023-06-14 13:10:52,074 DTST.trainer INFO: eta: 4:36:51  iter: 15700  loss_p_loss: 0.1433 (0.1599)  loss_n_loss: 0.0002 (0.0014)  time: 1.9070 (3.8631)  data: 0.0003 (0.3589)  lr: 0.000193  max mem: 19053
+2023-06-14 13:11:46,298 DTST.trainer INFO: eta: 4:35:27  iter: 15720  loss_p_loss: 0.1094 (0.1598)  loss_n_loss: 0.0002 (0.0014)  time: 1.9075 (3.8616)  data: 0.0003 (0.3584)  lr: 0.000193  max mem: 19053
+2023-06-14 13:12:43,609 DTST.trainer INFO: eta: 4:34:05  iter: 15740  loss_p_loss: 0.1201 (0.1598)  loss_n_loss: 0.0002 (0.0014)  time: 1.9079 (3.8604)  data: 0.0003 (0.3580)  lr: 0.000193  max mem: 19053
+2023-06-14 13:13:36,373 DTST.trainer INFO: eta: 4:32:41  iter: 15760  loss_p_loss: 0.1213 (0.1598)  loss_n_loss: 0.0002 (0.0014)  time: 1.9075 (3.8588)  data: 0.0003 (0.3575)  lr: 0.000192  max mem: 19053
+2023-06-14 13:14:33,690 DTST.trainer INFO: eta: 4:31:18  iter: 15780  loss_p_loss: 0.1091 (0.1597)  loss_n_loss: 0.0002 (0.0014)  time: 1.9072 (3.8575)  data: 0.0002 (0.3571)  lr: 0.000192  max mem: 19053
+2023-06-14 13:15:21,559 DTST.trainer INFO: eta: 4:29:53  iter: 15800  loss_p_loss: 0.1099 (0.1597)  loss_n_loss: 0.0002 (0.0014)  time: 1.9084 (3.8557)  data: 0.0002 (0.3566)  lr: 0.000192  max mem: 19053
+2023-06-14 13:16:14,267 DTST.trainer INFO: eta: 4:28:30  iter: 15820  loss_p_loss: 0.1156 (0.1596)  loss_n_loss: 0.0002 (0.0014)  time: 1.9087 (3.8541)  data: 0.0002 (0.3562)  lr: 0.000192  max mem: 19053
+2023-06-14 13:17:08,570 DTST.trainer INFO: eta: 4:27:07  iter: 15840  loss_p_loss: 0.1081 (0.1596)  loss_n_loss: 0.0002 (0.0014)  time: 1.9091 (3.8527)  data: 0.0002 (0.3557)  lr: 0.000192  max mem: 19053
+2023-06-14 13:18:12,223 DTST.trainer INFO: eta: 4:25:46  iter: 15860  loss_p_loss: 0.1071 (0.1595)  loss_n_loss: 0.0002 (0.0014)  time: 1.9089 (3.8519)  data: 0.0003 (0.3553)  lr: 0.000192  max mem: 19053
+2023-06-14 13:19:35,380 DTST.trainer INFO: eta: 4:24:31  iter: 15880  loss_p_loss: 0.1040 (0.1594)  loss_n_loss: 0.0002 (0.0014)  time: 1.9089 (3.8523)  data: 0.0003 (0.3548)  lr: 0.000192  max mem: 19053
+2023-06-14 13:20:36,124 DTST.trainer INFO: eta: 4:23:10  iter: 15900  loss_p_loss: 0.1064 (0.1594)  loss_n_loss: 0.0002 (0.0014)  time: 1.9079 (3.8512)  data: 0.0003 (0.3544)  lr: 0.000192  max mem: 19053
+2023-06-14 13:21:54,624 DTST.trainer INFO: eta: 4:21:53  iter: 15920  loss_p_loss: 0.1185 (0.1593)  loss_n_loss: 0.0002 (0.0014)  time: 1.9097 (3.8513)  data: 0.0003 (0.3539)  lr: 0.000192  max mem: 19053
+2023-06-14 13:22:56,911 DTST.trainer INFO: eta: 4:20:32  iter: 15940  loss_p_loss: 0.1464 (0.1594)  loss_n_loss: 0.0004 (0.0014)  time: 1.9076 (3.8504)  data: 0.0003 (0.3535)  lr: 0.000192  max mem: 19053
+2023-06-14 13:24:15,293 DTST.trainer INFO: eta: 4:19:15  iter: 15960  loss_p_loss: 0.1222 (0.1594)  loss_n_loss: 0.0003 (0.0014)  time: 1.9110 (3.8505)  data: 0.0003 (0.3530)  lr: 0.000192  max mem: 19053
+2023-06-14 13:25:41,793 DTST.trainer INFO: eta: 4:18:01  iter: 15980  loss_p_loss: 0.1276 (0.1594)  loss_n_loss: 0.0003 (0.0014)  time: 1.9089 (3.8511)  data: 0.0003 (0.3526)  lr: 0.000192  max mem: 19053
+2023-06-14 13:27:00,184 DTST.trainer INFO: eta: 4:16:44  iter: 16000  loss_p_loss: 0.1101 (0.1593)  loss_n_loss: 0.0002 (0.0014)  time: 1.9080 (3.8512)  data: 0.0003 (0.3522)  lr: 0.000192  max mem: 19053
+2023-06-14 13:27:00,510 DTST.tester INFO: >>>>>>>>>>>>>>>> Start Testing >>>>>>>>>>>>>>>>
+2023-06-14 13:28:22,412 DTST.tester INFO: Val result: mIoU/mAcc/allAcc 0.4917/0.5978/0.8609.
+2023-06-14 13:28:22,412 DTST.tester INFO: Class_0 road Result: iou/accuracy 0.8386/0.8510.
+2023-06-14 13:28:22,412 DTST.tester INFO: Class_1 sidewalk Result: iou/accuracy 0.4233/0.8585.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_2 building Result: iou/accuracy 0.8076/0.9672.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_3 wall Result: iou/accuracy 0.3666/0.4645.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_4 fence Result: iou/accuracy 0.0845/0.0996.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_5 pole Result: iou/accuracy 0.2696/0.3123.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_6 light Result: iou/accuracy 0.3238/0.4321.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_7 sign Result: iou/accuracy 0.3429/0.4111.
+2023-06-14 13:28:22,413 DTST.tester INFO: Class_8 vegetation Result: iou/accuracy 0.8578/0.9043.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_9 sky Result: iou/accuracy 0.7399/0.7607.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_10 person Result: iou/accuracy 0.4822/0.5254.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_11 rider Result: iou/accuracy 0.3378/0.5740.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_12 car Result: iou/accuracy 0.8336/0.9566.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_13 bus Result: iou/accuracy 0.2074/0.2300.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_14 motocycle Result: iou/accuracy 0.3774/0.4929.
+2023-06-14 13:28:22,414 DTST.tester INFO: Class_15 bicycle Result: iou/accuracy 0.5747/0.7246.
+2023-06-14 13:30:19,200 DTST.trainer INFO: eta: 4:15:57  iter: 16020  loss_p_loss: 0.1042 (0.1593)  loss_n_loss: 0.0002 (0.0014)  time: 1.9068 (3.8588)  data: 0.0003 (0.3569)  lr: 0.000192  max mem: 19053
+2023-06-14 13:31:19,926 DTST.trainer INFO: eta: 4:14:36  iter: 16040  loss_p_loss: 0.1739 (0.1594)  loss_n_loss: 0.0003 (0.0013)  time: 1.9075 (3.8577)  data: 0.0002 (0.3564)  lr: 0.000191  max mem: 19053
+2023-06-14 13:32:22,111 DTST.trainer INFO: eta: 4:13:15  iter: 16060  loss_p_loss: 0.1426 (0.1594)  loss_n_loss: 0.0004 (0.0013)  time: 1.9079 (3.8568)  data: 0.0003 (0.3560)  lr: 0.000191  max mem: 19053
+2023-06-14 13:33:10,018 DTST.trainer INFO: eta: 4:11:51  iter: 16080  loss_p_loss: 0.1388 (0.1594)  loss_n_loss: 0.0004 (0.0013)  time: 1.9083 (3.8550)  data: 0.0003 (0.3555)  lr: 0.000191  max mem: 19053
+2023-06-14 13:34:41,327 DTST.trainer INFO: eta: 4:10:37  iter: 16100  loss_p_loss: 0.1323 (0.1593)  loss_n_loss: 0.0003 (0.0013)  time: 1.9078 (3.8559)  data: 0.0003 (0.3551)  lr: 0.000191  max mem: 19053
+2023-06-14 13:35:54,935 DTST.trainer INFO: eta: 4:09:19  iter: 16120  loss_p_loss: 0.1106 (0.1593)  loss_n_loss: 0.0003 (0.0013)  time: 1.9073 (3.8557)  data: 0.0003 (0.3546)  lr: 0.000191  max mem: 19053
+2023-06-14 13:37:25,924 DTST.trainer INFO: eta: 4:08:06  iter: 16140  loss_p_loss: 0.1132 (0.1592)  loss_n_loss: 0.0002 (0.0013)  time: 1.9083 (3.8565)  data: 0.0003 (0.3542)  lr: 0.000191  max mem: 19053
+2023-06-14 13:38:13,746 DTST.trainer INFO: eta: 4:06:42  iter: 16160  loss_p_loss: 0.1093 (0.1592)  loss_n_loss: 0.0003 (0.0013)  time: 1.9083 (3.8547)  data: 0.0003 (0.3538)  lr: 0.000191  max mem: 19053
+2023-06-14 13:39:01,692 DTST.trainer INFO: eta: 4:05:18  iter: 16180  loss_p_loss: 0.1148 (0.1591)  loss_n_loss: 0.0002 (0.0013)  time: 1.9075 (3.8529)  data: 0.0003 (0.3533)  lr: 0.000191  max mem: 19053
+2023-06-14 13:39:55,943 DTST.trainer INFO: eta: 4:03:55  iter: 16200  loss_p_loss: 0.1055 (0.1591)  loss_n_loss: 0.0002 (0.0013)  time: 1.9076 (3.8515)  data: 0.0003 (0.3529)  lr: 0.000191  max mem: 19053
+2023-06-14 13:40:58,339 DTST.trainer INFO: eta: 4:02:35  iter: 16220  loss_p_loss: 0.1219 (0.1591)  loss_n_loss: 0.0002 (0.0013)  time: 1.9100 (3.8506)  data: 0.0003 (0.3525)  lr: 0.000191  max mem: 19053
+2023-06-14 13:42:21,569 DTST.trainer INFO: eta: 4:01:19  iter: 16240  loss_p_loss: 0.1221 (0.1590)  loss_n_loss: 0.0002 (0.0013)  time: 1.9071 (3.8510)  data: 0.0004 (0.3520)  lr: 0.000191  max mem: 19053
+2023-06-14 13:43:33,476 DTST.trainer INFO: eta: 4:00:01  iter: 16260  loss_p_loss: 0.1192 (0.1590)  loss_n_loss: 0.0002 (0.0013)  time: 1.9080 (3.8507)  data: 0.0003 (0.3516)  lr: 0.000191  max mem: 19053
