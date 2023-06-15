@@ -1,5 +1,5 @@
 2023-06-14 11:31:56,532 DTST INFO: Using 1 GPUs
-2023-06-14 11:31:56,533 DTST INFO: Namespace(config_file='configs/deeplabv2_r101_dtst.yaml', distributed=False, local_rank=0, opts=['OUTPUT_DIR', 'results/dtst_scale_1.25_/', 'resume', 'pretrain/G2C_model_iter020000.pth'], skip_test=False)
+2023-06-14 11:31:56,533 DTST INFO: Namespace(config_file='configs/deeplabv2_r101_dtst.yaml', distributed=False, local_rank=0, opts=['OUTPUT_DIR', 'results/dtst/', 'resume', 'pretrain/G2C_model_iter020000.pth'], skip_test=False)
 2023-06-14 11:31:56,533 DTST INFO: Loaded configuration file configs/deeplabv2_r101_dtst.yaml
 2023-06-14 11:31:56,533 DTST INFO: 
 MODEL:
@@ -75,7 +75,7 @@ MODEL:
   POS: []
   UNCERTAINTY: 0.0
   WEIGHTS: pretrain/resnet101-5d3b4d8f.pth
-OUTPUT_DIR: results/dtst_scale_1.25_/
+OUTPUT_DIR: results/dtst/
 SOLVER:
   BASE_LR: 0.00025
   BASE_LR_D: 0.0001
