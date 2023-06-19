@@ -76,6 +76,8 @@ _C.DTU.Query_START = 9
 _C.DTU.META_MAX_UPDATE = 30
 _C.DTU.EMA_WEIGHT = 0.99
 _C.DTU.PROXY_METRIC = 'ENT'
+_C.DTU.FIX_ITERATION = 12
+
 
 # List of the DTU configs
 _C.TCR = CN()
