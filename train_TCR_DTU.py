@@ -459,7 +459,7 @@ def train(cfg, local_rank, distributed):
                         stu_score_buffer = []
 
             else:
-                if iteration % cfg.DTU.PROXY_METRIC == 0:
+                if iteration % cfg.DTU.FIX_ITERATION == 0:
                     cls_his_optimizer.step()
                     fea_his_optimizer.step()
            
