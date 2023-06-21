@@ -676,7 +676,7 @@ def run_candidate(cfg, feature_extractor, classifier, local_rank, distributed, i
             output = classifier(fea, size)
             probs = F.softmax(output, dim=1)
             pred = output.max(1)[1]
-            intersection, union, target = intersectionAndUnionGPU(pred, y, cfg.MODEL.NUM_CLASSES, cfg.INPUT.IGNORE_LABEL)
+            intersection, union, target = intersectionAndUnionGPU(pred.clone(), y, cfg.MODEL.NUM_CLASSES, cfg.INPUT.IGNORE_LABEL)
             if distributed:
                 torch.distributed.all_reduce(intersection), torch.distributed.all_reduce(union), torch.distributed.all_reduce(target)
             intersection, union, target = intersection.cpu().numpy(), union.cpu().numpy(), target.cpu().numpy()
