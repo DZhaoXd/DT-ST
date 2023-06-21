@@ -306,9 +306,9 @@ def train(cfg, local_rank, distributed):
         tail_list_ids = [i_id.strip().split(' ')[0] for i_id in content]
     
     ###### Mixup and  rsc init  
-    #run_candidate(cfg, feature_extractor_his, classifier_his, local_rank, distributed, init_candidate=True)
-    #gen_lb_info(cfg, 'CTR')  ## for mixup 
-    #gen_lb_info(cfg, 'CTR_O')  ## for rsc 
+    run_candidate(cfg, feature_extractor_his, classifier_his, local_rank, distributed, init_candidate=True)
+    gen_lb_info(cfg, 'CTR')  ## for mixup 
+    gen_lb_info(cfg, 'CTR_O')  ## for rsc 
     tgt_train_data = build_dataset(cfg, mode='train', is_source=False)
     tgt_train_data.mixer.label_to_file, _ = pickle.load(open(os.path.join(cfg.OUTPUT_DIR, 'CTR.p'), "rb"))
 
