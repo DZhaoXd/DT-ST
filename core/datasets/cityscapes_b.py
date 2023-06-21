@@ -208,10 +208,8 @@ class cityscapesDataSetTrain(data.Dataset):
         self.mixer = rand_mixer_v2(cfg)
         if self.NUM_CLASS == 19:
             self.mix_classes = [4, 5, 6, 7, 12, 16, 17, 18]
-            #self.mix_classes = [4, 5, 6, 7, 12, 14, 15, 16, 17, 18]
             self.mix_p = np.ones(len(self.mix_classes)) / len(self.mix_classes)
         else:
-            #self.mix_classes = [5, 6, 7, 11, 13, 14, 15]
             self.mix_classes = [3, 5, 6, 7, 11, 14, 15]
             self.mix_p = np.ones(len(self.mix_classes)) / len(self.mix_classes)
             
