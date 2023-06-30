@@ -41,8 +41,8 @@ The data folder should be structured as follows:
 ...
 ```
 Pretrain models:
-- Download pretrained model on GTA5: ([GTA5_NO_DG](https://drive.google.com/file/d/1dwWoEKTnPBHr9-_-uVyqPH_HfBcLcfns/view?usp=drive_link)) and ([GTA5_DG](https://drive.google.com/file/d/1fZ1uAPxUxPaWQrjBwZ6qkwsY3n2odqYd/view?usp=drive_link)) 
-- Download pretrained model on SYNTHIA: ([SYNTHIA](https://drive.google.com/file/d/1380-cAcVxIgyhKWHtf5IGkGbdQGZ7Gzb/view?usp=drive_link)) and ([SYNTHIA](https://drive.google.com/file/d/1_EhjzkcVClC_cjnar6r_tnpU3ZMB8nXG/view?usp=drive_link)) 
+- Download pretrained model on GTA5: ([GTA5_NO_DG](https://drive.google.com/file/d/1C_SC1_Ne1r3iqKxjY17wKVHQLRaBq5hT/view?usp=drive_link)) and ([GTA5_DG](https://drive.google.com/file/d/1fZ1uAPxUxPaWQrjBwZ6qkwsY3n2odqYd/view?usp=drive_link)) 
+- Download pretrained model on SYNTHIA: ([SYNTHIA_NO_DG](https://drive.google.com/file/d/1380-cAcVxIgyhKWHtf5IGkGbdQGZ7Gzb/view?usp=drive_link)) and ([SYNTHIA_DG](https://drive.google.com/file/d/1_EhjzkcVClC_cjnar6r_tnpU3ZMB8nXG/view?usp=drive_link)) 
 
 Then, put these *.pth into the pretrain folder.
 
