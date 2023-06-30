@@ -191,7 +191,10 @@ class cityscapesDataSetTrain(data.Dataset):
                      w = 1 / np.log(1 + 1e-2 + dist1)
                      w = w / w.sum()
                      c = np.random.choice(self.NUM_CLASS, p=w)
-        
+
+                     if len(self.label_to_file[c]) == 0 or len(self.label_to_file[c]) == 1:
+                         continue
+                             
                      if ind[c] > (len(self.label_to_file[c]) - 1):
                          np.random.shuffle(self.label_to_file[c])
                          ind[c] = ind[c] % (len(self.label_to_file[c]) - 1)
