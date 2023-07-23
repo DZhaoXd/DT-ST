@@ -65,6 +65,7 @@ python test.py -cfg configs/deeplabv2_r101_dtst.yaml resume results/dtst_g2c/mod
 Our trained model and the training logs are available via [DTST-training-logs-and weights](https://drive.google.com/drive/folders/1ML3_6MyDOnlUR7_S2rj1J4Z82v16WZGa?usp=drive_link).
 
 ### Visualization results
+Test the trained model with color jitter.
 ![Visualization](gifs/test.gif)
 
 
