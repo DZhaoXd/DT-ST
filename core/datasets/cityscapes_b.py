@@ -54,9 +54,12 @@ class rand_mixer_v2():
         out_imgs = deepcopy(in_imgs)
         out_lbls = np.ones(in_imgs.shape[:2]) * 255 
         in_w, in_h = in_imgs.shape[:2]
-        class_idx = np.random.choice(classes, size=1, p=choice_p)[0]
         ins_pix_num = 50
+        
         while True:
+            class_idx = np.random.choice(classes, size=1, p=choice_p)[0]
+            if len(self.label_to_file[class_idx]) < 1:
+                continue
             name = random.sample(self.label_to_file[class_idx], 1)
             cdd_img_path = os.path.join(self.image_root, "leftImg8bit/train/%s" % name[0])
             cdd_label_path = os.path.join(self.cdd_root, "{}/{}".format(self.candidate_name, name[0].split('/')[-1]))
