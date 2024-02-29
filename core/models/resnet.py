@@ -273,9 +273,9 @@ class ResNet(nn.Module):
 
 def _resnet(arch, block, layers, pretrained, progress, pretrained_weights, **kwargs):
     model = ResNet(block, layers, **kwargs)
-    #pretrained_weights = 'pretrain/resnet101-5d3b4d8f.pth'
-    #if pretrained:
-    #    load_checkpoint(model, pretrained_weights, map_location='cpu')
+    pretrained_weights = 'pretrain/resnet101-5d3b4d8f.pth'
+    if pretrained:
+        load_checkpoint(model, pretrained_weights, map_location='cpu')
     return model
 
 
